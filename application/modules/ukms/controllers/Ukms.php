@@ -32,7 +32,7 @@ class Ukms extends MX_Controller {
         );
         $update = $this->ukm->update_table('ukm', $value, 'id', $profileUkm[0]['id']);
 
-        $productUkm = $this->ukm->fetch_table('*','ukm_product','ukm_id = "'.$profileUkm[0]['id'].'"','','','','',TRUE);
+        $productUkm = $this->ukm->fetch_table('*','ukm_product','ukm_id = "'.$profileUkm[0]['id'].'"','sold_count','desc','',5,TRUE);
         $commentUkm = $this->ukm->fetch_table('*','ukm_comment','ukm_id = "'.$profileUkm[0]['id'].'"','','','','',TRUE);
 
         $response = array(
