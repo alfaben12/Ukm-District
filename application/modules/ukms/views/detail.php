@@ -28,15 +28,11 @@
                         <div class="col-lg-3  col-md-3">
                             <div class="blog_info text-right">
                                 <div class="post_tag">
-                                    <a href="#">Food,</a>
-                                    <a class="active" href="#">Technology,</a>
-                                    <a href="#">Politics,</a>
-                                    <a href="#">Lifestyle</a>
+                                    <a href="#" id="a_category_producs"></a>
                                 </div>
                                 <ul class="blog_meta list">
-                                    <li><a href="#">Mark wiens<i class="lnr lnr-user"></i></a></li>
-                                    <li><a href="#">12 Dec, 2018<i class="lnr lnr-calendar-full"></i></a></li>
-                                    <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
+                                    <li id="li_joinAt"><a href="#"><i class="lnr lnr-calendar-full"></i></a></li>
+                                    <li id="li_views"><a href="#"><i class="lnr lnr-eye"></i></a></li>
                                     <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
                                 </ul>
                                 <ul class="social-links">
@@ -48,59 +44,14 @@
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-9 blog_details">
-                            <h2>Astronomy Binoculars A Great Alternative</h2>
-                            <p class="excert">
-                                MCSE boot camps have its supporters and its detractors. Some people do not understand
-                                why you should have to spend money on boot camp when you can get the MCSE study
-                                materials yourself at a fraction.
-                            </p>
-                            <p>
-                                Boot camps have its supporters and its detractors. Some people do not understand why
-                                you should have to spend money on boot camp when you can get the MCSE study materials
-                                yourself at a fraction of the camp price. However, who has the willpower to actually
-                                sit through a self-imposed MCSE training. who has the willpower to actually sit through
-                                a self-imposed
-                            </p>
-                            <p>
-                                Boot camps have its supporters and its detractors. Some people do not understand why
-                                you should have to spend money on boot camp when you can get the MCSE study materials
-                                yourself at a fraction of the camp price. However, who has the willpower to actually
-                                sit through a self-imposed MCSE training. who has the willpower to actually sit through
-                                a self-imposed
-                            </p>
+                            <h2 id="h2_ukmName"></h2>
+                            <p id="p_description"></p>
                         </div>
                         <div class="col-lg-12">
-                            <div class="quotes">
-                                MCSE boot camps have its supporters and its detractors. Some people do not understand
-                                why you should have to spend money on boot camp when you can get the MCSE study
-                                materials yourself at a fraction of the camp price. However, who has the willpower to
-                                actually sit through a self-imposed MCSE training.
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <img class="img-fluid" src="<?= base_url() ?>assets/img/blog/post-img1.jpg" alt="">
-                                </div>
-                                <div class="col-6">
-                                    <img class="img-fluid" src="<?= base_url() ?>assets/img/blog/post-img2.jpg" alt="">
-                                </div>
-                                <div class="col-lg-12 mt-25">
-                                    <p>
-                                        MCSE boot camps have its supporters and its detractors. Some people do not
-                                        understand why you should have to spend money on boot camp when you can get the
-                                        MCSE study materials yourself at a fraction of the camp price. However, who has
-                                        the willpower.
-                                    </p>
-                                    <p>
-                                        MCSE boot camps have its supporters and its detractors. Some people do not
-                                        understand why you should have to spend money on boot camp when you can get the
-                                        MCSE study materials yourself at a fraction of the camp price. However, who has
-                                        the willpower.
-                                    </p>
-                                </div>
-                            </div>
+                            <div class="quotes"></div>
                         </div>
                     </div>
-                    <div class="navigation-area">
+                    <!-- <div class="navigation-area">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
                                 <div class="thumb">
@@ -131,104 +82,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="comments-area">
-                        <h4>05 Comments</h4>
-                        <div class="comment-list">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="<?= base_url() ?>assets/img/blog/c1.jpg" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <h5><a href="#">Emilly Blunt</a></h5>
-                                        <p class="date">December 4, 2018 at 3:12 pm </p>
-                                        <p class="comment">
-                                            Never say goodbye till the end comes!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="reply-btn">
-                                    <a href="" class="btn-reply text-uppercase">reply</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-list left-padding">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="<?= base_url() ?>assets/img/blog/c2.jpg" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <h5><a href="#">Elsie Cunningham</a></h5>
-                                        <p class="date">December 4, 2018 at 3:12 pm </p>
-                                        <p class="comment">
-                                            Never say goodbye till the end comes!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="reply-btn">
-                                    <a href="" class="btn-reply text-uppercase">reply</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-list left-padding">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="<?= base_url() ?>assets/img/blog/c3.jpg" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <h5><a href="#">Annie Stephens</a></h5>
-                                        <p class="date">December 4, 2018 at 3:12 pm </p>
-                                        <p class="comment">
-                                            Never say goodbye till the end comes!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="reply-btn">
-                                    <a href="" class="btn-reply text-uppercase">reply</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-list">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="<?= base_url() ?>assets/img/blog/c4.jpg" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <h5><a href="#">Maria Luna</a></h5>
-                                        <p class="date">December 4, 2018 at 3:12 pm </p>
-                                        <p class="comment">
-                                            Never say goodbye till the end comes!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="reply-btn">
-                                    <a href="" class="btn-reply text-uppercase">reply</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-list">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="<?= base_url() ?>assets/img/blog/c5.jpg" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <h5><a href="#">Ina Hayes</a></h5>
-                                        <p class="date">December 4, 2018 at 3:12 pm </p>
-                                        <p class="comment">
-                                            Never say goodbye till the end comes!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="reply-btn">
-                                    <a href="" class="btn-reply text-uppercase">reply</a>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="comment-form">
                         <h4>Leave a Reply</h4>
@@ -259,17 +115,15 @@
                     <div class="blog_right_sidebar">
                         <aside class="single_sidebar_widget author_widget">
                             <img class="author_img rounded-circle" src="<?= base_url() ?>assets/img/blog/author.png" alt="">
-                            <h4>Charlie Barber</h4>
-                            <p>Senior blog writer</p>
+                            <h4 id="h4_founder"></h4>
+                            <p>Pengelola UKM</p>
                             <div class="social_icon">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-github"></i></a>
                                 <a href="#"><i class="fa fa-behance"></i></a>
                             </div>
-                            <p>Boot camps have its supporters andit sdetractors. Some people do not understand why you
-                                should have to spend money on boot camp when you can get. Boot camps have itssuppor
-                                ters andits detractors.</p>
+                            <p id="p_quote"></p>
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget popular_post_widget">
@@ -408,6 +262,7 @@
     <!--================Blog Area =================-->
     <script>
     $(document).ready(function() {
+        var base_url = '<?= base_url() ?>';
         $.ajax({
             url:  '<?= site_url() ?>ukms/getUkmDataDetailProfile',
             type: 'GET',
@@ -422,6 +277,32 @@
             complete: function() {
             },
             success: function(response) {
+                $("#p_quote").text(response.data.profile[0]['quotes']);
+                $("#h4_founder").text(response.data.profile[0]['founder']);
+                $("#h2_ukmName").text(response.data.profile[0]['name']);
+                $("#li_joinAt").text(response.data.profile[0]['join_app_at']);
+                $("#a_category_producs").text(response.data.profile[0]['category_products_id']);
+                $("#p_description").text(response.data.profile[0]['description']);
+                $("#quotes").text(response.data.profile[0]['quotes']);
+                $("#li_views").text(response.data.profile[0]['views'] + " Views");
+
+                for(var j=0; j < response.data.comment.length; j++) {
+				var comment =
+				'<div class="comment-list">' +
+                    '<div class="single-comment justify-content-between d-flex">' +
+                        '<div class="user justify-content-between d-flex">' +
+                            '<div class="desc">' +
+                                '<h5><a href="#">'+ response.data.comment[j]['name'] +'</a></h5>' +
+                                '<p class="date">'+ response.data.comment[j]['create_at'] +'</p>' +
+                                '<p class="comment">' +
+                                    response.data.comment[j]['message'] +
+                               '</p>' +
+                           '</div>' +
+                       '</div>' +
+                   '</div>' +
+               '</div>';
+				$(".comments-area").append(comment).fadeIn(500);
+			}
             }
         });
     });
