@@ -86,27 +86,28 @@
                         
                     </div>
                     <div class="comment-form">
-                        <h4>Leave a Reply</h4>
-                        <form>
+                        <h4>Berikan Komentar</h4>
+                        <form id="commentForm">
                             <div class="form-group form-inline">
                                 <div class="form-group col-lg-6 col-md-6 name">
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Name" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Enter Name'">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama" onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = 'Masukkan nama'">
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6 email">
-                                    <input type="email" class="form-control" id="email" placeholder="Enter email address"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan email'">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="subject" placeholder="Subject" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Subject'">
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subjek" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Subjek'">
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+                                <textarea class="form-control mb-10" rows="5" name="message" placeholder="Pesan"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pesan'" required=""></textarea>
                             </div>
-                            <a href="#" class="primary-btn submit_btn">Post Comment</a>
+                            <input type="hidden" class="form-control" id="ukmName" name="ukmName" value="<?= $this->input->get('ukmName') ?>">
+                            <button type="submit" class="primary-btn submit_btn">Kirim</button>
                         </form>
                     </div>
                 </div>
@@ -140,68 +141,103 @@
     <script>
     $(document).ready(function() {
         var base_url = '<?= base_url() ?>';
-        $.ajax({
-            url:  '<?= site_url() ?>ukms/getUkmDataDetailProfile',
-            type: 'GET',
-            data: {
-                ukmName: '<?= $this->input->get('ukmName') ?>'
-            },
-            async: true,
-            cache: false,
-            dataType: 'json',
-            beforeSend: function() {
-            },
-            complete: function() {
-            },
-            success: function(response) {
-                $("#p_quote").text(response.data.profile[0]['quotes']);
-                $("#h4_founder").text(response.data.profile[0]['founder']);
-                $("#h2_ukmName").text(response.data.profile[0]['name']);
-                $("#li_joinAt").text(response.data.profile[0]['join_app_at']);
-                $("#a_category_producs").text(response.data.profile[0]['category_products_id']);
-                $("#p_description").text(response.data.profile[0]['description']);
-                $("#quotes").text(response.data.profile[0]['quotes']);
-                $("#li_views").text(response.data.profile[0]['views'] + " Views");
-                
-                var cover = '<img src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo_cover'] +'" alt="post" width="750" height="350">';
-                $(".feature-img").append(cover).fadeIn(500);
+        getAllFata();
+        function getAllFata(){
+            $.ajax({
+                url:  '<?= site_url() ?>ukms/getUkmDataDetailProfile',
+                type: 'GET',
+                data: {
+                    ukmName: '<?= $this->input->get('ukmName') ?>'
+                },
+                async: true,
+                cache: false,
+                dataType: 'json',
+                beforeSend: function() {
+                    $("#p_quote").empty();
+                    $("#h4_founder").empty();
+                    $("#h2_ukmName").empty();
+                    $("#li_joinAt").empty();
+                    $("#a_category_producs").empty();
+                    $("#p_description").empty();
+                    $("#quotes").empty();
+                    $("#li_views").empty();
+                    $(".feature-img").empty();
+                    $("#logo").empty();
+                    $(".comments-area").empty();
+                    $(".product-area").empty();
+                },
+                complete: function() {
+                },
+                success: function(response) {
+                    $("#p_quote").text(response.data.profile[0]['quotes']);
+                    $("#h4_founder").text(response.data.profile[0]['founder']);
+                    $("#h2_ukmName").text(response.data.profile[0]['name']);
+                    $("#li_joinAt").text(response.data.profile[0]['join_app_at']);
+                    $("#a_category_producs").text(response.data.profile[0]['category_products_id']);
+                    $("#p_description").text(response.data.profile[0]['description']);
+                    $("#quotes").text(response.data.profile[0]['quotes']);
+                    $("#li_views").text(response.data.profile[0]['views'] + " Views");
+                    
+                    var cover = '<img src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo_cover'] +'" alt="post" width="750" height="350">';
+                    $(".feature-img").append(cover).fadeIn(500);
 
-                var cover = '<img src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo'] +'" class="author_img rounded-circle" alt="post" width="120" height="120">';
-                $("#logo").append(cover).fadeIn(500);
-                
-                for(var j=0; j < response.data.comment.length; j++) {
-                    var comment =
-                        '<div class="comment-list">' +
-                            '<div class="single-comment justify-content-between d-flex">' +
-                                '<div class="user justify-content-between d-flex">' +
-                                    '<div class="desc">' +
-                                        '<h5><a href="#">'+ response.data.comment[j]['name'] +'</a></h5>' +
-                                        '<p class="date">'+ response.data.comment[j]['create_at'] +'</p>' +
-                                        '<p class="comment">' +
-                                            response.data.comment[j]['message'] +
-                                        '</p>' +
+                    var cover = '<img src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo'] +'" class="author_img rounded-circle" alt="post" width="120" height="120">';
+                    $("#logo").append(cover).fadeIn(500);
+                    
+                    for(var j=0; j < response.data.comment.length; j++) {
+                        var comment =
+                            '<div class="comment-list">' +
+                                '<div class="single-comment justify-content-between d-flex">' +
+                                    '<div class="user justify-content-between d-flex">' +
+                                        '<div class="desc">' +
+                                            '<h5><a href="#">'+ response.data.comment[j]['name'] +'</a></h5>' +
+                                            '<p class="date">'+ response.data.comment[j]['create_at'] +'</p>' +
+                                            '<p class="comment">' +
+                                                response.data.comment[j]['message'] +
+                                            '</p>' +
+                                        '</div>' +
                                     '</div>' +
                                 '</div>' +
-                            '</div>' +
-                        '</div>';
-                    $(".comments-area").append(comment).fadeIn(500);
-                }
+                            '</div>';
+                        $(".comments-area").append(comment).fadeIn(500);
+                    }
 
-                for(var k=0; k < response.data.product.length; k++) {
-                    var product =
-                        '<div class="media post_item">'+
-                            '<img src="'+ base_url + 'files/product/' +response.data.product[k]['image'] +'" alt="post" width="100" height="60">'+
-                            '<div class="media-body">'+
-                                '<a href="blog-details.html">'+
-                                    '<h3>'+ response.data.product[k]['name'] +'</h3>'+
-                                '</a>'+
-                                '<p>Harga : '+ response.data.product[k]['price'] +'</p>'+
-                                '<p>Terjual : '+ response.data.product[k]['sold_count'] +'</p>'+
-                            '</div>'+
-                        '</div>';
-                    $(".product-area").append(product).fadeIn(500);
+                    for(var k=0; k < response.data.product.length; k++) {
+                        var product =
+                            '<div class="media post_item">'+
+                                '<img src="'+ base_url + 'files/product/' +response.data.product[k]['image'] +'" alt="post" width="100" height="60">'+
+                                '<div class="media-body">'+
+                                    '<a href="blog-details.html">'+
+                                        '<h3>'+ response.data.product[k]['name'] +'</h3>'+
+                                    '</a>'+
+                                    '<p>Harga : '+ response.data.product[k]['price'] +'</p>'+
+                                    '<p>Terjual : '+ response.data.product[k]['sold_count'] +'</p>'+
+                                '</div>'+
+                            '</div>';
+                        $(".product-area").append(product).fadeIn(500);
+                    }
                 }
-            }
-        });
+            });
+        }
+
+        $("#commentForm").submit(function(event) {
+				$.ajax({
+					url: '<?= site_url() ?>ukms/processAddComent/',
+					data: $(this).serialize(),
+					type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    cache: false,
+                    dataType: 'json',
+                    beforeSend: function() {
+                    },
+                    complete: function() {
+                    },
+					success: function(response) {
+                        getAllFata();
+					}
+				});
+				event.preventDefault();
+			});
     });
     </script>

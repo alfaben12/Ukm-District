@@ -34,7 +34,7 @@ class Shops extends MX_Controller {
 
     public function getUkmDataProduct(){
         $rowno = $this->input->get('pageno');
-        if (count($this->input->get('ukm_category_product_id')) == 0 || count($this->input->get('ukm_category_product_id')) == 1) {
+        if (count($this->input->get('ukm_category_product_id')) == 0 || $this->input->get('ukm_category_product_id') == 1) {
             $category_id = '';
         }else{
             $category_id = $this->input->get('ukm_category_product_id');
@@ -43,7 +43,7 @@ class Shops extends MX_Controller {
         $price_to = $this->input->get('price_to');
 
         // Row per page
-        $rowperpage = 2;
+        $rowperpage = 9;
     
         // Row position
         if($rowno != 0){
@@ -52,7 +52,7 @@ class Shops extends MX_Controller {
      
         // All records count
         $allcount = $this->shop->getRecordCount($category_id,$price_from,$price_to);
-    
+
         // Get records
         $users_record = $this->shop->getData($rowno,$rowperpage,$category_id,$price_from,$price_to);
      

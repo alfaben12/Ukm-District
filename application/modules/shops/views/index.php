@@ -249,6 +249,13 @@
 			function createList(result) {
 				$('#div_product').empty();
 				for (k in result) {
+
+					if (result[k].is_diskon == 1) {
+						var price = '<h6 class="l-through">Rp. ' + result[k].price + '</h6>' +
+						'<h6>Rp. ' + result[k].final_price + '</h6>';
+					}else{
+						var price = '<h6>Rp. ' + result[k].price + '</h6>';
+					}
 					var product =
 						'<div class="col-lg-4 col-md-6">' +
 						'<div class="single-product">' +
@@ -256,8 +263,7 @@
 						'<div class="product-details">' +
 						'<h6>' + result[k].name + '</h6>' +
 						'<div class="price">' +
-						'<h6>Rp. ' + result[k].price + '</h6>' +
-						// '<h6 class="l-through">$210.00</h6>'+
+						price +
 						'</div>' +
 						'<div class="prd-bottom">' +
 						'<a href="" class="social-info">' +
