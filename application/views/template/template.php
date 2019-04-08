@@ -32,6 +32,12 @@
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/magnific-popup.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/main.css">
 	<script src="<?= base_url() ?>assets/js/vendor/jquery-2.2.4.min.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.jqueryui.min.css">
+
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.jqueryui.min.js"></script>
 	<?php $this->load->view('template/header'); ?>
 </head>
 
@@ -80,6 +86,13 @@
 										</ul>
 									</li>
 									<li class="nav-item"><a class="nav-link" href="<?= site_url('contactus') ?>">Kontak</a></li>
+									<?php 
+										if($this->session->userdata('id') != null  || $this->session->userdata('id') != ''){
+											?>
+												<li class="nav-item"><a class="nav-link" href="<?= site_url('productz') ?>">Admin</a></li>
+											<?php
+										}
+									?>
 								</ul>
 								<ul class="nav navbar-nav navbar-right">
 									<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>

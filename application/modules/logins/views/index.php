@@ -36,7 +36,7 @@
 								<input type="text" class="form-control" id="username" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
@@ -71,7 +71,11 @@
                     complete: function() {
                     },
 					success: function(response) {
-                        alert(response.message);
+                        if (response.code == 200) {
+						    window.location = response.redirect;
+                        }else{
+                            alert(response.message);
+                        }
 					}
 				});
 				event.preventDefault();

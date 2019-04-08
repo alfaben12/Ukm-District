@@ -42,17 +42,16 @@ class Logins extends MX_Controller {
 					$this->session->set_userdata($data);
 
 					$response =  array(
-						'result' => TRUE,
+						'code' => 200,
 						'message' => 'Data valid, akses diberikan.',
-						'redirect' => base_url() .'dashboards/'
+						'redirect' => site_url('productz')
 					);
 					echo json_encode($response, JSON_PRETTY_PRINT);
 					die();
 			}else{
 				$response =  array(
-					'result' => FALSE,
-					'message' => 'Data tidak valid.',
-					'redirect' => base_url() .'logins/'
+					'code' => 401,
+					'message' => 'Data tidak valid.'
 				);
 				echo json_encode($response, JSON_PRETTY_PRINT);
 				die();
