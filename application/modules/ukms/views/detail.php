@@ -5,8 +5,8 @@
                 <div class="col-first">
                     <h1>Halaman UKM</h1>
                     <nav class="d-flex align-items-center">
-                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="category.html">Blog</a>
+                        <a href="<?= site_url() ?>">Beranda<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="<?= site_url('ukms/ukmDetailProfileTicketDesk?ukmName=Kopi Kutjur') ?>">UKM</a>
                     </nav>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                                 <ul class="blog_meta list">
                                     <li id="li_joinAt"><a href="#"><i class="lnr lnr-calendar-full"></i></a></li>
                                     <li id="li_views"><a href="#"><i class="lnr lnr-eye"></i></a></li>
-                                    <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
+                                    <li id="li_comment"><a href="#"><i class="lnr lnr-bubble"></i></a></li>
                                 </ul>
                                 <ul class="social-links">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -50,38 +50,6 @@
                             <div class="quotes"></div>
                         </div>
                     </div>
-                    <!-- <div class="navigation-area">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-                                <div class="thumb">
-                                    <a href="#"><img class="img-fluid" src="<?= base_url() ?>assets/img/blog/prev.jpg" alt=""></a>
-                                </div>
-                                <div class="arrow">
-                                    <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
-                                </div>
-                                <div class="detials">
-                                    <p>Prev Post</p>
-                                    <a href="#">
-                                        <h4>Space The Final Frontier</h4>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                                <div class="detials">
-                                    <p>Next Post</p>
-                                    <a href="#">
-                                        <h4>Telescopes 101</h4>
-                                    </a>
-                                </div>
-                                <div class="arrow">
-                                    <a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
-                                </div>
-                                <div class="thumb">
-                                    <a href="#"><img class="img-fluid" src="<?= base_url() ?>assets/img/blog/next.jpg" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="comments-area">
                         
                     </div>
@@ -161,6 +129,7 @@
                     $("#p_description").empty();
                     $("#quotes").empty();
                     $("#li_views").empty();
+                    $("#li_comment").empty();
                     $(".feature-img").empty();
                     $("#logo").empty();
                     $(".comments-area").empty();
@@ -177,6 +146,7 @@
                     $("#p_description").text(response.data.profile[0]['description']);
                     $("#quotes").text(response.data.profile[0]['quotes']);
                     $("#li_views").text(response.data.profile[0]['views'] + " Views");
+                    $("#li_comment").text(response.data.comment.length + " Comments");
                     
                     var cover = '<img src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo_cover'] +'" alt="post" width="750" height="350">';
                     $(".feature-img").append(cover).fadeIn(500);

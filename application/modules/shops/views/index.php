@@ -5,8 +5,8 @@
 				<div class="col-first">
 					<h1>UKM Produk</h1>
 					<nav class="d-flex align-items-center">
-						<a href="index.html">Beranda<span class="lnr lnr-arrow-right"></span></a>
-						<a href="#">Produk<span class="lnr lnr-arrow-right"></span></a>
+						<a href="<?= site_url() ?>">Beranda<span class="lnr lnr-arrow-right"></span></a>
+						<a href="<?= site_url('shops') ?>">Produk</a>
 					</nav>
 				</div>
 			</div>

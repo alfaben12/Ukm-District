@@ -12,7 +12,11 @@ class Blogs extends MX_Controller {
 
     public function getUkmBlog(){
         $rowno = $this->input->get('pageno');
-
+        if ($this->input->get('q') != '') {
+            $q = $this->input->get('q');
+        }else{
+            $q = '';
+        }
         // Row per page
         $rowperpage = 2;
     
@@ -22,10 +26,10 @@ class Blogs extends MX_Controller {
         }
      
         // All records count
-        $allcount = $this->blog->getRecordCount();
+        $allcount = $this->blog->getRecordCount($q);
 
         // Get records
-        $users_record = $this->blog->getData($rowno,$rowperpage);
+        $users_record = $this->blog->getData($rowno,$rowperpage, $q);
      
         // Pagination Configuration
         $config['next_tag_open'] = '<li class="next-arrow">';

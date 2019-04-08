@@ -3,10 +3,10 @@
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>Contact Us</h1>
+					<h1>Kontak</h1>
 					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">Contact</a>
+						<a href="<?= site_url() ?>">Beranda<span class="lnr lnr-arrow-right"></span></a>
+						<a href="<?= site_url('contactus') ?>">Kontak</a>
 					</nav>
 				</div>
 			</div>

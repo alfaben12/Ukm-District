@@ -3,10 +3,10 @@
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                 <div class="col-first">
-                    <h1>Blog Page</h1>
+                    <h1>Blog</h1>
                     <nav class="d-flex align-items-center">
-                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="category.html">Blog</a>
+                        <a href="<?= site_url() ?>">Beranda<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="<?= site_url('blogs') ?>">Blog</a>
                     </nav>
                 </div>
             </div>
@@ -15,54 +15,8 @@
     <!-- End Banner Area -->
 
     <!--================Blog Categorie Area =================-->
-    <section class="blog_categorie_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="categories_post">
-                        <img src="img/blog/cat-post/cat-post-3.jpg" alt="post">
-                        <div class="categories_details">
-                            <div class="categories_text">
-                                <a href="blog-details.html">
-                                    <h5>Social Life</h5>
-                                </a>
-                                <div class="border_line"></div>
-                                <p>Enjoy your social life together</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="categories_post">
-                        <img src="img/blog/cat-post/cat-post-2.jpg" alt="post">
-                        <div class="categories_details">
-                            <div class="categories_text">
-                                <a href="blog-details.html">
-                                    <h5>Politics</h5>
-                                </a>
-                                <div class="border_line"></div>
-                                <p>Be a part of politics</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="categories_post">
-                        <img src="img/blog/cat-post/cat-post-1.jpg" alt="post">
-                        <div class="categories_details">
-                            <div class="categories_text">
-                                <a href="blog-details.html">
-                                    <h5>Food</h5>
-                                </a>
-                                <div class="border_line"></div>
-                                <p>Let the food be finished</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <br/>
+    <br/>
     <!--================Blog Categorie Area =================-->
 
     <!--================Blog Area =================-->
@@ -84,12 +38,14 @@
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
                         <aside class="single_sidebar_widget search_widget">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search Posts" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
-                                </span>
-                            </div><!-- /input-group -->
+                            <form id="searchForm">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="q" placeholder="Search Posts" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit"><i class="lnr lnr-magnifier"></i></button>
+                                    </span>
+                                </div><!-- /input-group -->
+                            </form>
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget popular_post_widget">
@@ -144,7 +100,8 @@
 				$.ajax({
 					url: '<?= site_url() ?>blogs/getUkmBlog/'+ pagno,
 					data: {
-						pageno: pagno,
+                        pageno: pagno,
+						q: $("#q").val()
 					},
 					type: 'GET',
 					dataType: 'json',
@@ -190,31 +147,25 @@
 				}
 			}
 
-			// $("#filterForm").submit(function(event) {
-			// 	if ($("input[name='ukm_category_product_id']:checked").val() == '') {
-			// 		alert('Kategori harus diisi.');
-			// 	}
-
-			// 	$.ajax({
-			// 		url: '<?= site_url() ?>shops/getUkmDataProduct/0',
-			// 		data: {
-			// 			pageno: 0,
-			// 			ukm_category_product_id: $("input[name='ukm_category_product_id']:checked").val(),
-			// 			price_from: $("#minHarga").val(),
-			// 			price_to: $("#maxHarga").val()
-			// 		},
-			// 		type: 'GET',
-			// 		dataType: 'json',
-			// 		success: function(response) {
-			// 			if (response.data.code != 200) {
-			// 				var product = 'Barang tidak ditemukan.'
-			// 				$("#div_product").append(product).fadeIn(500);
-			// 			}
-			// 			$('#pagination').html(response.data.product.pagination);
-			// 			createList(response.data.product.result);
-			// 		}
-			// 	});
-			// 	event.preventDefault();
-			// });
+			$("#searchForm").submit(function(event) {
+				$.ajax({
+					url: '<?= site_url() ?>blogs/getUkmBlog/0',
+					data: {
+						pageno: 0,
+						q: $("#q").val()
+					},
+					type: 'GET',
+					dataType: 'json',
+					success: function(response) {
+						if (response.data.code != 200) {
+							var blog = 'Blog tidak ditemukan.'
+							$("#div_blog").append(blog).fadeIn(500);
+						}
+						$('#pagination').html(response.data.blog.pagination);
+						createList(response.data.blog.result);
+					}
+				});
+				event.preventDefault();
+			});
 		});
 	</script>
