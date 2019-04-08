@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+$hook['post_controller_constructor'][] = array(
+	'filename' => 'Security_login.php',
+	'function' => 'session_check',
+	'filepath' => 'hooks'
+);
 /*
 | -------------------------------------------------------------------------
 | Hooks

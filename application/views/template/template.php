@@ -36,7 +36,6 @@
 </head>
 
 <body>
-
 	<!-- Start Header Area -->
 	<header class="header_area sticky-header">
 		<div class="main_menu">
@@ -52,39 +51,60 @@
 					</button>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item active"><a class="nav-link" href="<?= site_url() ?>">Beranda</a></li>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">UKM</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="<?= site_url('ukms/ukmDetailProfile?ukmName=Kopi Kutjur') ?>">UKM Profil</a></li>
-									<li class="nav-item"><a class="nav-link" href="<?= site_url('shops') ?>">UKM Produk</a></li>
+						<?php
+							if ($this->uri->segment(1) != 'blogz' && $this->uri->segment(1) != 'productz' && $this->uri->segment(1) != 'ukmz' && $this->uri->segment(1) != 'dashboardz') {
+								?>
+								<ul class="nav navbar-nav menu_nav ml-auto">
+									<li class="nav-item active"><a class="nav-link" href="<?= site_url() ?>">Beranda</a></li>
+									<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false">UKM</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item"><a class="nav-link" href="<?= site_url('ukms/ukmDetailProfile?ukmName=Kopi Kutjur') ?>">UKM Profil</a></li>
+											<li class="nav-item"><a class="nav-link" href="<?= site_url('shops') ?>">UKM Produk</a></li>
+										</ul>
+									</li>
+									<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false">Blog</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item"><a class="nav-link" href="<?= site_url('blogs') ?>">Blog</a></li>
+										</ul>
+									</li>
+									<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false">Pages</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item"><a class="nav-link" href="<?= site_url('logins') ?>">Masuk</a></li>
+											<li class="nav-item"><a class="nav-link" href="<?= site_url() ?>">Lacak</a></li>
+										</ul>
+									</li>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('contactus') ?>">Kontak</a></li>
 								</ul>
-							</li>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Blog</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="<?= site_url('blogs') ?>">Blog</a></li>
+								<ul class="nav navbar-nav navbar-right">
+									<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+									<li class="nav-item">
+										<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
+									</li>
 								</ul>
-							</li>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Pages</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="<?= site_url() ?>">Masuk</a></li>
-									<li class="nav-item"><a class="nav-link" href="<?= site_url() ?>">Lacak</a></li>
+								<?php
+							}else{
+								?>
+								<ul class="nav navbar-nav menu_nav ml-auto">
+									<li class="nav-item active"><a class="nav-link" href="<?= site_url() ?>">Beranda</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('productz') ?>">Produk</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('ukmz') ?>">UKM</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('blogz') ?>">Blog</a></li>
 								</ul>
-							</li>
-							<li class="nav-item"><a class="nav-link" href="<?= site_url('contactus') ?>">Kontak</a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
-							<li class="nav-item">
-								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-							</li>
-						</ul>
+								<ul class="nav navbar-nav navbar-right">
+									<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+									<li class="nav-item">
+										<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
+									</li>
+								</ul>
+								<?php
+							}
+						?>
 					</div>
 				</div>
 			</nav>
