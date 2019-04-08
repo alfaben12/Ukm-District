@@ -121,7 +121,7 @@
                             </div>
                             
                             <div class="col-md-12 text-right">
-                                <button type="submit" value="submit" class="primary-btn">Tambahkan</button>
+                                <button type="submit" value="submit" class="primary-btn">Perbarui</button>
                             </div>
                         </form>
                     <?php
