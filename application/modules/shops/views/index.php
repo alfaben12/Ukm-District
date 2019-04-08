@@ -66,7 +66,7 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-6 text-center">
 					<div class="section-title">
-						<h1>Deals of the Week</h1>
+						<h1>Penjualan Terlaris</h1>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
 							magna aliqua.</p>
 					</div>
@@ -74,121 +74,14 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-9">
-					<div class="row">
-						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r1.jpg" alt=""></a>
-								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
-									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r2.jpg" alt=""></a>
-								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
-									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r3.jpg" alt=""></a>
-								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
-									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r5.jpg" alt=""></a>
-								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
-									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r6.jpg" alt=""></a>
-								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
-									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r7.jpg" alt=""></a>
-								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
-									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6">
-							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r9.jpg" alt=""></a>
-								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
-									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6">
-							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r10.jpg" alt=""></a>
-								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
-									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6">
-							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r11.jpg" alt=""></a>
-								<div class="desc">
-									<a href="#" class="title">Black lace Heels</a>
-									<div class="price">
-										<h6>$189.00</h6>
-										<h6 class="l-through">$210.00</h6>
-									</div>
-								</div>
-							</div>
-						</div>
+					<div class="row" id="divTopSeller">
+						
 					</div>
 				</div>
 				<div class="col-lg-3">
 					<div class="ctg-right">
 						<a href="#" target="_blank">
-							<img class="img-fluid d-block mx-auto" src="img/category/c5.jpg" alt="">
+							<!-- <img class="img-fluid d-block mx-auto" src="img/category/c5.jpg" alt=""> -->
 						</a>
 					</div>
 				</div>
@@ -206,7 +99,7 @@
 				loadPagination(pageno);
 			});
 			$.ajax({
-				url:  '<?= site_url() ?>shops/getCategoryProduct',
+				url:  '<?= site_url() ?>shops/getRenderedContent',
 				type: 'GET',
 				async: true,
 				cache: false,
@@ -220,6 +113,31 @@
 						var category = '<li class="filter-list"><input class="pixel-radio" type="radio" id="ukm_category_product_id" name="ukm_category_product_id" value="'+ response.data.category[k]['id'] +'" '+ response.data.category[k]['id'] +'><label for="'+ response.data.category[k]['name'] +'">'+ response.data.category[k]['name'] +'</label></li>';
 						$("#ul_category").append(category).fadeIn(500);
 					}
+
+					for(var k=0; k < response.data.product.length; k++) {
+						if (response.data.product[k]['is_diskon'] == 1) {
+							var price = '<h6 class="l-through">Rp. ' + response.data.product[k]['price'] + '</h6>' +
+							'<h6>Rp. ' + response.data.product[k]['final_price'] + '</h6>';
+						}else{
+							var price = '<h6>Rp. ' + response.data.product[k]['price'] + '</h6>';
+						}
+
+						var product = 
+						'<div class="col-lg-4 col-md-4 col-sm-6 mb-20">'+
+							'<div class="single-related-product d-flex">'+
+								'<a href="' + base_url + 'shops/showProduct?productName=' + response.data.product[k]['name'] + '"><img src="' + base_url + 'files/product/' + response.data.product[k]['image'] + '" alt="" width="100" height="70"></a>'+
+								'<div class="desc">'+
+									'<a href="' + base_url + 'shops/showProduct?productName=' + response.data.product[k]['name'] + '" class="title">Black lace Heels</a>'+
+									'<div class="price">'+
+										price +
+									'</div>'+
+								'</div>'+
+							'</div>'+
+						'</div>';
+						$("#divTopSeller").append(product).fadeIn(500);
+					}
+						
+
 					loadPagination(0);
 				}
 			});
@@ -261,7 +179,7 @@
 						'<div class="single-product">' +
 						'<img class="img-fluid" src="' + base_url + 'files/product/' + result[k].image + '" alt="" width="255" height="255">' +
 						'<div class="product-details">' +
-						'<h6>' + result[k].name + '</h6>' +
+						'<h6><a href="' + base_url + 'shops/showProduct?productName=' + result[k].name + '">' + result[k].name + '</a></h6>' +
 						'<div class="price">' +
 						price +
 						'</div>' +

@@ -109,8 +109,8 @@
     <script>
     $(document).ready(function() {
         var base_url = '<?= base_url() ?>';
-        getAllFata();
-        function getAllFata(){
+        getAllData();
+        function getAllData(){
             $.ajax({
                 url:  '<?= site_url() ?>ukms/getUkmDataDetailProfile',
                 type: 'GET',
@@ -151,8 +151,8 @@
                     var cover = '<img src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo_cover'] +'" alt="post" width="750" height="350">';
                     $(".feature-img").append(cover).fadeIn(500);
 
-                    var cover = '<img src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo'] +'" class="author_img rounded-circle" alt="post" width="120" height="120">';
-                    $("#logo").append(cover).fadeIn(500);
+                    var logo = '<img src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo'] +'" class="author_img rounded-circle" alt="post" width="120" height="120">';
+                    $("#logo").append(logo).fadeIn(500);
                     
                     for(var j=0; j < response.data.comment.length; j++) {
                         var comment =
@@ -204,7 +204,7 @@
                     complete: function() {
                     },
 					success: function(response) {
-                        getAllFata();
+                        getAllData();
 					}
 				});
 				event.preventDefault();

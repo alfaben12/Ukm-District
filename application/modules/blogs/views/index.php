@@ -157,9 +157,10 @@
 					type: 'GET',
 					dataType: 'json',
 					success: function(response) {
-						if (response.data.code != 200) {
+						if (response.code != 200) {
 							var blog = 'Blog tidak ditemukan.'
-							$("#div_blog").append(blog).fadeIn(500);
+                            $("#div_blog").append(blog).fadeIn(500);
+                            alert(response.message);
 						}
 						$('#pagination').html(response.data.blog.pagination);
 						createList(response.data.blog.result);

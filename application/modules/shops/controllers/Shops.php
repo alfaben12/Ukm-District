@@ -10,8 +10,10 @@ class Shops extends MX_Controller {
 		$this->template->write_view('index');
     }
 
-    public function getCategoryProduct(){
+    public function getRenderedContent(){
         $productCategory = $this->shop->fetch_table('*','ukm_category_product','','','','','',TRUE);
+        $productUkm = $this->shop->fetch_table('*','ukm_product','','sold_count','desc','',6,TRUE);
+
         if (count($productCategory) == 0) {
             $response = array(
                 'code' => 204,
@@ -26,6 +28,7 @@ class Shops extends MX_Controller {
             'message' => 'Kategori ditemukan',
             'data' => array(
                 'category' => $productCategory,
+                'product' => $productUkm
             )
         );
         echo json_encode($response, JSON_PRETTY_PRINT);
@@ -91,6 +94,51 @@ class Shops extends MX_Controller {
             'message' => 'Product ditemukan',
             'data' => array(
                 'product' => $data,
+            )
+        );
+        echo json_encode($response, JSON_PRETTY_PRINT);
+        die();
+    }
+
+    public function showProduct(){
+        $productName = $this->input->get('productName');
+
+        $data['product'] = $this->shop->fetch_table('*','ukm_product','name = "'.$productName.'"','','','','',TRUE);
+		$this->template->write_view('detail',$data);
+    }
+
+    public function getUkmDataDetailProduk(){
+        $productName = $this->input->get('productName');
+
+        $join = array(
+                array(
+                    'table' => 'ukm_category_product',
+                    'condition' => 'ukm_category_product.id = ukm_product.ukm_category_product_id',
+                    'jointype' => 'LEFT'
+                )
+            );
+
+		$product = $this->shop->fetch_joins('ukm_product','ukm_product.*, ukm_category_product.name AS category_name',$join,'ukm_product.name = "'.$productName.'"',TRUE);
+
+        if (count($product) == 0) {
+            $response = array(
+                'code' => 204,
+                'message' => 'Produk tidak ada'
+            );
+            echo json_encode($response, JSON_PRETTY_PRINT);
+            die();
+        }
+
+        $value = array(
+            'views' => $product[0]['views'] + 1
+        );
+        $update = $this->shop->update_table('ukm_product', $value, 'id', $product[0]['id']);
+
+        $response = array(
+            'code' => 200,
+            'message' => 'Produk ditemukan',
+            'data' => array(
+                'product' => $product
             )
         );
         echo json_encode($response, JSON_PRETTY_PRINT);
