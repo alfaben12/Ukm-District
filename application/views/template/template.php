@@ -53,7 +53,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item active"><a class="nav-link" href="index.html">Beranda</a></li>
+							<li class="nav-item active"><a class="nav-link" href="<?= site_url() ?>">Beranda</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">UKM</a>
@@ -66,7 +66,7 @@
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Blog</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="<?= site_url() ?>">Blog</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('blogs') ?>">Blog</a></li>
 								</ul>
 							</li>
 							<li class="nav-item submenu dropdown">
@@ -77,7 +77,7 @@
 									<li class="nav-item"><a class="nav-link" href="<?= site_url() ?>">Lacak</a></li>
 								</ul>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+							<li class="nav-item"><a class="nav-link" href="<?= site_url('contactus') ?>">Kontak</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>

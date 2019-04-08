@@ -99,11 +99,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subjek" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Subjek'">
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Masukkan judul" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Masukkan judul'">
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control mb-10" rows="5" name="message" placeholder="Pesan"
+                                <textarea class="form-control mb-10" rows="5" name="message" placeholder="Masukkan pesan"
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pesan'" required=""></textarea>
                             </div>
                             <input type="hidden" class="form-control" id="ukmName" name="ukmName" value="<?= $this->input->get('ukmName') ?>">
@@ -127,7 +127,7 @@
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title">Popular Posts</h3>
+                            <h3 class="widget_title">Post Populer</h3>
                             <div class="product-area">
                             </div>
                             <div class="br"></div>
