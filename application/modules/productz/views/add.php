@@ -5,7 +5,7 @@
                 <div class="col-first">
                     <h1>Produk</h1>
                     <nav class="d-flex align-items-center">
-                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="<?= site_url() ?>">Beranda<span class="lnr lnr-arrow-right"></span></a>
                         <a href="<?= site_url('productz/add') ?>">Tambah Produk</a>
                     </nav>
                 </div>
