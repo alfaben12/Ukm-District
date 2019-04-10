@@ -8,15 +8,15 @@
 	<!-- Favicon-->
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/fav.png">
 	<!-- Author Meta -->
-	<meta name="author" content="CodePixar">
+	<meta name="author" content="Thariq Alfa">
 	<!-- Meta Description -->
-	<meta name="description" content="">
+	<meta name="description" content="UMKM Kutjur">
 	<!-- Meta Keyword -->
-	<meta name="keywords" content="">
+	<meta name="keywords" content="UMKM Kutjur">
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>Karma Shop</title>
+	<title>UMKM Kutjur</title>
 	<!--
 		CSS
 		============================================= -->

@@ -34,12 +34,6 @@
                                     <li id="li_views"><a href="#"><i class="lnr lnr-eye"></i></a></li>
                                     <li id="li_comment"><a href="#"><i class="lnr lnr-bubble"></i></a></li>
                                 </ul>
-                                <ul class="social-links">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-github"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                </ul>
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-9 blog_details">
