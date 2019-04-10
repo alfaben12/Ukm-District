@@ -64,7 +64,7 @@
                                         <td>:</td>
                                         <td>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="price" name="price" value="<?= $val['price'] ?>" placeholder="Masukkan harga">
+                                                <input type="number" class="form-control" id="price" name="price" value="<?= $val['price'] ?>" placeholder="Masukkan harga">
                                             </div>
                                         </td>
                                     </tr>
@@ -73,7 +73,7 @@
                                         <td>:</td>
                                         <td>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="stock" name="stock" value="<?= $val['stock'] ?>" placeholder="Masukkan stok">
+                                                <input type="number" class="form-control" id="stock" name="stock" value="<?= $val['stock'] ?>" placeholder="Masukkan stok">
                                             </div>
                                         </td>
                                     </tr>
@@ -86,7 +86,7 @@
                                         <td>:</td>
                                         <td>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="sold_count" name="sold_count" value="<?= $val['sold_count'] ?>" placeholder="Masukan jumlah terjual">
+                                                <input type="number" class="form-control" id="sold_count" name="sold_count" value="<?= $val['sold_count'] ?>" placeholder="Masukan jumlah terjual">
                                             </div>
                                         </td>
                                     </tr>
@@ -104,7 +104,7 @@
                                         <td>:</td>
                                         <td>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="final_price" name="final_price" value="<?= $val['final_price'] ?>" placeholder="Masukkan harga akhir">
+                                                <input type="number" class="form-control" id="final_price" name="final_price" value="<?= $val['final_price'] ?>" placeholder="Masukkan harga akhir">
                                             </div>
                                         </td>
                                     </tr>
