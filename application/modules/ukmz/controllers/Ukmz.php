@@ -13,7 +13,7 @@ class Ukmz extends MX_Controller {
 		}
 
 	function add(){
-		$this->template->write_view('add');
+		echo 'Belum tersedia.';
 	}
 
 	function proccessAdd(){
@@ -93,17 +93,18 @@ class Ukmz extends MX_Controller {
 
 	function modify(){
 		$id = $this->input->get('id');
-		$data['productUkm'] = $this->product->fetch_table('*','ukm_product','id = '. $id,'id','desc','','',TRUE);
+		$data['ukm'] = $this->ukm->fetch_table('*','ukm','id = '. $id,'id','desc','','',TRUE);
 		$this->template->write_view('modify', $data);
 	}
 
 	function processModify(){
 		$this->form_validation->set_rules('name', 'name is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('ukm_category_product_id', 'ukm_category_product_id is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('price', 'price is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('stock', 'stock is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('founder', 'ukm_category_product_id is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('quotes', 'price is required', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('description', 'description is required', 'trim|required|xss_clean');
-		
+		$this->form_validation->set_rules('province','province is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('region','region is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('address','address is required', 'trim|required|xss_clean');
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();
 			$response =  array(
@@ -118,30 +119,32 @@ class Ukmz extends MX_Controller {
 		$id = $this->input->get('id');
 
 		$value = array(
-			'ukm_id' => 1,
 			'name' => $this->input->post('name'),
-			'ukm_category_product_id' => $this->input->post('ukm_category_product_id'),
-			'price' => $this->input->post('price'),
-			'stock' => $this->input->post('stock'),
-			'sold_count' => $this->input->post('sold_count'),
-			'is_diskon' => $this->input->post('is_diskon'),
-			'final_price' => $this->input->post('final_price'),
-			'description' => $this->input->post('description')
+			'founder' => $this->input->post('founder'),
+			'quotes' => $this->input->post('quotes'),
+			'description' => $this->input->post('description'),
+			'province' => $this->input->post('province'),
+			'region' => $this->input->post('region'),
+			'address' => $this->input->post('address')
 		);
 
-		$this->product->update_table('ukm_product', $value, 'id', $id);
+		$this->ukm->update_table('ukm', $value, 'id', $id);
 		
 		$response =  array(
 			'code' => 200,
 			'message' => 'Berhasil diupdate',
-			'redirect' => site_url('productz')
+			'redirect' => site_url('ukmz')
 		);
 		echo json_encode($response, JSON_PRETTY_PRINT);
 		die();
 	}
 
 	function processDelete(){
-		$this->product->delete_table("ukm_product","id", $this->input->get('id'));
-		redirect('productz');
+		if ($this->input->get('id') == 1) {
+			redirect('ukmz');
+		}else{
+			$this->ukm->delete_table("ukm","id", $this->input->get('id'));
+			redirect('ukmz');
+		}
 	}
 }

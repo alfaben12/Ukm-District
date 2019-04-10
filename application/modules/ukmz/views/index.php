@@ -5,7 +5,7 @@
                 <div class="col-first">
                     <h1>UKM</h1>
                     <nav class="d-flex align-items-center">
-                        <a href="<?= site_url() ?>">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="<?= site_url() ?>">Beranda<span class="lnr lnr-arrow-right"></span></a>
                         <a href="<?= site_url('Umkz') ?>">Ukm</a>
                     </nav>
                 </div>
@@ -19,7 +19,7 @@
         <div class="container">
             <div class="cart_inner">
             <span class="input-group-btn">
-                <a class="primary-btn" href="<?= site_url() ?>productz/add">Tambah UKM</a>
+                <a class="primary-btn" href="<?= site_url() ?>ukmz/add">Tambah UKM</a>
             </span>
                 <div class="table-responsive">
                 <br/>
@@ -48,7 +48,7 @@
                                 <td><?= $val['address'] ?></td>
                                 <td><?= $val['province'] ?></td>
                                 <td><?= $val['views'] ?></td>
-                                <td><a class="genric-btn info radius" href="<?= site_url() ?>productz/modify?id=<?= $val['id'] ?>">Edit</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a class="genric-btn danger radius" href="<?= site_url() ?>productz/processDelete?id=<?= $val['id'] ?>">Hapus</a></td>
+                                <td><a class="genric-btn info radius" href="<?= site_url() ?>ukmz/modify?id=<?= $val['id'] ?>">Edit</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a class="genric-btn danger radius" href="<?= site_url() ?>ukmz/processDelete?id=<?= $val['id'] ?>">Hapus</a></td>
                             </tr>
                             <?php
                         }
