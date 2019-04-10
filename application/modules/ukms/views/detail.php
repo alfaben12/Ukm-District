@@ -27,7 +27,8 @@
                         <div class="col-lg-3  col-md-3">
                             <div class="blog_info text-right">
                                 <div class="post_tag">
-                                    <a href="#" id="a_category_producs"></a>
+                                    <!-- <a href="#" id="a_category_producs"></a> -->
+                                    <!-- <a href="<?= site_url('productz') ?>">Produk</a> -->
                                 </div>
                                 <ul class="blog_meta list">
                                     <li id="li_joinAt"><a href="#"><i class="lnr lnr-calendar-full"></i></a></li>

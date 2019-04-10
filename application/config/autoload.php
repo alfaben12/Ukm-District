@@ -100,6 +100,7 @@ $autoload['helper'] = array(
 	'file',
 	'cookie',
 	'security',
+	'global_helper'
 );
 
 /*

@@ -66,7 +66,7 @@
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">UKM</a>
 										<ul class="dropdown-menu">
-											<li class="nav-item"><a class="nav-link" href="<?= site_url('ukms/ukmDetailProfile?ukmName=Kopi Kutjur') ?>">UKM Profil</a></li>
+											<li class="nav-item"><a class="nav-link" href="<?= site_url('ukms/ukmDetailProfile?ukmName='. main_ukm()->name) ?>">UKM Profil</a></li>
 											<li class="nav-item"><a class="nav-link" href="<?= site_url('shops') ?>">UKM Produk</a></li>
 										</ul>
 									</li>
