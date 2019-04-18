@@ -236,24 +236,24 @@
 			});
 		});
 
-		function processAdd(productID){
-				$.ajax({
-					url:  '<?= site_url() ?>carts/proccessAdd',
-					data: {
-						productID: productID
-					},
-					type: 'GET',
-					async: true,
-					cache: false,
-					dataType: 'json',
-					beforeSend: function() {
-						$("#totalCart").empty();
-					},
-					complete: function() {
-					},
-					success: function(response) {
-						$("#totalCart").text(response.data.totalCart);
-					}
-				});
+	function processAdd(productID){
+		$.ajax({
+			url:  '<?= site_url() ?>carts/proccessAdd',
+			data: {
+				productID: productID
+			},
+			type: 'GET',
+			async: true,
+			cache: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$("#totalCart").empty();
+			},
+			complete: function() {
+			},
+			success: function(response) {
+				$("#totalCart").text(response.data.totalCart);
 			}
+		});
+	}
 	</script>

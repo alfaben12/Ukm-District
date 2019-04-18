@@ -63,11 +63,47 @@ class Carts extends MX_Controller {
             'message' => 'Produk ditambahkan',
             'data' => array(
                 'cart' => $this->cart->contents(),
+                'totalAmount' => $this->cart->total(),
                 'totalCart' => $this->cart->total_items()
             )
         );
 
         echo json_encode($response, JSON_PRETTY_PRINT);
     }
-    
+
+    function proccessUpdate(){
+        $arrayResponse = array();
+		foreach ($_POST['rowID'] as $key => $val) {
+            $ukmProduct = $this->mcart->fetch_table('*','ukm_product','id = "'.$_POST['productID'][$key].'"','','','','',TRUE);
+            if ($ukmProduct[0]['stock'] >= $_POST['qty'][$key]) {
+               $data = array(
+                'rowid' => $_POST['rowID'][$key],
+                'qty'   => $_POST['qty'][$key]
+                );
+                
+                $this->cart->update($data);
+                $response = array(
+                    'message' => 'Produk '. $ukmProduct[0]['name'] .' berhasil diupdate.'
+                );
+            }else{
+                $response = array(
+                    'message' => 'Produk '. $ukmProduct[0]['name'] .' Stok tidak mencukupi, sisa stok '. $ukmProduct[0]['stock'] .'.'
+                );
+            }
+
+            array_push($arrayResponse, $response);
+        }
+
+        $response = array(
+            'code' => 200,
+            'message' => $arrayResponse,
+            'data' => array(
+                'cart' => $this->cart->contents(),
+                'totalAmount' => $this->cart->total(),
+                'totalCart' => $this->cart->total_items(),
+            )
+        );
+
+        echo json_encode($response, JSON_PRETTY_PRINT);
+    }
 }

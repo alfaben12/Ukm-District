@@ -17,24 +17,26 @@
     <div class="container">
         <div class="cart_inner">
             <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Product</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody id="resultCart">
-                        <!-- RENDER -->
-                    </tbody>
-                </table>
+                <form id="formCart">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultCart">
+                            <!-- RENDER -->
+                        </tbody>
+                    </table>
+                <form>
                 <table class="table">
                     <tbody>
                         <tr class="bottom_button">
                             <td>
-                                <a class="gray_btn" href="#">Update Cart</a>
+                                <a href="javascript:void(0)" onclick="processUpdate()" class="gray_btn">Update Cart</a>
                             </td>
                             <td>
 
@@ -46,7 +48,7 @@
                                 <div class="cupon_text d-flex align-items-center">
                                     <input type="text" placeholder="Coupon Code">
                                     <a class="primary-btn" href="#">Apply</a>
-                                    <a class="gray_btn" href="#">Close Coupon</a>
+                                    <a class="gray_btn" href="#">Close</a>
                                 </div>
                             </td>
                         </tr>
@@ -61,7 +63,7 @@
                                 <h5>Subtotal</h5>
                             </td>
                             <td>
-                                <h5>$2160.00</h5>
+                                <h5 id="totalAmount"></h5>
                             </td>
                         </tr>
                         <tr class="shipping_area">
@@ -137,7 +139,6 @@
 </section>
 <script>
     $(document).ready(function() {
-        var user = {};
         $.ajax({
             url: '<?= site_url() ?>carts/getAllCart',
             type: 'GET',
@@ -146,9 +147,13 @@
             dataType: 'json',
             beforeSend: function() {
                 $("#totalCart").empty();
+                $("#resultCart").empty();
+                $("#totalAmount").empty();
             },
             complete: function() {},
             success: function(response) {
+                $("#totalCart").text(response.data.totalCart);
+                $("#totalAmount").text(response.data.totalAmount);
                 for (var k in response.data.cart) {
                     var cart =
                         '<tr>' +
@@ -164,12 +169,12 @@
                         '</td>' +
                         '<td>' +
                         '<h5>'+ response.data.cart[k].price +'</h5>' +
-                        ' </td>' +
+                        '</td>' +
                         '<td>' +
                         '<div class="product_count">' +
-                        '<input type="text" name="qty" id="sst" maxlength="12" value="'+ response.data.cart[k].qty +'" title="Quantity:" class="input-text qty">' +
-                        '<button onclick="" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>' +
-                        '<button onclick="" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>' +
+                        '<input type="hidden" name="rowID[]" value="'+ response.data.cart[k].rowid +'" title="Row ID:" class="input-text">' +
+                        '<input type="hidden" name="productID[]" value="'+ response.data.cart[k].id +'" title="Row ID:" class="input-text">' +
+                        '<input type="number" name="qty[]" maxlength="12" value="'+ response.data.cart[k].qty +'" title="Quantity:" class="input-text">' +
                         '</div>' +
                         '</td>' +
                         '<td>' +
@@ -180,5 +185,55 @@
                 }
             }
         });
-    })
+    });
+
+    function processUpdate(){
+		$.ajax({
+			url:  '<?= site_url() ?>carts/proccessUpdate',
+			data: $("#formCart").serialize(),
+			type: 'POST',
+			async: true,
+			cache: false,
+			dataType: 'json',
+			beforeSend: function() {
+                $("#totalCart").empty();
+                $("#resultCart").empty();
+			},
+			complete: function() {
+			},
+			success: function(response) {
+				$("#totalCart").text(response.data.totalCart);
+                $("#totalAmount").text(response.data.totalAmount);
+                for (var k in response.data.cart) {
+                    var cart =
+                        '<tr>' +
+                        '<td>' +
+                        '<div class="media">' +
+                        '<div class="d-flex">' +
+                        '<img src="'+ response.data.cart[k].image +'" alt="" width="150" height="100">' +
+                        '</div>' +
+                        '<div class="media-body">' +
+                        '<p>'+ response.data.cart[k].name +'</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '</td>' +
+                        '<td>' +
+                        '<h5>'+ response.data.cart[k].price +'</h5>' +
+                        '</td>' +
+                        '<td>' +
+                        '<div class="product_count">' +
+                        '<input type="hidden" name="rowID[]" value="'+ response.data.cart[k].rowid +'" title="Row ID:" class="input-text">' +
+                        '<input type="hidden" name="productID[]" value="'+ response.data.cart[k].id +'" title="Row ID:" class="input-text">' +
+                        '<input type="number" name="qty[]" maxlength="12" value="'+ response.data.cart[k].qty +'" title="Quantity:" class="input-text">' +
+                        '</div>' +
+                        '</td>' +
+                        '<td>' +
+                        '<h5>'+ response.data.cart[k].subtotal +'</h5>' +
+                        '</td>' +
+                        '</tr>';
+                    $("#resultCart").append(cart).fadeIn(500);
+                }
+			}
+		});
+	}
 </script>
