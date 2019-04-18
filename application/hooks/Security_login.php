@@ -10,6 +10,7 @@
 				$CI->uri->segment(1) != "shops" &&
 				$CI->uri->segment(1) != "contactus" &&
 				$CI->uri->segment(1) != "ukms" &&
+				$CI->uri->segment(1) != "carts" &&
 				$CI->uri->segment(1) != "")	{
 					return redirect('logins');
 				}

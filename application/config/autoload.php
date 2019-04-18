@@ -62,7 +62,8 @@ $autoload['libraries'] = array(
 	'template', 
 	'session', 
 	'form_validation',
-	'pagination' 
+	'pagination',
+	'cart'
 );
 
 /*

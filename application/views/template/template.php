@@ -95,7 +95,7 @@
 									?>
 								</ul>
 								<ul class="nav navbar-nav navbar-right">
-									<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+									<li class="nav-item"><a href="<?= site_url('carts') ?>" class="cart"><span class="ti-bag"><span class="badge" style="color:red;"><h4><b id="totalCart"></b></h4></span></span></a></li>
 									<li class="nav-item">
 										<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 									</li>
@@ -229,6 +229,27 @@
 	<script src="<?= base_url() ?>assets/js/gmaps.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/main.js"></script>
 	<?php $this->load->view('template/footer'); ?>
+	<script>
+	$(document).ready(function(){
+		$.ajax({
+			url:  '<?= site_url() ?>carts/getAllCart',
+			type: 'GET',
+			async: true,
+			cache: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$("#totalCart").empty();
+			},
+			complete: function() {
+			},
+			success: function(response) {
+				if (response.data.totalCart != 0) {
+					$("#totalCart").text(response.data.totalCart);
+				}
+			}
+		});
+	});
+	</script>
 </body>
 
 </html>

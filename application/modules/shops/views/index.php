@@ -184,9 +184,9 @@
 						price +
 						'</div>' +
 						'<div class="prd-bottom">' +
-						'<a href="" class="social-info">' +
+						'<a href="javascript:void(0)" onclick="processAdd('+ result[k].id +')" class="social-info">' +
 						'<span class="ti-bag"></span>' +
-						'<p class="hover-text">add to bag</p>' +
+						'<p class="hover-text">Tambahkan</p>' +
 						'</a>' +
 						'<a href="" class="social-info">' +
 						'<span class="lnr lnr-heart"></span>' +
@@ -196,7 +196,7 @@
 						'<span class="lnr lnr-sync"></span>' +
 						'<p class="hover-text">compare</p>' +
 						'</a>' +
-						'<a href="" class="social-info">' +
+						'<a href="' + base_url + 'shops/showProduct?productName=' + result[k].name + '" class="social-info">' +
 						'<span class="lnr lnr-move"></span>' +
 						'<p class="hover-text">view more</p>' +
 						'</a>' +
@@ -235,4 +235,25 @@
 				event.preventDefault();
 			});
 		});
+
+		function processAdd(productID){
+				$.ajax({
+					url:  '<?= site_url() ?>carts/proccessAdd',
+					data: {
+						productID: productID
+					},
+					type: 'GET',
+					async: true,
+					cache: false,
+					dataType: 'json',
+					beforeSend: function() {
+						$("#totalCart").empty();
+					},
+					complete: function() {
+					},
+					success: function(response) {
+						$("#totalCart").text(response.data.totalCart);
+					}
+				});
+			}
 	</script>
