@@ -51,7 +51,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <h3>Pengiriman </h3>
-                        <form class="row contact_form" novalidate="novalidate">
+                        <form class="row contact_form" id="formConfirmation" novalidate="novalidate">
                             <div class="col-md-6 form-group p_star">
                                 <input type="text" class="form-control" id="first" name="firstName">
                                 <span class="placeholder" data-placeholder="Nama depan"></span>
@@ -94,11 +94,11 @@
                             </div> -->
                             <div class="col-md-12 form-group">
                                 <div class="creat_account">
-                                    <h3>Note pesan</h3>
+                                    <h3>Note pesanan</h3>
                                     <!-- <input type="checkbox" id="f-option3" name="selector">
                                     <label for="f-option3">Ship to a different address?</label> -->
                                 </div>
-                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Note pesan"></textarea>
+                                <textarea class="form-control" name="note" id="note" rows="1" placeholder="Note pesanan"></textarea>
                             </div>
                         </form>
                     </div>
@@ -116,33 +116,12 @@
                                 <li><a href="#">Shipping <span>0</span></a></li>
                                 <li><a href="#">Total <span id="totalFinalAmount"></span></a></li>
                             </ul>
-                            <div class="payment_item">
-                                <div class="radion_btn">
-                                    <input type="radio" id="f-option5" name="selector" checked="">
-                                    <label for="f-option5">BNI</label>
-                                    <div class="check"></div>
-                                </div>
-                                <p>A/n Thariq Alfa, Nomor Rekening : 1234567890</p>
+                            <div id="paymentUkm">
+                            <!-- RENDER PAYMENT HERE -->
                             </div>
                             <div class="payment_item">
                                 <div class="radion_btn">
-                                    <input type="radio" id="f-option6" name="selector">
-                                    <label for="f-option6">BCA</label>
-                                    <div class="check"></div>
-                                </div>
-                                <p>A/n Thariq Alfa, Nomor Rekening : 5432167890</p>
-                            </div>
-                            <div class="payment_item">
-                                <div class="radion_btn">
-                                    <input type="radio" id="f-option7" name="selector">
-                                    <label for="f-option7">MANDIRI</label>
-                                    <div class="check"></div>
-                                </div>
-                                <p>A/n Thariq Alfa, Nomor Rekening : 0987654321</p>
-                            </div>
-                            <div class="payment_item">
-                                <div class="radion_btn">
-                                    <input type="radio" id="f-option8" name="selector" disabled="">
+                                    <input type="radio" id="f-option8" name="paypal" disabled="" value="0">
                                     <label for="f-option8">Paypal </label>
                                     <img data-cfsrc="img/product/card.jpg" alt="" src="https://colorlib.com/preview/theme/karma/img/product/card.jpg">
                                     <div class="check"></div>
@@ -150,11 +129,11 @@
                                 <p>Membayar via PayPal belum tersedia.</p>
                             </div>
                             <div class="creat_account">
-                                <input type="checkbox" id="f-option4" name="selector">
+                                <input type="checkbox" id="f-option4" name="agree" value="yes">
                                 <label for="f-option4">Saya sudah membaca dan menerima </label>
                                 <a href="#">syarat &amp; ketentuan*</a>
                             </div>
-                            <a class="primary-btn" href="#">Proceed to Paypal</a>
+                            <a class="primary-btn" id="submitCheckOut" href="javascript:void(0)">Proceed to Paypal</a>
                         </div>
                     </div>
                 </div>
@@ -186,5 +165,67 @@
                 }
             }
         });
+
+        $.ajax({
+            url: '<?= site_url() ?>confirmations/getPayment',
+            type: 'GET',
+            async: true,
+            cache: false,
+            dataType: 'json',
+            beforeSend: function() {
+                $("#paymentUkm").empty();
+            },
+            complete: function() {},
+            success: function(response) {
+                for (var k in response.data.payment) {
+                    if (response.data.payment[k].id == 1) {
+                        var checked = 'checked=""';
+                    }else{
+                        var checked = '';
+                    }
+
+                    var payment =
+                        '<div class="payment_item">' +
+                            '<div class="radion_btn">' +
+                                '<input type="radio" id="f-option'+ k +'" value="'+ response.data.payment[k].id +'" name="paymentID" '+ checked +'>' +
+                                '<label for="f-option'+ k +'">'+ response.data.payment[k].bank +'</label>' +
+                                '<div class="check"></div>' +
+                            '</div>' +
+                            '<p>'+ response.data.payment[k].description +'</p>' +
+                        '</div>';
+                    $("#paymentUkm").append(payment).fadeIn(500);
+                }
+            }
+        });
+
+        $("#submitCheckOut").click(function(event) {
+
+            if ($("input[name='agree']:checked").val() != 'yes') {
+                alert('Ceklis syarat dan ketentuan.');
+            }else{
+                var paymentID = $("input[name='paymentID']:checked").val();
+				$.ajax({
+					url: '<?= site_url() ?>confirmations/processCheckOut',
+					data: $("#formConfirmation").serialize() + "&paymentID=" + paymentID,
+					type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    cache: false,
+                    dataType: 'json',
+                    beforeSend: function() {
+                    },
+                    complete: function() {
+                    },
+					success: function(response) {
+                        // if (response.code == 200) {
+						//     window.location = response.redirect;
+                        // }else{
+                        //     alert(response.message);
+                        // }
+					}
+				});
+            }
+			event.preventDefault();
+		});
     });
     </script>

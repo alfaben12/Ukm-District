@@ -80,5 +80,5 @@
 				});
 				event.preventDefault();
 			});
-    });
+    	});
     </script>
