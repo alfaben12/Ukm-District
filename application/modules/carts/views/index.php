@@ -3,7 +3,7 @@
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
             <div class="col-first">
-                <h1>Blog</h1>
+                <h1>Cart</h1>
                 <nav class="d-flex align-items-center">
                     <a href="<?= site_url() ?>">Beranda<span class="lnr lnr-arrow-right"></span></a>
                     <a href="<?= site_url('carts') ?>">Cart</a>
@@ -36,7 +36,6 @@
                     <tbody>
                         <tr class="bottom_button">
                             <td>
-                                <a href="javascript:void(0)" onclick="processUpdate()" class="gray_btn">Update Cart</a>
                             </td>
                             <td>
 
@@ -47,8 +46,9 @@
                             <td>
                                 <div class="cupon_text d-flex align-items-center">
                                     <input type="text" placeholder="Coupon Code">
-                                    <a class="primary-btn" href="#">Apply</a>
-                                    <a class="gray_btn" href="#">Close</a>
+                                    <a class="primary-btn" href="javascript:void(0)" onclick="processGetCoupon()">Apply</a>
+                                    <a href="javascript:void(0)" onclick="processUpdate()" class="gray_btn">Update Cart</a>
+
                                 </div>
                             </td>
                         </tr>
@@ -70,21 +70,15 @@
                             <td>
 
                             </td>
-                            <td>
-
-                            </td>
-                            <td>
-                                <h5>Shipping</h5>
+                            <td colspan="2">
+                                <h5>Pengiriman</h5>
                             </td>
                             <td>
                                 <div class="shipping_box">
                                     <ul class="list">
-                                        <li><a href="#">Flat Rate: $5.00</a></li>
-                                        <li><a href="#">Free Shipping</a></li>
-                                        <li><a href="#">Flat Rate: $10.00</a></li>
-                                        <li class="active"><a href="#">Local Delivery: $2.00</a></li>
+                                        <li class="active"><a href="#">Pengiriman Lokal: Rp. 0</a></li>
                                     </ul>
-                                    <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
+                                    <!-- <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
                                     <select class="shipping_select" style="display: none;">
                                         <option value="1">Bangladesh</option>
                                         <option value="2">India</option>
@@ -110,7 +104,7 @@
                                         </ul>
                                     </div>
                                     <input type="text" placeholder="Postcode/Zipcode">
-                                    <a class="gray_btn" href="#">Update Details</a>
+                                    <a class="gray_btn" href="#">Update Details</a> -->
                                 </div>
                             </td>
                         </tr>
@@ -126,8 +120,8 @@
                             </td>
                             <td>
                                 <div class="checkout_btn_inner d-flex align-items-center">
-                                    <a class="gray_btn" href="#">Continue Shopping</a>
-                                    <a class="primary-btn" href="#">Proceed to checkout</a>
+                                    <a class="gray_btn" href="<?= site_url('shops') ?>">Continue Shopping</a>
+                                    <a class="primary-btn" href="#">Proceed checkout</a>
                                 </div>
                             </td>
                         </tr>
@@ -233,6 +227,23 @@
                         '</tr>';
                     $("#resultCart").append(cart).fadeIn(500);
                 }
+			}
+		});
+	}
+
+    function processGetCoupon(){
+		$.ajax({
+			url:  '<?= site_url() ?>carts/proccessGetCoupon',
+			type: 'POST',
+			async: true,
+			cache: false,
+			dataType: 'json',
+			beforeSend: function() {
+			},
+			complete: function() {
+			},
+			success: function(response) {
+                alert(response.message);
 			}
 		});
 	}

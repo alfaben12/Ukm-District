@@ -96,6 +96,7 @@
 								</ul>
 								<ul class="nav navbar-nav navbar-right">
 									<li class="nav-item"><a href="<?= site_url('carts') ?>" class="cart"><span class="ti-bag"><span class="badge" style="color:red;"><h4><b id="totalCart"></b></h4></span></span></a></li>
+									<li class="nav-item"><a href="javascript:void(0)" class="cart" title="Hapus semua cart" onclick="processClearCart()"><span class="ti-trash"></span></span></a></li>
 									<li class="nav-item">
 										<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 									</li>
@@ -231,6 +232,30 @@
 	<?php $this->load->view('template/footer'); ?>
 	<script>
 	$(document).ready(function(){
+		updateTotalCart();
+
+	});
+
+	function processClearCart(){
+		$.ajax({
+			url:  '<?= site_url() ?>carts/processClear',
+			type: 'POST',
+			async: true,
+			cache: false,
+			dataType: 'json',
+			beforeSend: function() {
+			},
+			complete: function() {
+			},
+			success: function(response) {
+				alert(response.message);
+				updateTotalCart();
+				window.location.href = response.base_url;
+			}
+		});
+	}
+
+	function updateTotalCart(){
 		$.ajax({
 			url:  '<?= site_url() ?>carts/getAllCart',
 			type: 'GET',
@@ -248,7 +273,7 @@
 				}
 			}
 		});
-	});
+	}
 	</script>
 </body>
 

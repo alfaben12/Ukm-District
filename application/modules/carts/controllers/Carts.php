@@ -7,7 +7,11 @@ class Carts extends MX_Controller {
 	}
 	
 	public function index(){
-		$this->template->write_view('index');
+        if($this->cart->total() > 0){
+            $this->template->write_view('index');
+        }else{
+            redirect(site_url('shops'));
+        }
     }
 
     public function proccessAdd(){
@@ -55,6 +59,13 @@ class Carts extends MX_Controller {
 
     public function processClear(){
         $this->cart->destroy();
+        $response = array(
+            'code' => 200,
+            'message' => 'Cart berhasil dikosongkan.',
+            'base_url' => site_url('shops')
+        );
+
+        echo json_encode($response, JSON_PRETTY_PRINT);
     }
 
     public function getAllCart(){
@@ -102,6 +113,15 @@ class Carts extends MX_Controller {
                 'totalAmount' => $this->cart->total(),
                 'totalCart' => $this->cart->total_items(),
             )
+        );
+
+        echo json_encode($response, JSON_PRETTY_PRINT);
+    }
+
+    public function proccessGetCoupon(){
+        $response = array(
+            'code' => 200,
+            'message' => 'Maaf coupon belum tersedia saat ini.'
         );
 
         echo json_encode($response, JSON_PRETTY_PRINT);
