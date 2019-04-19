@@ -31,7 +31,7 @@
 						</div>
 					</div>
 					<div class="common-filter">
-						<button type="submit" value="submit" class="primary-btn">Send Message</button>
+						<button type="submit" value="submit" class="primary-btn">Cari</button>
 					</div>
 				</div>
 				</form>
@@ -187,10 +187,6 @@
 						'<a href="javascript:void(0)" onclick="processAdd('+ result[k].id +')" class="social-info">' +
 						'<span class="ti-bag"></span>' +
 						'<p class="hover-text">Tambahkan</p>' +
-						'</a>' +
-						'<a href="" class="social-info">' +
-						'<span class="lnr lnr-heart"></span>' +
-						'<p class="hover-text">Wishlist</p>' +
 						'</a>' +
 						'<a href="" class="social-info">' +
 						'<span class="lnr lnr-sync"></span>' +

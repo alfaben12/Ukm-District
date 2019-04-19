@@ -56,10 +56,7 @@
                             <td>
 
                             </td>
-                            <td>
-
-                            </td>
-                            <td>
+                            <td colspan="2">
                                 <h5>Subtotal</h5>
                             </td>
                             <td>

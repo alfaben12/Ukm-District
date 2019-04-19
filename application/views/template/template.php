@@ -64,10 +64,10 @@
 									<li class="nav-item active"><a class="nav-link" href="<?= site_url() ?>">Beranda</a></li>
 									<li class="nav-item submenu dropdown">
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-										aria-expanded="false">UKM</a>
+										aria-expanded="false">UMKM</a>
 										<ul class="dropdown-menu">
-											<li class="nav-item"><a class="nav-link" href="<?= site_url('ukms/ukmDetailProfile?ukmName='. main_ukm()->name) ?>">UKM Profil</a></li>
-											<li class="nav-item"><a class="nav-link" href="<?= site_url('shops') ?>">UKM Produk</a></li>
+											<li class="nav-item"><a class="nav-link" href="<?= site_url('ukms/ukmDetailProfile?ukmName='. main_ukm()->name) ?>">UMKM Profil</a></li>
+											<li class="nav-item"><a class="nav-link" href="<?= site_url('shops') ?>">UMKM Produk</a></li>
 										</ul>
 									</li>
 									<li class="nav-item submenu dropdown">
@@ -79,7 +79,7 @@
 									</li>
 									<li class="nav-item submenu dropdown">
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-										aria-expanded="false">Pages</a>
+										aria-expanded="false">Halaman</a>
 										<ul class="dropdown-menu">
 											<li class="nav-item"><a class="nav-link" href="<?= site_url('logins') ?>">Masuk</a></li>
 											<li class="nav-item"><a class="nav-link" href="<?= site_url() ?>">Lacak</a></li>
