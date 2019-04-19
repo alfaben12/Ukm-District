@@ -12,6 +12,7 @@
         </div>
     </div>
 </section>
+<!-- End Banner Area -->
 
 <section class="cart_area">
     <div class="container">
