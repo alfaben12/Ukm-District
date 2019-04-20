@@ -236,7 +236,8 @@
 		$.ajax({
 			url:  '<?= site_url() ?>carts/proccessAdd',
 			data: {
-				productID: productID
+				productID: productID,
+				qty: 1
 			},
 			type: 'GET',
 			async: true,

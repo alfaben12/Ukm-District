@@ -3,10 +3,10 @@
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
             <div class="col-first">
-                <h1>Cart</h1>
+                <h1>Keranjang</h1>
                 <nav class="d-flex align-items-center">
                     <a href="<?= site_url() ?>">Beranda<span class="lnr lnr-arrow-right"></span></a>
-                    <a href="<?= site_url('carts') ?>">Cart</a>
+                    <a href="<?= site_url('carts') ?>">Keranjang</a>
                 </nav>
             </div>
         </div>
@@ -118,8 +118,8 @@
                             </td>
                             <td>
                                 <div class="checkout_btn_inner d-flex align-items-center">
-                                    <a class="gray_btn" href="<?= site_url('shops') ?>">Continue Shopping</a>
-                                    <a class="primary-btn" href="#">Proceed checkout</a>
+                                    <a class="gray_btn" href="<?= site_url('shops') ?>">Lanjutkan belanja</a>
+                                    <a class="primary-btn" href="<?= site_url('confirmations') ?>">Proses Checkout</a>
                                 </div>
                             </td>
                         </tr>

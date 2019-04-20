@@ -34,19 +34,15 @@
 						<h3 id="h3_name"></h3>
 						<h2 id="h2_price"></h2>
 						<ul class="list">
-							<li><a class="active" href="#"><span>Category</span> : <font id="font_category"></font></a></li>
-							<li><a href="#"><span>Availibility</span> : <font id="font_stock"></font></a></li>
+							<li><a class="active" href="#"><span>Kategori</span> : <font id="font_category"></font></a></li>
+							<li><a href="#"><span>Ketersediaan</span> : <font id="font_stock"></font></a></li>
 						</ul>
 						<div class="product_count">
-							<label for="qty">Quantity:</label>
-							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-							 class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-							 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+							<label for="qty">Kuantitas:</label>
+							<input type="number" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="#">Add to Cart</a>
+							<a class="primary-btn" href="javascript:void(0)" onclick="processAdd(<?= $product[0]['id'] ?>)">Add to Cart</a>
 							<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
 							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
 						</div>
@@ -401,9 +397,9 @@
                     }
 
                     if (response.data.product[0]['stock'] == 0) {
-						var stock = 'Sold out';
+						var stock = 'Habis';
 					}else{
-                        var stock = 'In Stock';
+                        var stock = 'Tersedia '+ response.data.product[0]['stock'];
                     }
                     
                     $('#h3_name').text(response.data.product[0]['name']);
@@ -434,4 +430,26 @@
 				event.preventDefault();
 			});
     });
+	function processAdd(productID){
+		var qty = $("#sst").val();
+		$.ajax({
+			url:  '<?= site_url() ?>carts/proccessAdd',
+			data: {
+				productID: productID,
+				qty: qty
+			},
+			type: 'GET',
+			async: true,
+			cache: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$("#totalCart").empty();
+			},
+			complete: function() {
+			},
+			success: function(response) {
+				$("#totalCart").text(response.data.totalCart);
+			}
+		});
+	}
     </script>

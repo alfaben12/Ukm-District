@@ -250,7 +250,7 @@
 			success: function(response) {
 				alert(response.message);
 				updateTotalCart();
-				window.location.href = response.base_url;
+				location.reload();
 			}
 		});
 	}

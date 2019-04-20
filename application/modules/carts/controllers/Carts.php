@@ -16,6 +16,17 @@ class Carts extends MX_Controller {
 
     public function proccessAdd(){
         $productID = $this->input->get('productID');
+        $qty = $this->input->get('qty');
+
+        if ($qty <= 0 || $qty == '') {
+            $response = array(
+                'code' => 204,
+                'message' => 'Kuantitas tidak boleh 0.'
+            );
+            echo json_encode($response, JSON_PRETTY_PRINT);
+            die();
+        }
+
         $join = array(
             array(
                 'table' => 'ukm_category_product',
@@ -25,6 +36,7 @@ class Carts extends MX_Controller {
         );
         
         $productUkm = $this->mcart->fetch_joins('ukm_product','ukm_product.*, ukm_category_product.name AS category_name',$join,'ukm_product.id = "'.$productID.'"',TRUE);
+
         if (count($productUkm) == 0) {
             $response = array(
                 'code' => 204,
@@ -34,11 +46,20 @@ class Carts extends MX_Controller {
             die();
         }
 
+        if ($qty > $productUkm[0]['stock']) {
+            $response = array(
+                'code' => 204,
+                'message' => 'Kuantitas tidak boleh belebihi stok '. $productUkm[0]['stock'] .'.'
+            );
+            echo json_encode($response, JSON_PRETTY_PRINT);
+            die();
+        }
+
         $data = array(
             'id'      => $productUkm[0]['id'],
             'category'    => $productUkm[0]['category_name'],
             'name'    => $productUkm[0]['name'],
-            'qty'     => 1,
+            'qty'     => $qty,
             'image'     => base_url().'files/product/'.$productUkm[0]['image'],
             'price'   => $productUkm[0]['is_diskon'] == 1 ? $productUkm[0]['final_price'] : $productUkm[0]['price']
         );
@@ -71,7 +92,7 @@ class Carts extends MX_Controller {
     public function getAllCart(){
         $response = array(
             'code' => 200,
-            'message' => 'Produk ditambahkan',
+            'message' => 'Produk berhasil diambil',
             'data' => array(
                 'cart' => $this->cart->contents(),
                 'totalAmount' => $this->cart->total(),

@@ -53,35 +53,28 @@
                         <h3>Pengiriman </h3>
                         <form class="row contact_form" id="formConfirmation" novalidate="novalidate">
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="first" name="firstName">
-                                <span class="placeholder" data-placeholder="Nama depan"></span>
+                                <input type="text" class="form-control" id="first" name="firstName" placeholder="Nama depan *">
                             </div>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="last" name="lastName">
-                                <span class="placeholder" data-placeholder="Nama belakang"></span>
+                                <input type="text" class="form-control" id="last" name="lastName" placeholder="Nama belakang *">
                             </div>
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="company" name="company" placeholder="Nama perusahaan">
                             </div>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="number" name="phoneNumber">
-                                <span class="placeholder" data-placeholder="Nomor HP (WA)"></span>
+                                <input type="text" class="form-control" id="number" name="phoneNumber" placeholder="Nomor HP (WA) *">
                             </div>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="email" name="email">
-                                <span class="placeholder" data-placeholder="Alamat Email"></span>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Alamat Email *">
                             </div>
                             <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="add1" name="address">
-                                <span class="placeholder" data-placeholder="Alamat (contoh: Jln. ikan piranha no.10 RT001 RW003)"></span>
+                                <input type="text" class="form-control" id="add1" name="address" placeholder="Alamat (contoh: Jln. ikan piranha no.10 RT001 RW003) *">
                             </div>
                             <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="city" name="city">
-                                <span class="placeholder" data-placeholder="Kabupaten/Kota"></span>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="Kabupaten/Kota *">
                             </div>
                             <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="district" name="district">
-                                <span class="placeholder" data-placeholder="Desa"></span>
+                                <input type="text" class="form-control" id="district" name="district" placeholder="Desa *">
                             </div>
                             <div class="col-md-12 form-group p_star">
                                 <input type="text" class="form-control" id="zip" name="zip" placeholder="Kode pos">
@@ -99,6 +92,9 @@
                                     <label for="f-option3">Ship to a different address?</label> -->
                                 </div>
                                 <textarea class="form-control" name="note" id="note" rows="1" placeholder="Note pesanan"></textarea>
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <font style="color: red;"><font style="color: #777777;">Note : </font> Tanda (<font style="color: #777777;">*</font>) wajib di isi sesuai dengan pesanan.</font>
                             </div>
                         </form>
                     </div>
@@ -199,7 +195,6 @@
         });
 
         $("#submitCheckOut").click(function(event) {
-
             if ($("input[name='agree']:checked").val() != 'yes') {
                 alert('Ceklis syarat dan ketentuan.');
             }else{
@@ -217,11 +212,14 @@
                     complete: function() {
                     },
 					success: function(response) {
-                        // if (response.code == 200) {
-						//     window.location = response.redirect;
-                        // }else{
-                        //     alert(response.message);
-                        // }
+                        var form_error = '';
+                        if (response.code == 201) {
+						    window.location = response.base_url;
+                        }else{
+                            for (var i in response.error) {
+                                form_error += response.error[i];
+                            }
+                        }
 					}
 				});
             }
