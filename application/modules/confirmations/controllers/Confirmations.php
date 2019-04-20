@@ -62,6 +62,7 @@ class Confirmations extends MX_Controller {
         $zip = $this->input->post('zip');
         $note = $this->input->post('note');
         $total = $this->cart->total();
+        $status = 'PENDING';
         $total_item = $this->cart->total_items();
         
         $order_data = array(
@@ -77,7 +78,8 @@ class Confirmations extends MX_Controller {
             'zip' => $zip,
             'note' => $note,
             'total' => $total,
-            'total_item' => $total_item
+            'total_item' => $total_item,
+            'status' => $status
         );
 
 		$this->confirmation->insert_table('ukm_order', $order_data);
@@ -102,7 +104,7 @@ class Confirmations extends MX_Controller {
             $response = array(
                 'code' => 201,
                 'message' => 'Sukses checkout, invoice '. $invoice . '.',
-                'base_url' => site_url('confirmation/payment?inv='. $invoice .'&orderID='. $order_id .'&totalCost=' .$total .'totalItem=' .$total_item .'&contact='. $phone_wa)
+                'base_url' => site_url('confirmations/payment?inv='. $invoice .'&orderID='. $order_id .'&totalCost=' .$total .'&totalItem=' .$total_item .'&contact='. $phone_wa)
             );
             echo json_encode($response, JSON_PRETTY_PRINT);
             die();
@@ -114,6 +116,34 @@ class Confirmations extends MX_Controller {
             echo json_encode($response, JSON_PRETTY_PRINT);
             die();
         }
-        
+    }
+
+    function payment(){
+        $this->template->write_view('payment');
+    }
+
+    function getInfoOrder(){
+        $inv = $this->input->get('inv');
+        $orderID = $this->input->get('orderID');
+        $totalCost = $this->input->get('totalCost');
+        $totalItem = $this->input->get('totalItem');
+        $contact = $this->input->get('contact');
+
+        $join = array(
+            array(
+                'table' => 'ukm_payment',
+                'condition' => 'ukm_payment.id = ukm_order.payment_id',
+                'jointype' => 'LEFT'
+            )
+        );
+        $where = 'invoice = "'. $inv .'" and ukm_order.id = "'. $orderID .'" and total = "'. $totalCost .'" and total_item = "'. $totalItem .'" and phone_wa = "'. $contact .'"';
+
+        $order = $this->confirmation->fetch_joins('ukm_order','ukm_order.*, ukm_payment.name AS bank_name, ukm_payment.bank AS bank, ukm_payment.rekening AS bank_rekening',$join,$where,TRUE);
+        $response = array(
+            'code' => 200,
+            'message' => 'Berhasil ambil data order.',
+            'data' => $order
+        );
+        echo json_encode($response, JSON_PRETTY_PRINT);
     }
 }

@@ -3,10 +3,10 @@
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
             <div class="col-first">
-                <h1>Confirmation</h1>
+                <h1>Check Out</h1>
                 <nav class="d-flex align-items-center">
                     <a href="<?= site_url() ?>">Beranda<span class="lnr lnr-arrow-right"></span></a>
-                    <a href="<?= site_url('confirmation') ?>">Confirmation</a>
+                    <a href="<?= site_url('confirmations') ?>">Check Out</a>
                 </nav>
             </div>
         </div>
