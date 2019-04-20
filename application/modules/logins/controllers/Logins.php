@@ -19,7 +19,7 @@ class Logins extends MX_Controller {
 			$response =  array(
 				'result' => FALSE,
 				'message' => 'Gagal',
-				'form_error' => $form_error,
+				'error' => $form_error,
 			);
 			echo json_encode($response, JSON_PRETTY_PRINT);
 			die();

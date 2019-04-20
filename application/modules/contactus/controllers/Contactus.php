@@ -26,7 +26,7 @@ class Contactus extends MX_Controller {
 			$response =  array(
 				'code' => 401,
 				'message' => 'Form tidak lengkap',
-				'form_error' => $form_error,
+				'error' => $form_error,
 			);
 			echo json_encode($response, JSON_PRETTY_PRINT);
 			die();
