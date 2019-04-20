@@ -31,7 +31,9 @@
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/magnific-popup.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/main.css">
+	<link rel="stylesheet" href="<?= base_url() ?>assets/zoom/zoom.css">
 	<script src="<?= base_url() ?>assets/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="<?= base_url() ?>assets/zoom/zoom.js"></script>
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.jqueryui.min.css">
@@ -58,7 +60,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<?php
-							if ($this->uri->segment(1) != 'blogz' && $this->uri->segment(1) != 'productz' && $this->uri->segment(1) != 'ukmz' && $this->uri->segment(1) != 'dashboardz') {
+							if ($this->uri->segment(1) != 'blogz' && $this->uri->segment(1) != 'productz' && $this->uri->segment(1) != 'ukmz' && $this->uri->segment(1) != 'dashboardz' && $this->uri->segment(1) != 'orderz' && $this->uri->segment(1) != 'paymentz') {
 								?>
 								<ul class="nav navbar-nav menu_nav ml-auto">
 									<li class="nav-item active"><a class="nav-link" href="<?= site_url() ?>">Beranda</a></li>
@@ -109,6 +111,8 @@
 									<li class="nav-item"><a class="nav-link" href="<?= site_url('productz') ?>">Produk</a></li>
 									<li class="nav-item"><a class="nav-link" href="<?= site_url('ukmz') ?>">UKM</a></li>
 									<li class="nav-item"><a class="nav-link" href="<?= site_url('blogz') ?>">Blog</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('orderz') ?>">Pesanan</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('paymentz') ?>">Pembayaran</a></li>
 								</ul>
 								<ul class="nav navbar-nav navbar-right">
 									<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
