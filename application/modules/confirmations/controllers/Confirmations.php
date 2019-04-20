@@ -136,14 +136,123 @@ class Confirmations extends MX_Controller {
                 'jointype' => 'LEFT'
             )
         );
-        $where = 'invoice = "'. $inv .'" and ukm_order.id = "'. $orderID .'" and total = "'. $totalCost .'" and total_item = "'. $totalItem .'" and phone_wa = "'. $contact .'"';
 
+        $where = 'invoice = "'. $inv .'" and ukm_order.id = "'. $orderID .'" and total = "'. $totalCost .'" and total_item = "'. $totalItem .'" and phone_wa = "'. $contact .'"';
         $order = $this->confirmation->fetch_joins('ukm_order','ukm_order.*, ukm_payment.name AS bank_name, ukm_payment.bank AS bank, ukm_payment.rekening AS bank_rekening',$join,$where,TRUE);
+
+        $join_product = array(
+            array(
+                'table' => 'ukm_product',
+                'condition' => 'ukm_product.id = ukm_order_detail.product_id',
+                'jointype' => ''
+            )
+        );
+        $order_item = $this->confirmation->fetch_joins('ukm_order_detail','ukm_order_detail.*, ukm_product.name AS product_name',$join_product,'order_id = '. $orderID,TRUE);
+
         $response = array(
             'code' => 200,
             'message' => 'Berhasil ambil data order.',
-            'data' => $order
+            'data' => $order,
+            'item' => $order_item
         );
         echo json_encode($response, JSON_PRETTY_PRINT);
+    }
+
+
+    function processPayment(){
+        $inv = $this->input->get('inv');
+        $orderID = $this->input->get('orderID');
+        $totalCost = $this->input->get('totalCost');
+        $totalItem = $this->input->get('totalItem');
+        $contact = $this->input->get('contact');
+
+        $this->db->trans_start();
+        $join = array(
+            array(
+                'table' => 'ukm_payment',
+                'condition' => 'ukm_payment.id = ukm_order.payment_id',
+                'jointype' => 'LEFT'
+            )
+        );
+        $where = 'invoice = "'. $inv .'" and ukm_order.id = "'. $orderID .'" and total = "'. $totalCost .'" and total_item = "'. $totalItem .'" and phone_wa = "'. $contact .'" and status = "PENDING"';
+
+        $order = $this->confirmation->fetch_joins('ukm_order','ukm_order.*, ukm_payment.name AS bank_name, ukm_payment.bank AS bank, ukm_payment.rekening AS bank_rekening',$join,$where,TRUE);
+
+        if (count($order) == 1) {
+            $order_id = $order[0]['id'];
+            if (isset($_FILES['file']) && is_uploaded_file($_FILES['file']['tmp_name'])) {
+                /*-------------setting attachment upload -------------*/
+                $config['upload_path'] = './files/payment/';
+                $config['allowed_types'] = 'jpg|png|jpeg';
+                $config['max_size'] = 1024 * 8;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('file')){
+                    $data['file_name'] = null;
+                    $json_data =  array(
+                        "result" => 401 ,
+                        "message" => array('head'=> 'Failed', 'body'=> $this->upload->display_errors('', '')),
+                        "form_error" => 'gambar'
+                    );
+                    print json_encode($json_data);
+                    die();
+                }else{
+                    $data = $this->upload->data();
+                }
+            }else{
+                $data['file_name'] = null;
+            }
+
+            if($data['file_name'] == null){
+                $response =  array(
+                    'code' => 401,
+                    'message' => 'Gambar harus ada',
+                );
+                echo json_encode($response, JSON_PRETTY_PRINT);
+                die();
+            }
+            
+            $data_payment = array(
+                'order_id' => $order_id,
+                'file' => $data['file_name']
+            );
+
+            $this->confirmation->insert_table('ukm_order_payment', $data_payment);
+            
+            $data_order = array(
+                'status' => 'KONFIRMASI'
+            );
+            $update_order = $this->confirmation->update_table('ukm_order', $data_order, 'id', $order_id);
+
+            if ($update_order) {
+                $this->db->trans_complete();
+                $response = array(
+                    'code' => 201,
+                    'message' => 'Sukses konfirmasi, invoice '. $inv . '.',
+                    'base_url' => site_url('confirmations/thank_you?inv='. $inv .'&orderID='. $order_id .'&totalCost=' .$totalCost .'&totalItem=' .$totalItem .'&contact='. $contact)
+                );
+                echo json_encode($response, JSON_PRETTY_PRINT);
+                die();
+            }else{
+                $response = array(
+                    'code' => 401,
+                    'message' => 'Gagal konfirmasi.'
+                );
+                echo json_encode($response, JSON_PRETTY_PRINT);
+                die();
+            }
+        }else{
+            $response = array(
+                'code' => 401,
+                'message' => 'Gagal konfirmasi, data tidak ada.'
+            );
+            echo json_encode($response, JSON_PRETTY_PRINT);
+            die();
+        }
+    }
+
+    function thank_you(){
+        $this->template->write_view('thank_you');
     }
 }

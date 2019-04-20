@@ -13,25 +13,18 @@
     </div>
 </section>
 <!-- End Banner Area -->
-<section class="tracking_box_area section_gap">
+<section class="order_details section_gap">
 		<div class="container">
+			<h3 class="title_confirmation">Terima kasih. Pesanan Anda telah diterima.</h3>
 			<div class="row order_d_inner" id="orderPaymentInfo">
-				<!-- RENDER payment info here -->
+				<!-- RENDER HERE -->
 			</div>
-			<div class="tracking_box_inner">
-                <p>Untuk menyelesaikan pesanan Anda, silahkan masukkan nomor WA dan bukti pembayaran untuk konfirmasi. Ini telah diberikan kepada Anda pada tanda terima dan dalam email atau WA konfirmasi yang seharusnya Anda terima.</p>
-                <form class="row tracking_form" id="formPayment" novalidate="novalidate">
-                    <div class="col-md-12 form-group">
-                        <input type="number" class="form-control" id="phoneWa" name="phoneWa" placeholder="Nomor WA">
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <input type="file" class="form-control" id="file" name="file" placeholder="Masukkan bukti transfer">
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <button type="submit" value="submit" class="primary-btn">Konfirmasi Pembayaran</button>
-                    </div>
-                </form>
-            </div>
+			<div class="order_details_table">
+				<h2>Order Details</h2>
+				<div class="table-responsive" id="tableOrderItem">
+					<!-- RENDER HERE -->
+				</div>
+			</div>
 		</div>
 	</section>
     <script>
@@ -52,6 +45,7 @@
             dataType: 'json',
             beforeSend: function() {
                 $("#orderPaymentInfo").empty();
+                $("#tableOrderItem").empty();
             },
             complete: function() {},
             success: function(response) {
@@ -90,43 +84,72 @@
                     '</div>' +
                     '</div>';
                     $("#orderPaymentInfo").append(orderPaymentInfo).fadeIn(500);
+                    var orderItem = '';
+                    var listItem = '';
+                    
+                    listItem += '<table class="table">'+
+						'<thead>'+
+							'<tr>'+
+								'<th scope="col">Produk</th>'+
+								'<th scope="col">Kuantitas</th>'+
+								'<th scope="col">Total</th>'+
+						'</tr>'+
+					'</thead>'+
+                        '<tbody>';
+                            for (var k in response.item) {
+                                listItem += 
+                        '<tr>'+
+                            '<td>'+
+                                '<p>'+ response.item[k].product_name +'</p>'+
+                            '</td>'+
+                            '<td>'+
+                                '<h5>x '+ response.item[k].qty +'</h5>'+
+                            '</td>'+
+                            '<td>'+
+                                '<p>'+ response.item[k].subtotal +'</p>'+
+                            '</td>'+
+                        '</tr>';
+                    }
+                    
+                    listItem +=
+							'<tr>'+
+								'<td>'+
+									'<h4>Subtotal</h4>'+
+							'</td>'+
+								'<td>'+
+									'<h5></h5>'+
+							'</td>'+
+								'<td>'+
+									'<p>'+ response.data[0]['total'] +'</p>'+
+							'</td>'+
+						'</tr>'+
+							'<tr>'+
+								'<td>'+
+									'<h4>Pengiriman</h4>'+
+							'</td>'+
+								'<td>'+
+									'<h5></h5>'+
+							'</td>'+
+								'<td>'+
+									'<p>0</p>'+
+							'</td>'+
+						'</tr>'+
+							'<tr>'+
+								'<td>'+
+									'<h4>Total</h4>'+
+							'</td>'+
+								'<td>'+
+									'<h5></h5>'+
+							'</td>'+
+								'<td>'+
+									'<p>'+ response.data[0]['total'] +'</p>'+
+							'</td>'+
+						'</tr>'+
+					'</tbody>'+
+                '</table>';
+                
+                $("#tableOrderItem").append(listItem).fadeIn(500);
             }
         });
-
-        $("#formPayment").submit(function(event) {
-                var file = $('#file').prop("files")[0];
-                var phoneWa = $('#phoneWa').val();
-
-                if (phoneWa === '') {
-                    alert('No WA harus di isi.');
-                }else{
-                    var frm_data = new FormData();
-                    frm_data.append('file', file);
-                    frm_data.append('phoneWa', phoneWa);
-
-                    /* AJAX FUNCTION MULTIPART*/
-                    $.ajax({
-                        url: "<?= site_url() ?>confirmations/processPayment?inv=<?= $this->input->get('inv') ?>&orderID=<?= $this->input->get('orderID') ?>&totalCost=<?= $this->input->get('totalCost') ?>&totalItem=<?= $this->input->get('totalItem') ?>&contact=<?= $this->input->get('contact') ?>",
-                        type: "POST",
-                        data: frm_data,
-                        dataType: "json",
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        beforeSend: function() {
-                        },
-                        complete: function() {
-                        },
-                        success: function(response) {
-                            if (response.code == 201) {
-                                window.location = response.base_url;
-                            }else{
-                                alert(response.message);
-                            }
-                        }
-                    });
-                }
-                event.preventDefault();
-            });
     });
     </script>
