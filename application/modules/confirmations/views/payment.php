@@ -25,6 +25,12 @@
                         <input type="number" class="form-control" id="phoneWa" name="phoneWa" placeholder="Nomor WA">
                     </div>
                     <div class="col-md-12 form-group">
+                        <input type="text" class="form-control" id="bank" name="bank" placeholder="Bank (contoh: BNI, BRI, BCA, MANDIRI, dan lain-lain)">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <input type="text" class="form-control" id="bankName" name="bankName" placeholder="Nama rekening">
+                    </div>
+                    <div class="col-md-12 form-group">
                         <input type="file" class="form-control" id="file" name="file" placeholder="Masukkan bukti transfer">
                     </div>
                     <div class="col-md-12 form-group">
@@ -96,13 +102,21 @@
         $("#formPayment").submit(function(event) {
                 var file = $('#file').prop("files")[0];
                 var phoneWa = $('#phoneWa').val();
+                var bank = $('#bank').val();
+                var bankName = $('#bankName').val();
 
                 if (phoneWa === '') {
                     alert('No WA harus di isi.');
+                }else if (bank === '') {
+                    alert('Bank harus di isi.');
+                }else if (bankName === '') {
+                    alert('Nama rekening harus di isi.');
                 }else{
                     var frm_data = new FormData();
                     frm_data.append('file', file);
                     frm_data.append('phoneWa', phoneWa);
+                    frm_data.append('bank', bank);
+                    frm_data.append('bankName', bankName);
 
                     /* AJAX FUNCTION MULTIPART*/
                     $.ajax({

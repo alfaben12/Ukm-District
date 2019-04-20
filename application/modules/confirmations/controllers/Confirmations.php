@@ -213,7 +213,12 @@ class Confirmations extends MX_Controller {
                 die();
             }
             
+            $bank = $this->input->post('bank');
+            $bankName = $this->input->post('bankName');
+
             $data_payment = array(
+                'bank' => $bank,
+                'bank_name' => $bankName,
                 'order_id' => $order_id,
                 'file' => $data['file_name']
             );
