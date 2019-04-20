@@ -253,6 +253,52 @@ class Confirmations extends MX_Controller {
     }
 
     function thank_you(){
-        $this->template->write_view('thank_you');
+        $inv = $this->input->get('inv');
+        $orderID = $this->input->get('orderID');
+        $totalCost = $this->input->get('totalCost');
+        $totalItem = $this->input->get('totalItem');
+        $contact = $this->input->get('contact');
+
+        $join = array(
+            array(
+                'table' => 'ukm_payment',
+                'condition' => 'ukm_payment.id = ukm_order.payment_id',
+                'jointype' => 'LEFT'
+            )
+        );
+
+        $where = 'invoice = "'. $inv .'" and ukm_order.id = "'. $orderID .'" and total = "'. $totalCost .'" and total_item = "'. $totalItem .'" and phone_wa = "'. $contact .'"';
+        $data['order'] = $this->confirmation->fetch_joins('ukm_order','ukm_order.*, ukm_payment.name AS bank_name, ukm_payment.bank AS bank, ukm_payment.rekening AS bank_rekening',$join,$where,TRUE);
+
+        date_default_timezone_set("Asia/Jakarta");
+        $time = time();
+        $hour = date("G",$time);
+
+        if ($hour>=0 && $hour<=11){
+            $greeting = "Selamat Pagi";
+        }elseif ($hour >=12 && $hour<=15){
+            $greeting = "Selamat Siang";
+        }elseif ($hour >=16 && $hour<=18){
+            $greeting = "Selamat Sore";
+        }elseif ($hour >=19 && $hour<=23){
+            $greeting = "Selamat Malam ";
+        }else{
+            $greeting = "Selamat Pagi";
+        }
+        $message_send_to_wa = $greeting .' kak, saya mau konfirmasi pembayaran. 
+Nama : '. $data['order'][0]['full_name'] .' 
+Invoice : '. $data['order'][0]['invoice']  .' 
+Total : '. $data['order'][0]['total']  .'
+Terima kasih. 🍬🥤';
+
+$message = $greeting .' kak, saya mau konfirmasi pembayaran. <br/>
+Nama : '. $data['order'][0]['full_name'] .'<br/> 
+Invoice : '. $data['order'][0]['invoice']  .'<br/>
+Total : '. $data['order'][0]['total']  .'<br/>
+Terima kasih. 🍬🥤';
+        $data['send_to_wa'] = 'https://wa.me/6281249898867?text='.urlencode($message_send_to_wa);
+        $data['message'] = $message;
+        $data['wa'] = '081249898867';
+        $this->template->write_view('thank_you', $data);
     }
 }

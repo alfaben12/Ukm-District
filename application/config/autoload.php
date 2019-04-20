@@ -63,7 +63,8 @@ $autoload['libraries'] = array(
 	'session', 
 	'form_validation',
 	'pagination',
-	'cart'
+	'cart',
+	'user_agent'
 );
 
 /*

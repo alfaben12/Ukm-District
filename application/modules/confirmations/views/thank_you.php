@@ -15,7 +15,23 @@
 <!-- End Banner Area -->
 <section class="order_details section_gap">
 		<div class="container">
-			<h3 class="title_confirmation">Terima kasih. Pesanan Anda telah diterima.</h3>
+			<h3 class="title_confirmation">
+                Terima kasih. Pesanan Anda telah diterima.
+            <br/>
+            <?php
+            if ($this->agent->is_mobile()) {
+                ?>
+                <img src="<?= base_url('assets/img/wa.png') ?>" width="50" height="50"><a href="<?= $send_to_wa ?>" target="blank" class="genric-btn primary-border radius">Kirim ke WA</a>
+                <?php
+            } else {
+                ?>
+                <img src="<?= base_url('assets/img/wa.png') ?>" width="0" height="20"><font color="black" size="2" style="cursor: copy;" id="message_to_wa"><?= $message ?></font>
+                <br/><br/>
+                <font color="black" size="2">Salin text diatas dan kirim ke <?= $wa ?> (WA).<br/><button class="genric-btn primary-border radius small" id="copyButton">Salin pesan</button></font>
+                <?php
+            }
+            ?>
+            </h3>
 			<div class="row order_d_inner" id="orderPaymentInfo">
 				<!-- RENDER HERE -->
 			</div>
@@ -136,7 +152,7 @@
 						'</tr>'+
 							'<tr>'+
 								'<td>'+
-									'<h4>Total</h4>'+
+									'<h4>Total semua</h4>'+
 							'</td>'+
 								'<td>'+
 									'<h5></h5>'+
@@ -152,4 +168,20 @@
             }
         });
     });
+
+    var button = document.getElementById("copyButton");
+    var content = document.getElementById("message_to_wa");
+
+    button.addEventListener("click", function() {
+        var range = document.createRange();
+        var selection = window.getSelection();
+
+        selection.removeAllRanges();
+
+        range.selectNodeContents(content);
+        selection.addRange(range);
+
+        document.execCommand('copy');
+        alert('Berhasil di salin.')
+    }, false);
     </script>
