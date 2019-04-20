@@ -10,7 +10,7 @@ class Productz extends MX_Controller {
 		$data['productUkm'] = $this->product->fetch_table('*','ukm_product','','id','desc','','',TRUE);
 
 		$this->template->write_view('index', $data);
-		}
+	}
 
 	function add(){
 		$this->template->write_view('add');

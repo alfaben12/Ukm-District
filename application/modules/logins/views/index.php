@@ -22,9 +22,9 @@
 					<div class="login_box_img">
 						<img class="img-fluid" src="<?= base_url('assets/') ?>img/login.jpg" alt="">
 						<div class="hover">
-							<h4>New to our website?</h4>
-							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="primary-btn" href="#">Membuat Akun</a>
+							<h4>Selamat datang di website baru</h4>
+							<p>Ada kemajuan yang dibuat dalam sains dan teknologi setiap hari, dan contoh yang baik dari ini adalah</p>
+							<a class="primary-btn" href="#" onclick="alert('Belum tersedia.')">Membuat Akun</a>
 						</div>
 					</div>
 				</div>
