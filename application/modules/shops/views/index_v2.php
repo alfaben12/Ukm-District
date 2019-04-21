@@ -20,15 +20,15 @@
           <div>
             <ul class="nav">
               <li class="nav-item dropdown ml-lg-2">
-                <a class="nav-link px-0" href="shop-products.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,10">
+                <a class="nav-link px-0" href="<?= site_url() ?>" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,10">
                   <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/us.svg">
                   <span class="d-none d-lg-inline-block">Pasuruan</span>
                   <span class="d-lg-none">ID</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-sm">
-                  <a href="shop-products.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/es.svg">Spanish</a>
-                  <a href="shop-products.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/ro.svg">Romanian</a>
-                  <a href="shop-products.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/gr.svg">Greek</a>
+                  <a href="<?= site_url() ?>" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/es.svg">Spanish</a>
+                  <a href="<?= site_url() ?>" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/ro.svg">Romanian</a>
+                  <a href="<?= site_url() ?>" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/gr.svg">Greek</a>
                 </div>
               </li>
             </ul>
@@ -36,36 +36,36 @@
           <div class="ml-auto">
             <ul class="nav">
               <li class="nav-item">
-                <a class="nav-link" href="../utility/support.html">Support</a>
+                <a class="nav-link" href="<?= site_url('helps') ?>">Bantuan</a>
               </li>
               <li class="nav-item">
-                <a href="shop-products.html#" class="nav-link" data-action="omnisearch-open" data-target="#omnisearch"><i class="far fa-search"></i></a>
+                <a href="<?= site_url() ?>" class="nav-link" data-action="omnisearch-open" data-target="#omnisearch"><i class="far fa-search"></i></a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="checkout-cart.html"><i class="far fa-shopping-cart"></i></a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link pr-0" href="shop-products.html#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              </li> -->
+              <!-- <li class="nav-item dropdown">
+                <a class="nav-link pr-0" href="<?= site_url() ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="far fa-user-circle"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                   <h6 class="dropdown-header">User menu</h6>
-                  <a class="dropdown-item" href="shop-products.html#">
+                  <a class="dropdown-item" href="<?= site_url() ?>">
                     <i class="far fa-user"></i>Account
                   </a>
-                  <a class="dropdown-item" href="shop-products.html#">
+                  <a class="dropdown-item" href="<?= site_url() ?>">
                     <span class="float-right badge badge-primary">4</span>
                     <i class="far fa-envelope"></i>Messages
                   </a>
-                  <a class="dropdown-item" href="shop-products.html#">
+                  <a class="dropdown-item" href="<?= site_url() ?>">
                     <i class="far fa-cog"></i>Settings
                   </a>
                   <div class="dropdown-divider" role="presentation"></div>
-                  <a class="dropdown-item" href="shop-products.html#">
+                  <a class="dropdown-item" href="<?= site_url() ?>">
                     <i class="far fa-sign-out-alt"></i>Sign out
                   </a>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -91,11 +91,11 @@
             </li>
             <!-- Pages menu -->
             <li class="nav-item dropdown dropdown-animate" data-toggle="hover">
-              <a class="nav-link dropdown-toggle" href="shop-products.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Halaman</a>
+              <a class="nav-link dropdown-toggle" href="<?= site_url() ?>" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Halaman</a>
               <div class="dropdown-menu dropdown-menu-lg dropdown-menu-arrow p-0">
                 <ul class="list-group list-group-flush">
                   <li class="dropdown dropdown-animate dropdown-submenu" data-toggle="hover">
-                    <a href="shop-products.html#" class="list-group-item list-group-item-action dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a href="<?= site_url() ?>" class="list-group-item list-group-item-action dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <div class="media d-flex align-items-center">
                         <figure style="width: 50px;">
                           <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Secure_Files.svg" class="svg-inject img-fluid" style="height: 50px;">
@@ -121,7 +121,7 @@
                     </ul>
                   </li>
                   <li class="dropdown dropdown-animate dropdown-submenu" data-toggle="hover">
-                    <a href="shop-products.html#" class="list-group-item list-group-item-action dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a href="<?= site_url() ?>" class="list-group-item list-group-item-action dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <div class="media d-flex align-items-center">
                         <figure style="width: 50px;">
                           <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Task.svg" class="svg-inject img-fluid" style="height: 50px;">
@@ -149,7 +149,7 @@
                     </ul>
                   </li>
                   <li class="dropdown dropdown-animate dropdown-submenu" data-toggle="hover">
-                    <a href="shop-products.html#" class="list-group-item list-group-item-action dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a href="<?= site_url() ?>" class="list-group-item list-group-item-action dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <div class="media d-flex align-items-center">
                         <!-- SVG icon -->
                         <figure style="width: 50px;">
@@ -183,7 +183,7 @@
             </li>
             <!-- Sections menu -->
             <li class="nav-item dropdown dropdown-animate" data-toggle="hover">
-              <a class="nav-link dropdown-toggle" href="shop-products.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bagian</a>
+              <a class="nav-link dropdown-toggle" href="<?= site_url() ?>" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bagian</a>
               <div class="dropdown-menu dropdown-menu-xl dropdown-menu-arrow p-0">
                 <ul class="list-group list-group-flush">
                   <li>
@@ -205,7 +205,7 @@
           </ul>
           <ul class="navbar-nav align-items-lg-center ml-lg-auto">
             <li class="nav-item dropdown dropdown-animate" data-toggle="hover">
-              <a class="nav-link dropdown-toggle" href="shop-products.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dokumentasi</a>
+              <a class="nav-link dropdown-toggle" href="<?= site_url() ?>" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dokumentasi</a>
               <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg dropdown-menu-arrow p-0">
                 <ul class="list-group list-group-flush">
                   <li>
@@ -227,11 +227,11 @@
               </div>
             </li>
             <li class="nav-item d-lg-none d-xl-block">
-              <a class="nav-link" href="<?= base_url() ?>" target="_blank">Apa yang baru?</a>
+              <a class="nav-link" href="<?= site_url() ?>" target="_blank">Apa yang baru?</a>
             </li>
             <li class="nav-item mr-0">
-              <a href="https://themes.getbootstrap.com/product/purpose-website-ui-kit/" target="_blank" class="nav-link d-lg-none">Belanja yuk!</a>
-              <a href="https://themes.getbootstrap.com/product/purpose-website-ui-kit/" target="_blank" class="btn btn-sm btn-white btn-icon rounded-pill d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="left" title="Pergi ke toko ...">
+              <a href="<?= site_url('shops') ?>" target="_blank" class="nav-link d-lg-none">Belanja yuk!</a>
+              <a href="<?= site_url('shops') ?>" target="_blank" class="btn btn-sm btn-white btn-icon rounded-pill d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="left" title="Pergi ke toko ...">
                 <span class="btn-inner--icon"><i class="far fa-shopping-cart"></i></span>
                 <span class="btn-inner--text">Belanja yuk!</span>
               </a>
@@ -261,31 +261,31 @@
           <div class="col-sm-6">
             <ul class="list-unstyled mb-0">
               <li>
-                <a class="list-link" href="shop-products.html#">
+                <a class="list-link" href="<?= site_url() ?>">
                   <i class="far fa-search"></i>
                   <span>macbook pro</span> in Laptops
                 </a>
               </li>
               <li>
-                <a class="list-link" href="shop-products.html#">
+                <a class="list-link" href="<?= site_url() ?>">
                   <i class="far fa-search"></i>
                   <span>iphone 8</span> in Smartphones
                 </a>
               </li>
               <li>
-                <a class="list-link" href="shop-products.html#">
+                <a class="list-link" href="<?= site_url() ?>">
                   <i class="far fa-search"></i>
                   <span>macbook pro</span> in Laptops
                 </a>
               </li>
               <li>
-                <a class="list-link" href="shop-products.html#">
+                <a class="list-link" href="<?= site_url() ?>">
                   <i class="far fa-search"></i>
                   <span>beats pro solo 3</span> in Headphones
                 </a>
               </li>
               <li>
-                <a class="list-link" href="shop-products.html#">
+                <a class="list-link" href="<?= site_url() ?>">
                   <i class="far fa-search"></i>
                   <span>smasung galaxy 10</span> in Phones
                 </a>
@@ -337,48 +337,19 @@
         </div>
       </div>
     </section>
-    <section class="slice slice-xl bg-cover bg-size--cover" style="background-image: url('<?= base_url() ?>assets/img/backgrounds/img-15.jpg'); background-position: center center;">
-      <span class="mask bg-primary opacity-9"></span>
-      <div class="container py-6">
-        <div class="row justify-content-center">
-          <div class="col-lg-6 col-xl-7 text-center">
-            <div class="mb-5">
-              <h1 class="text-white">Try a new experience</h1>
-              <p class="lead text-white mt-2">You get all Bootstrap components fully customized. Besides, you receive another numerous plugins out of the box and ready to use.</p>
-            </div>
-            <a href="shop-products.html#" class="btn btn-white btn-icon rounded-pill shadow hover-shadow-lg hover-translate-y-n3">
-              <span class="btn-inner--text">Get started</span>
-              <span class="btn-inner--icon"><i class="far fa-angle-right"></i></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="slice slice-lg delimiter-bottom">
-      <div class="container">
-        <!-- Title -->
-        <div class="mb-5 text-center">
-          <h3 class="h6">Recently seen<i class="far fa-angle-down text-xs ml-3"></i></h3>
-        </div>
-        <!-- Products -->
-        <!-- <div class="row" id="div_product"> -->
-          <!-- RENDER HERE -->
-        <!-- </div> -->
-      </div>
-    </section>
     <section class="slice slice-xl bg-cover bg-size--cover" style="background-image: url('<?= base_url() ?>assets/img/backgrounds/img-17.jpg'); background-position: center center;">
       <span class="mask bg-dark opacity-2"></span>
       <div class="container py-6">
         <div class="row justify-content-center">
           <div class="col-lg-6 col-xl-6 text-center">
             <div class="mb-5">
-              <h1 class="text-white">Always on time</h1>
-              <p class="lead text-white mt-2">You get all Bootstrap components fully customized. Besides, you receive another numerous plugins out of the box and ready to use.</p>
+              <h1 class="text-white">Selalu tepat waktu</h1>
+              <p class="lead text-white mt-2">Belanjalah sesuai kebutuhan, berbelanja disini tidak terlalu menguras dompet dan yang pasti buatan rumahan yang selalu asli rasanya.</p>
             </div>
             <form>
               <div class="form-group mb-0">
                 <div class="input-group input-group-lg input-group-merge rounded-pill bg-white">
-                  <input type="email" class="form-control form-control-flush" name="email" placeholder="Enter your email address" aria-label="Enter your email address">
+                  <input type="email" class="form-control form-control-flush" name="email" placeholder="Ketik alamat email anda" aria-label="Enter your email address">
                   <div class="input-group-append">
                     <button class="btn btn-white text-dark" type="button">
                       <span class="far fa-paper-plane"></span>
@@ -396,37 +367,26 @@
         <div class="row">
           <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="px-4 py-3 text-lg-center">
-              <h6 class="text-sm text-white text-uppercase ls-1">Free shipping in 48/72H</h6>
+              <h6 class="text-sm text-white text-uppercase ls-1">Pengiriman cepat 48/72 Jam</h6>
               <p class="text-white opacity-7">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod
+                Menggunakan kurir dari POS Indonesia
               </p>
             </div>
           </div>
           <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="px-4 py-3 text-lg-center">
-              <h6 class="text-sm text-white text-uppercase ls-1">Free returns</h6>
+              <h6 class="text-sm text-white text-uppercase ls-1">Pengembalian gratis</h6>
               <p class="text-white opacity-7">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod
+                Jika produk tidak sesuai, dapat dikembalikan gratis
               </p>
             </div>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="px-4 py-3 text-lg-center">
-              <h6 class="text-sm text-white text-uppercase ls-1">Secure payment</h6>
-              <ul class="list-inline mt-2">
-                <li class="list-inline-item">
-                  <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/cards/visa.png" width="30">
-                </li>
-                <li class="list-inline-item">
-                  <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/cards/mastercard.png" width="30">
-                </li>
-                <li class="list-inline-item">
-                  <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/cards/maestro.png" width="30">
-                </li>
-                <li class="list-inline-item">
-                  <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/cards/paypal.png" width="30">
-                </li>
-              </ul>
+              <h6 class="text-sm text-white text-uppercase ls-1">Pembayaran aman</h6>
+              <p class="text-white opacity-7">
+                Pembayaran melalui bank transfer adalah cara yang cukup aman
+              </p>
             </div>
           </div>
         </div>
@@ -441,59 +401,50 @@
             <a href="<?= base_url() ?>index.html">
               <img src="<?= base_url() ?>assets/img/brand/white.png" alt="Footer logo" style="height: 70px;">
             </a>
-            <p>Purpose is a unique and beautiful collection of UI elements that are all flexible and modular. A complete and customizable solution to building the website of your dreams.</p>
-          </div>
-          <div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0">
-            <h6 class="heading mb-3">Account</h6>
-            <ul class="list-unstyled">
-              <li><a href="https://preview.webpixels.io/purpose-website-ui-kit-v2.0.0/pages/account-profile.html">Profile</a></li>
-              <li><a href="https://preview.webpixels.io/purpose-website-ui-kit-v2.0.0/pages/account-settings.html">Settings</a></li>
-              <li><a href="https://preview.webpixels.io/purpose-website-ui-kit-v2.0.0/pages/account-billing.html">Billing</a></li>
-              <li><a href="https://preview.webpixels.io/purpose-website-ui-kit-v2.0.0/pages/account-notifications.html">Notifications</a></li>
-            </ul>
+            <p>Purpose adalah koleksi elemen UI yang unik dan indah yang semuanya fleksibel dan modular. Solusi lengkap dan dapat disesuaikan untuk membangun situs web impian Anda.</p>
           </div>
           <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
-            <h6 class="heading mb-3">About</h6>
+            <h6 class="heading mb-3">Tentang</h6>
             <ul class="list-unstyled text-small">
-              <li><a href="shop-products.html#">Services</a></li>
-              <li><a href="shop-products.html#">Contact</a></li>
-              <li><a href="shop-products.html#">Careers</a></li>
+              <li><a href="#">Servis</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Karir</a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-sm-4 mb-5 mb-lg-0">
-            <h6 class="heading mb-3">Company</h6>
+            <h6 class="heading mb-3">Pengembang</h6>
             <ul class="list-unstyled">
-              <li><a href="shop-products.html#">Terms</a></li>
-              <li><a href="shop-products.html#">Privacy</a></li>
-              <li><a href="shop-products.html#">Support</a></li>
+              <li><a href="#">Ketentuan</a></li>
+              <li><a href="#">Privasi</a></li>
+              <li><a href="#">Dukungan</a></li>
             </ul>
           </div>
         </div>
         <div class="row align-items-center justify-content-md-between py-4 mt-4 delimiter-top">
           <div class="col-md-6">
             <div class="copyright text-sm font-weight-bold text-center text-md-left">
-              &copy; 2018-2019 <a href="https://webpixels.io" class="font-weight-bold" target="_blank">Webpixels</a>. All rights reserved.
+              &copy; 2018-2019 <a href="javascript:void(0)" class="font-weight-bold" target="_blank">UMKM Pasuruan</a>. All rights reserved.
             </div>
           </div>
           <div class="col-md-6">
             <ul class="nav justify-content-center justify-content-md-end mt-3 mt-md-0">
               <li class="nav-item">
-                <a class="nav-link" href="https://dribbble.com/webpixels" target="_blank">
+                <a class="nav-link" href=""" target="_blank">
                   <i class="fab fa-dribbble"></i>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="https://www.instagram.com/webpixelsofficial" target="_blank">
+                <a class="nav-link" href="" target="_blank">
                   <i class="fab fa-instagram"></i>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="https://github.com/webpixels" target="_blank">
+                <a class="nav-link" href=""" target="_blank">
                   <i class="fab fa-github"></i>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="https://www.facebook.com/webpixels" target="_blank">
+                <a class="nav-link" href="" target="_blank">
                   <i class="fab fa-facebook"></i>
                 </a>
               </li>
@@ -504,14 +455,8 @@
     </div>
   </footer>
   <div class="customizer">
-    <a href="shop-products.html#modal-customizer" class="btn btn-warning btn-lg btn-icon-only rounded-circle text-white hover-scale-110 shadow-lg mr-3" data-toggle="modal">
-      <span class="btn-inner--icon"><i class="far fa-palette"></i></span>
-    </a>
-    <a href="<?= base_url() ?>docs/support.html" class="btn btn-lg btn-white btn-icon-only rounded-circle hover-scale-110 shadow-lg mr-3 d-none d-lg-inline-block">
-      <span class="btn-inner--icon"><i class="far fa-question"></i></span>
-    </a>
-    <a href="https://themes.getbootstrap.com/product/purpose-website-ui-kit/" target="_blank" class="btn btn-lg btn-white btn-icon-only rounded-circle hover-scale-110 shadow-lg d-none d-lg-inline-block">
-      <span class="btn-inner--icon"><i class="far fa-shopping-basket"></i></span>
+    <a href="<?= site_url('carts') ?>" class="btn btn-warning btn-lg btn-icon-only rounded-circle text-white hover-scale-110 shadow-lg mr-3">
+      <span class="btn-inner--icon"><i class="far fa-shopping-basket"><font size="3"><b id="totalCart"><b></font></i></span>
     </a>
   </div>
   <!-- Customizer modal -->
@@ -677,35 +622,11 @@
           '<p class="text-sm">'+ result[k].description.substr(0,10) + "..." +'</p>'+
           '<span class="card-price">'+ price +'</span>'+
           '<div class="product-colors mt-3">'+
-          '<button type="button" class="btn btn-primary btn-sm btn-icon">'+
+          '<button type="button" class="btn btn-primary btn-sm btn-icon" onclick="processAdd(' + result[k].id + ')">'+
           '<span class="btn-inner--icon"><i class="far fa-shopping-bag"></i></span>'+
           '<span class="btn-inner--text">Tambahkan</span>'+
           '</button>'+
           '</div>'+
-          '</div>'+
-          '</div>'+
-          '</div>';
-          
-          '<div class="col-lg-3 col-sm-6">'+
-          '<div class="card card-product">'+
-          '<div class="card-image">'+
-          '<a href="' + base_url + 'shops/showProduct?productName=' + result[k].name + '">'+
-          '<img alt="Image placeholder" src="' + base_url + 'files/product/' + result[k].image + '" class="img-center img-fluid" width="250" height="150">'+
-          '</a>'+
-          '</div>'+
-          '<div class="card-body text-center pt-0">'+
-          '<h6><a href="' + base_url + 'shops/showProduct?productName=' + result[k].name + '">' + result[k].name + '</a></h6>'+
-          '<span class="card-price">' + price + '</span>'+
-          '<div class="product-colors mt-3">'+
-          '</div>'+
-          '</div>'+
-          '<div class="actions card-product-actions" data-animation-in="slideInLeft" data-animation-out="slideOutLeft">'+
-          '<button type="button" class="action-item" data-toggle="tooltip" data-original-title="Tambah ke keranjang" onclick="processAdd('+ result[k].id +')">'+
-          '<i class="far fa-shopping-bag"></i>'+
-          '</button>'+
-          '<button type="button" class="action-item" data-toggle="tooltip" data-original-title="Wishlist">'+
-          '<i class="far fa-heart"></i>'+
-          '</button>'+
           '</div>'+
           '</div>'+
           '</div>';

@@ -12,6 +12,52 @@
 	<!-- start content Area -->
 	<?php echo $content_for_layout; ?>
 	<!-- End content Area -->
+
+	<script>
+	$(document).ready(function(){
+		updateTotalCart();
+
+	});
+
+	function processClearCart(){
+		$.ajax({
+			url:  '<?= site_url() ?>carts/processClear',
+			type: 'POST',
+			async: true,
+			cache: false,
+			dataType: 'json',
+			beforeSend: function() {
+			},
+			complete: function() {
+			},
+			success: function(response) {
+				alert(response.message);
+				updateTotalCart();
+				location.reload();
+			}
+		});
+	}
+
+	function updateTotalCart(){
+		$.ajax({
+			url:  '<?= site_url() ?>carts/getAllCart',
+			type: 'GET',
+			async: true,
+			cache: false,
+			dataType: 'json',
+			beforeSend: function() {
+				$("#totalCart").empty();
+			},
+			complete: function() {
+			},
+			success: function(response) {
+				if (response.data.totalCart != 0) {
+					$("#totalCart").text(response.data.totalCart);
+				}
+			}
+		});
+	}
+	</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-104437451-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
