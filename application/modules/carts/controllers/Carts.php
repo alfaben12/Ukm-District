@@ -15,8 +15,8 @@ class Carts extends MX_Controller {
     }
 
     public function proccessAdd(){
-        $productID = $this->input->get('productID');
-        $qty = $this->input->get('qty');
+        $productID = $this->input->post('productID');
+        $qty = $this->input->post('qty');
 
         if ($qty <= 0 || $qty == '') {
             $response = array(

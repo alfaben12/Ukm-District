@@ -429,7 +429,8 @@
 				});
 				event.preventDefault();
 			});
-    });
+	});
+	
 	function processAdd(productID){
 		var qty = $("#sst").val();
 		$.ajax({
@@ -438,7 +439,7 @@
 				productID: productID,
 				qty: qty
 			},
-			type: 'GET',
+			type: 'POST',
 			async: true,
 			cache: false,
 			dataType: 'json',

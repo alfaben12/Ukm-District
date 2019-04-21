@@ -226,7 +226,7 @@ class Confirmations extends MX_Controller {
             $this->confirmation->insert_table('ukm_order_payment', $data_payment);
             
             $data_order = array(
-                'status' => 'KONFIRMASI'
+                'status' => 'MENUNGGU'
             );
             $update_order = $this->confirmation->update_table('ukm_order', $data_order, 'id', $order_id);
 

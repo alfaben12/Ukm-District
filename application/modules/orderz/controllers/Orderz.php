@@ -14,6 +14,6 @@ class Orderz extends MX_Controller {
 
     function processDelete(){
 		$this->order->delete_table("ukm_order","id", $this->input->get('id'));
-		redirect('productz');
+		redirect('orderz');
 	}
 }

@@ -15,13 +15,29 @@ class Paymentz extends MX_Controller {
             )
         );
 
-        $data['payment'] = $this->payment->fetch_joins('ukm_order_payment','ukm_order_payment.*, ukm_order.invoice',$join,'',TRUE);
-
+        $data['payment'] = $this->payment->fetch_joins('ukm_order_payment','ukm_order_payment.*, ukm_order.invoice, ukm_order.status',$join,'',TRUE);
 		$this->template->write_view('index', $data);
-  }
+	}
+	
+	function processChangeStatus(){
+		$id = $this->input->get('id');
+		$status = $this->input->get('status');
+		if ($status == 'MENUNGGU') {
+			$status = 'KONFIRMASI';
+		}else{
+			$status = 'MENUNGGU';
+		}
+
+		$value = array(
+			'status' => $status
+		);
+
+		$this->payment->update_table('ukm_order', $value, 'id', $id);
+		redirect('paymentz');
+	}
 
     function processDelete(){
 		$this->payment->delete_table("ukm_order_payment","id", $this->input->get('id'));
-		redirect('productz');
+		redirect('paymentz');
 	}
 }

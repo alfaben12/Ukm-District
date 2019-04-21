@@ -1,13 +1,23 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Shops extends MX_Controller {
+
+    public $flag = true;
+    public $_version = '';
+    
     public function __construct() {
 		parent::__construct();
-		$this->load->model('shop');
+        $this->load->model('shop');
+        
+        if ($this->flag) {
+			$this->_version = '_v2.php';
+		}else{
+			$this->_version = '';
+		}
     }
     
 	public function index(){
-		$this->template->write_view('index');
+		$this->template->write_view('index'. $this->_version);
     }
 
     public function getRenderedContent(){
@@ -46,7 +56,7 @@ class Shops extends MX_Controller {
         $price_to = $this->input->get('price_to');
 
         // Row per page
-        $rowperpage = 9;
+        $rowperpage = 12;
     
         // Row position
         if($rowno != 0){
@@ -60,14 +70,8 @@ class Shops extends MX_Controller {
         $users_record = $this->shop->getData($rowno,$rowperpage,$category_id,$price_from,$price_to);
      
         // Pagination Configuration
-        $config['next_tag_open'] = '<li class="next-arrow">';
-        $config['next_link'] = '<i class="fa fa-long-arrow-right" aria-hidden="true"></i>';
-        $config['next_tag_close'] = '</li>';
-        $config['prev_tag_open'] = '<li class="next-arrow">';
-        $config['prev_link'] = '<i class="fa fa-long-arrow-left" aria-hidden="true"></i>';
-        $config['prev_tag_close'] = '</li>';
-        $config['cur_tag_open'] = '<a href="" class="active">';
-        $config['cur_tag_close'] = '</a>';
+        $config['next_link'] = 'Berikutnya';
+        $config['prev_link'] = 'Sebelumnya';
         $config['base_url'] = base_url().'shops/getUkmDataProduct';
         $config['use_page_numbers'] = TRUE;
         $config['total_rows'] = $allcount;
@@ -104,7 +108,7 @@ class Shops extends MX_Controller {
         $productName = $this->input->get('productName');
 
         $data['product'] = $this->shop->fetch_table('*','ukm_product','name = "'.$productName.'"','','','','',TRUE);
-		$this->template->write_view('detail',$data);
+		$this->template->write_view('detail'. $this->_version, $data);
     }
 
     public function getUkmDataDetailProduk(){

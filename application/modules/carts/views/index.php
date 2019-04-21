@@ -48,7 +48,7 @@
                                 <div class="cupon_text d-flex align-items-center">
                                     <input type="text" placeholder="Coupon Code">
                                     <a class="primary-btn" href="javascript:void(0)" onclick="processGetCoupon()">Apply</a>
-                                    <a href="javascript:void(0)" onclick="processUpdate()" class="gray_btn">Update Cart</a>
+                                    <a href="javascript:void(0)" onclick="processUpdate()" class="gray_btn">Update</a>
 
                                 </div>
                             </td>
