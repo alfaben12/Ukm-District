@@ -119,10 +119,15 @@ class Shops extends MX_Controller {
                     'table' => 'ukm_category_product',
                     'condition' => 'ukm_category_product.id = ukm_product.ukm_category_product_id',
                     'jointype' => 'LEFT'
+                ),
+                array(
+                    'table' => 'ukm_region',
+                    'condition' => 'ukm_region.id = ukm_product.region_id',
+                    'jointype' => 'LEFT'
                 )
             );
 
-		$product = $this->shop->fetch_joins('ukm_product','ukm_product.*, ukm_category_product.name AS category_name',$join,'ukm_product.name = "'.$productName.'"',TRUE);
+		$product = $this->shop->fetch_joins('ukm_product','ukm_product.*, ukm_category_product.name AS category_name, ukm_region.name AS region_name',$join,'ukm_product.name = "'.$productName.'"',TRUE);
 
         if (count($product) == 0) {
             $response = array(

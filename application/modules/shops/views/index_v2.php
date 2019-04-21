@@ -75,7 +75,7 @@
     <nav class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-dark bg-dark" id="navbar-main">
       <div class="container px-lg-0">
         <!-- Logo -->
-        <a class="navbar-brand mr-lg-5" href="<?= base_url() ?>index.html">
+        <a class="navbar-brand mr-lg-5" href="<?= site_url() ?>">
           <img alt="Image placeholder" src="<?= base_url() ?>assets/img/brand/white.png" id="navbar-logo" style="height: 50px;">
         </a>
         <!-- Navbar collapse trigger -->
@@ -87,7 +87,7 @@
           <ul class="navbar-nav align-items-lg-center">
             <!-- Home - Overview  -->
             <li class="nav-item ">
-              <a class="nav-link" href="<?= base_url() ?>index.html">Beranda</a>
+              <a class="nav-link" href="<?= site_url() ?>">Beranda</a>
             </li>
             <!-- Pages menu -->
             <li class="nav-item dropdown dropdown-animate" data-toggle="hover">
@@ -393,136 +393,6 @@
       </div>
     </section>
   </div>
-  <footer id="footer-main">
-    <div class="footer footer-dark bg-dark">
-      <div class="container">
-        <div class="row pt-md">
-          <div class="col-lg-4 mb-5 mb-lg-0">
-            <a href="<?= base_url() ?>index.html">
-              <img src="<?= base_url() ?>assets/img/brand/white.png" alt="Footer logo" style="height: 70px;">
-            </a>
-            <p>Purpose adalah koleksi elemen UI yang unik dan indah yang semuanya fleksibel dan modular. Solusi lengkap dan dapat disesuaikan untuk membangun situs web impian Anda.</p>
-          </div>
-          <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
-            <h6 class="heading mb-3">Tentang</h6>
-            <ul class="list-unstyled text-small">
-              <li><a href="#">Servis</a></li>
-              <li><a href="#">Contact</a></li>
-              <li><a href="#">Karir</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-2 col-sm-4 mb-5 mb-lg-0">
-            <h6 class="heading mb-3">Pengembang</h6>
-            <ul class="list-unstyled">
-              <li><a href="#">Ketentuan</a></li>
-              <li><a href="#">Privasi</a></li>
-              <li><a href="#">Dukungan</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="row align-items-center justify-content-md-between py-4 mt-4 delimiter-top">
-          <div class="col-md-6">
-            <div class="copyright text-sm font-weight-bold text-center text-md-left">
-              &copy; 2018-2019 <a href="javascript:void(0)" class="font-weight-bold" target="_blank">UMKM Pasuruan</a>. All rights reserved.
-            </div>
-          </div>
-          <div class="col-md-6">
-            <ul class="nav justify-content-center justify-content-md-end mt-3 mt-md-0">
-              <li class="nav-item">
-                <a class="nav-link" href=""" target="_blank">
-                  <i class="fab fa-dribbble"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="" target="_blank">
-                  <i class="fab fa-instagram"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href=""" target="_blank">
-                  <i class="fab fa-github"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="" target="_blank">
-                  <i class="fab fa-facebook"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <div class="customizer">
-    <a href="<?= site_url('carts') ?>" class="btn btn-warning btn-lg btn-icon-only rounded-circle text-white hover-scale-110 shadow-lg mr-3">
-      <span class="btn-inner--icon"><i class="far fa-shopping-basket"><font size="3"><b id="totalCart"><b></font></i></span>
-    </a>
-  </div>
-  <!-- Customizer modal -->
-  <div class="modal fade fixed-right" id="modal-customizer" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-vertical" role="document">
-      <form class="modal-content" id="form-customizer">
-        <div class="modal-body">
-          <!-- Close -->
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" data-placement="left" title="Close Customizer">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <div class="text-center mx-auto mt-4 mb-5" style="width: 80px;">
-            <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Click.svg" class="svg-inject img-fluid">
-          </div>
-          <h5 class="text-center mb-2">Choose (your) Purpose</h5>
-          <p class="text-center mb-4">
-            Customize your preview experience by selecting skin colors and modes.
-          </p>
-          <hr class="mb-4">
-          <!-- Skin color -->
-          <h6 class="mb-1">Skin color</h6>
-          <p class="small text-muted mb-3">
-            Set a new theme color palette.
-          </p>
-          <div class="btn-group-toggle row mx-0 mb-5" data-toggle="buttons">
-            <label class="btn btn-sm btn-neutral active col mb-2">
-              <input type="radio" name="skin" value="default" checked>
-              Default
-            </label>
-            <label class="btn btn-sm btn-neutral col-6 mb-2 mr-0">
-              <input type="radio" name="skin" value="blue">
-              Blue
-            </label>
-            <!-- <label class="btn btn-sm btn-neutral col mb-2">
-                        <input type="radio" name="skin" value="blue">
-                        Blue
-                    </label>
-                    <label class="btn btn-sm btn-neutral col-6 mb-2 mr-0">
-                        <input type="radio" name="skin" value="red">
-                        Red
-                    </label> -->
-          </div>
-          <!-- Skin mode -->
-          <h6 class="mb-1">Skin mode</h6>
-          <p class="small text-muted mb-3">
-            Set the theme's mode: light or dark.
-          </p>
-          <div class="btn-group-toggle row mx-0 mb-4" data-toggle="buttons">
-            <label class="btn btn-sm btn-neutral active flex-fill mb-2 mr-2">
-              <input type="radio" name="mode" value="light" checked>
-              <i class="far fa-sun mr-2"></i> Light
-            </label>
-            <label class="btn btn-sm btn-neutral flex-fill mb-2 mr-2">
-              <input type="radio" name="mode" value="dark">
-              <i class="far fa-moon mr-2"></i> Dark
-            </label>
-          </div>
-        </div>
-        <div class="modal-footer border-0">
-          <button type="submit" class="btn btn-block btn-primary mt-auto">
-            Preview
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <script>
 		$(document).ready(function() {
@@ -544,33 +414,33 @@
 				complete: function() {
 				},
 				success: function(response) {
-					for(var k=0; k < response.data.category.length; k++) {
-						var category = '<li class="filter-list"><input class="pixel-radio" type="radio" id="ukm_category_product_id" name="ukm_category_product_id" value="'+ response.data.category[k]['id'] +'" '+ response.data.category[k]['id'] +'><label for="'+ response.data.category[k]['name'] +'">'+ response.data.category[k]['name'] +'</label></li>';
-						$("#ul_category").append(category).fadeIn(500);
-					}
+					// for(var k=0; k < response.data.category.length; k++) {
+					// 	var category = '<li class="filter-list"><input class="pixel-radio" type="radio" id="ukm_category_product_id" name="ukm_category_product_id" value="'+ response.data.category[k]['id'] +'" '+ response.data.category[k]['id'] +'><label for="'+ response.data.category[k]['name'] +'">'+ response.data.category[k]['name'] +'</label></li>';
+					// 	$("#ul_category").append(category).fadeIn(500);
+					// }
 
-					for(var k=0; k < response.data.product.length; k++) {
-						if (response.data.product[k]['is_diskon'] == 1) {
-							var price = '<h6 class="l-through">Rp. ' + response.data.product[k]['price'] + '</h6>' +
-							'<h6>Rp. ' + response.data.product[k]['final_price'] + '</h6>';
-						}else{
-							var price = '<h6>Rp. ' + response.data.product[k]['price'] + '</h6>';
-						}
+					// for(var k=0; k < response.data.product.length; k++) {
+					// 	if (response.data.product[k]['is_diskon'] == 1) {
+					// 		var price = '<h6 class="l-through">Rp. ' + response.data.product[k]['price'] + '</h6>' +
+					// 		'<h6>Rp. ' + response.data.product[k]['final_price'] + '</h6>';
+					// 	}else{
+					// 		var price = '<h6>Rp. ' + response.data.product[k]['price'] + '</h6>';
+					// 	}
 
-						var product = 
-						'<div class="col-lg-4 col-md-4 col-sm-6 mb-20">'+
-							'<div class="single-related-product d-flex">'+
-								'<a href="' + base_url + 'shops/showProduct?productName=' + response.data.product[k]['name'] + '"><img src="' + base_url + 'files/product/' + response.data.product[k]['image'] + '" alt="" width="100" height="70"></a>'+
-								'<div class="desc">'+
-									'<a href="' + base_url + 'shops/showProduct?productName=' + response.data.product[k]['name'] + '" class="title">Black lace Heels</a>'+
-									'<div class="price">'+
-										price +
-									'</div>'+
-								'</div>'+
-							'</div>'+
-						'</div>';
-						$("#divTopSeller").append(product).fadeIn(500);
-					}
+					// 	var product = 
+					// 	'<div class="col-lg-4 col-md-4 col-sm-6 mb-20">'+
+					// 		'<div class="single-related-product d-flex">'+
+					// 			'<a href="' + base_url + 'shops/showProduct?productName=' + response.data.product[k]['name'] + '"><img src="' + base_url + 'files/product/' + response.data.product[k]['image'] + '" alt="" width="100" height="70"></a>'+
+					// 			'<div class="desc">'+
+					// 				'<a href="' + base_url + 'shops/showProduct?productName=' + response.data.product[k]['name'] + '" class="title">Black lace Heels</a>'+
+					// 				'<div class="price">'+
+					// 					price +
+					// 				'</div>'+
+					// 			'</div>'+
+					// 		'</div>'+
+					// 	'</div>';
+					// 	$("#divTopSeller").append(product).fadeIn(500);
+					// }
 						
 
 					loadPagination(0);
@@ -693,4 +563,3 @@
   <script src="<?= base_url() ?>assets/js/purpose.js"></script>
   <!-- Demo JS - remove it when starting your project -->
   <script src="<?= base_url() ?>assets/js/demo.js"></script>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
