@@ -428,6 +428,16 @@
                   <p class="text-sm text-muted mb-0">Isi info alamat Anda untuk pesanan atau pembayaran yang akan datang.</p>
                 </div>
                 <!-- New address form -->
+                <div class="row align-items-center">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-control-label">Pembayaran</label>
+                      <select class="form-control" data-toggle="select" id="selectPayment" name="paymentID" title="Pembayaran">
+                        <!-- RENDER HERE -->
+                      </select>
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -491,6 +501,14 @@
                     <div class="form-group">
                       <label class="form-control-label">Kode pos</label>
                       <input class="form-control" type="text" placeholder="Kode pos" name="zip">
+                    </div>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-control-label">Note</label>
+                      <textarea class="form-control" placeholder="Pesan khusus" rows="3" name="note"></textarea>
                     </div>
                   </div>
                 </div>
@@ -648,37 +666,26 @@
             }
         });
 
-        // $.ajax({
-        //     url: '<?= site_url() ?>confirmations/getPayment',
-        //     type: 'GET',
-        //     async: true,
-        //     cache: false,
-        //     dataType: 'json',
-        //     beforeSend: function() {
-        //         $("#paymentUkm").empty();
-        //     },
-        //     complete: function() {},
-        //     success: function(response) {
-        //         for (var k in response.data.payment) {
-        //             if (response.data.payment[k].id == 1) {
-        //                 var checked = 'checked=""';
-        //             }else{
-        //                 var checked = '';
-        //             }
-
-        //             var payment =
-        //                 '<div class="payment_item">' +
-        //                     '<div class="radion_btn">' +
-        //                         '<input type="radio" id="f-option'+ k +'" value="'+ response.data.payment[k].id +'" name="paymentID" '+ checked +'>' +
-        //                         '<label for="f-option'+ k +'">'+ response.data.payment[k].bank +'</label>' +
-        //                         '<div class="check"></div>' +
-        //                     '</div>' +
-        //                     '<p>'+ response.data.payment[k].description +'</p>' +
-        //                 '</div>';
-        //             $("#paymentUkm").append(payment).fadeIn(500);
-        //         }
-        //     }
-        // });
+        $.ajax({
+            url: '<?= site_url() ?>confirmations/getPayment',
+            type: 'GET',
+            async: true,
+            cache: false,
+            dataType: 'json',
+            beforeSend: function() {
+                $("#selectPayment").empty();
+            },
+            complete: function() {},
+            success: function(response) {
+              var opt = document.getElementById('selectPayment');
+              opt.innerHTML = opt.innerHTML +
+                    '<option selected disabled>Pilih pembayaran</option>';
+                for (var k in response.data.payment) {
+                    opt.innerHTML = opt.innerHTML +
+                    '<option value="'+ response.data.payment[k].id +'">('+ response.data.payment[k].bank +') '+ response.data.payment[k].rekening +' '+ response.data.payment[k].name +'</option>';
+                }
+            }
+        });
 
         $.ajax({
             url: '<?= site_url() ?>confirmations/getShipping',

@@ -76,6 +76,7 @@ class Confirmations extends MX_Controller {
 		$this->form_validation->set_rules('address', 'Alamat dibutuhkan', 'trim|required');
 		$this->form_validation->set_rules('city', 'Kota/Kabupaten dibutuhkan', 'trim|required');
 		$this->form_validation->set_rules('district', 'Desa dibutuhkan', 'trim|required');
+		$this->form_validation->set_rules('paymentID', 'Pembayaran dibutuhkan', 'trim|required');
 		$this->form_validation->set_rules('shippingMethodID', 'Pengiriman dibutuhkan', 'trim|required');
 
 		if($this->form_validation->run() == FALSE){
@@ -91,6 +92,7 @@ class Confirmations extends MX_Controller {
 
         $this->db->trans_start();
 
+        $paymentID = $this->input->post('paymentID');
         $shippingMethodID = $this->input->post('shippingMethodID');
         $invoice = generateInvoiceNumber();
         $full_name = $this->input->post('firstName') . ' '. $this->input->post('lastName');
@@ -107,6 +109,7 @@ class Confirmations extends MX_Controller {
         $total_item = $this->cart->total_items();
         
         $order_data = array(
+            'payment_id' => $paymentID,
             'shipping_method_id' => $shippingMethodID,
             'invoice' => $invoice,
             'full_name' => $full_name,
@@ -160,7 +163,37 @@ class Confirmations extends MX_Controller {
     }
 
     function payment(){
-        $this->template->write_view('payment');
+        $inv = $this->input->get('inv');
+        $orderID = $this->input->get('orderID');
+        $totalCost = $this->input->get('totalCost');
+        $totalItem = $this->input->get('totalItem');
+        $contact = $this->input->get('contact');
+
+        $join = array(
+            array(
+                'table' => 'ukm_payment',
+                'condition' => 'ukm_payment.id = ukm_order.payment_id',
+                'jointype' => 'LEFT'
+            )
+        );
+
+        $where = 'invoice = "'. $inv .'" and ukm_order.id = "'. $orderID .'" and total = "'. $totalCost .'" and total_item = "'. $totalItem .'" and phone_wa = "'. $contact .'"';
+        $order = $this->confirmation->fetch_joins('ukm_order','ukm_order.*, ukm_payment.name AS bank_name, ukm_payment.bank AS bank, ukm_payment.rekening AS bank_rekening',$join,$where,TRUE);
+
+        $join_product = array(
+            array(
+                'table' => 'ukm_product',
+                'condition' => 'ukm_product.id = ukm_order_detail.product_id',
+                'jointype' => ''
+            )
+        );
+        $order_item = $this->confirmation->fetch_joins('ukm_order_detail','ukm_order_detail.*, ukm_product.name AS product_name',$join_product,'order_id = '. $orderID,TRUE);
+
+        if (count($order_item > 0)) {
+            $this->template->write_view('payment');
+        }else{
+            redirect(site_url('shops'));
+        }
     }
 
     function getInfoOrder(){
