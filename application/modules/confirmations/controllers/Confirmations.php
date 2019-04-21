@@ -1,17 +1,58 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Confirmations extends MX_Controller {
+    
+    public $flag = true;
+    public $_version = '';
+
 	public function __construct() {
 		parent::__construct();
         $this->load->model('confirmation');
+
+        if ($this->flag) {
+			$this->_version = '_v2.php';
+		}else{
+			$this->_version = '';
+		}
 	}
 	
+	
 	public function index(){
+        date_default_timezone_set("Asia/Jakarta");
+        $time = time();
+        $hour = date("G",$time);
+
+        if ($hour>=0 && $hour<=11){
+            $greeting = "Selamat Pagi";
+        }elseif ($hour >=12 && $hour<=15){
+            $greeting = "Selamat Siang";
+        }elseif ($hour >=16 && $hour<=18){
+            $greeting = "Selamat Sore";
+        }elseif ($hour >=19 && $hour<=23){
+            $greeting = "Selamat Malam ";
+        }else{
+            $greeting = "Selamat Pagi";
+        }
+        $data['greeting'] = $greeting;
+
         if($this->cart->total() > 0){
-            $this->template->write_view('index');
+            $this->template->write_view('index'. $this->_version, $data);
         }else{
             redirect(site_url('shops'));
         }
+    }
+
+    public function getShipping(){
+        $data['shippingMethod'] = $this->confirmation->fetch_table('*','ukm_shipping_method','','','','','',TRUE);
+        $response = array(
+            'code' => 200,
+            'message' => 'Pengiriman ditemukan',
+            'data' => array(
+                'shippingMethod' => $data['shippingMethod']
+            )
+        );
+        echo json_encode($response, JSON_PRETTY_PRINT);
+        die();
     }
 
     public function getPayment(){
@@ -28,14 +69,14 @@ class Confirmations extends MX_Controller {
     }
 
     public function processCheckOut(){
-        $this->form_validation->set_rules('firstName', 'Nama Depan is required',  'trim|required');
-		$this->form_validation->set_rules('lastName', 'Nama Belakang is required', 'trim|required');
-		$this->form_validation->set_rules('phoneNumber', 'No WA is required', 'trim|required');
-		$this->form_validation->set_rules('email', 'Email is required', 'trim|required');
-		$this->form_validation->set_rules('address', 'Alamat is required', 'trim|required');
-		$this->form_validation->set_rules('city', 'Kota/Kabupaten is required', 'trim|required');
-		$this->form_validation->set_rules('district', 'Desa is required', 'trim|required');
-		$this->form_validation->set_rules('paymentID', 'Pembayaran is required', 'trim|required');
+        $this->form_validation->set_rules('firstName', 'Nama Depan dibutuhkan',  'trim|required');
+		$this->form_validation->set_rules('lastName', 'Nama Belakang dibutuhkan', 'trim|required');
+		$this->form_validation->set_rules('phoneNumber', 'No WA dibutuhkan', 'trim|required');
+		$this->form_validation->set_rules('email', 'Email dibutuhkan', 'trim|required');
+		$this->form_validation->set_rules('address', 'Alamat dibutuhkan', 'trim|required');
+		$this->form_validation->set_rules('city', 'Kota/Kabupaten dibutuhkan', 'trim|required');
+		$this->form_validation->set_rules('district', 'Desa dibutuhkan', 'trim|required');
+		$this->form_validation->set_rules('shippingMethodID', 'Pengiriman dibutuhkan', 'trim|required');
 
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();
@@ -50,7 +91,7 @@ class Confirmations extends MX_Controller {
 
         $this->db->trans_start();
 
-        $payment_id = $this->input->post('paymentID');
+        $shippingMethodID = $this->input->post('shippingMethodID');
         $invoice = generateInvoiceNumber();
         $full_name = $this->input->post('firstName') . ' '. $this->input->post('lastName');
         $company = $this->input->post('company');
@@ -66,7 +107,7 @@ class Confirmations extends MX_Controller {
         $total_item = $this->cart->total_items();
         
         $order_data = array(
-            'payment_id' => $payment_id,
+            'shipping_method_id' => $shippingMethodID,
             'invoice' => $invoice,
             'full_name' => $full_name,
             'company' => $company,
@@ -251,6 +292,30 @@ class Confirmations extends MX_Controller {
             $response = array(
                 'code' => 401,
                 'message' => 'Gagal konfirmasi, data tidak ada.'
+            );
+            echo json_encode($response, JSON_PRETTY_PRINT);
+            die();
+        }
+    }
+
+    function processCheckRegionShipping(){
+        $total = strtoupper($this->input->get('total'));
+        $destination = strtoupper($this->input->get('destination'));
+        $shippingMethodID = $this->input->get('shippingMethodID');
+
+        $data['shippingRegion'] = $this->confirmation->fetch_table('*','ukm_shipping_region','shipping_method_id = '. $shippingMethodID .' and name = "'. $destination.'"','','','','',TRUE);
+
+        if (count($data['shippingRegion'])  > 0) {
+            $response = array(
+                'code' => 200,
+                'message' => 'Region pengiriman tersedia, ongkir '. $data['shippingRegion'][0]['price'] .'. Total = '. $total .'+'.$data['shippingRegion'][0]['price'] .' ingin melanjutkan?'
+            );
+            echo json_encode($response, JSON_PRETTY_PRINT);
+            die();
+        }else{
+            $response = array(
+                'code' => 401,
+                'message' => 'Region pengiriman belum tersedia.'
             );
             echo json_encode($response, JSON_PRETTY_PRINT);
             die();

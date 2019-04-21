@@ -165,7 +165,7 @@
                     <ul class="dropdown-menu">
                       <li class="text-sm text-muted dropdown-header px-0">Toko</li>
                       <li>
-                        <a class="dropdown-item" href="<?= site_url('products') ?>">
+                        <a class="dropdown-item" href="<?= site_url('shops') ?>">
                           Produk
                         </a>
                       </li>
@@ -301,13 +301,11 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6">
-            <h6 class="mb-0">Macbook Pro Touch Bar</h6>
+            <h6 class="mb-0">UMKM Produk</h6>
           </div>
           <div class="col-md-6">
             <nav class="nav justify-content-md-end mb-0">
-              <a href="shop-product.html#" class="nav-link text-sm pl-0">Overview</a>
-              <a href="shop-product.html#" class="nav-link text-sm">Tech specs</a>
-              <a href="shop-product.html#" class="nav-link text-sm pr-0">Setup &amp; Tips</a>
+              <a href="<?= site_url() ?>" class="nav-link text-sm pl-0">Peninjau</a>
             </nav>
           </div>
         </div>
@@ -315,7 +313,7 @@
     </section>
     <section class="slice">
       <div class="container" id="div_productDetail">
-        
+              <!-- RENDER HERE -->
       </div>
     </section>
     <section class="slice-sm bg-primary">
@@ -397,7 +395,7 @@
 					'<div class="col-lg-6">'+
 					'<div data-toggle="sticky" data-sticky-offset="30">'+
 					'<a href="' + base_url + 'files/product/' + response.data.product[0]['image'] + '" data-fancybox>'+
-					'<img alt="Image placeholder" <img src="' + base_url + 'files/product/' + response.data.product[0]['image'] + '" alt="" width="550" height="350" class="img-fluid">'+
+					'<img alt="Gambar produk UMKM" <img src="' + base_url + 'files/product/' + response.data.product[0]['image'] + '" alt="" width="550" height="350" class="img-fluid">'+
 					'</a>'+
 					'<div class="mt-4 text-center">'+
 					'<a href="' + base_url + 'files/product/' + response.data.product[0]['image'] + '" data-fancybox>Lihat</a>'+

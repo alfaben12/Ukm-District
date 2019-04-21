@@ -1,14 +1,40 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Carts extends MX_Controller {
+    
+    public $flag = true;
+    public $_version = '';
+
 	public function __construct() {
 		parent::__construct();
         $this->load->model('mcart');
+
+        if ($this->flag) {
+			$this->_version = '_v2.php';
+		}else{
+			$this->_version = '';
+		}
 	}
 	
 	public function index(){
+        date_default_timezone_set("Asia/Jakarta");
+        $time = time();
+        $hour = date("G",$time);
+
+        if ($hour>=0 && $hour<=11){
+            $greeting = "Selamat Pagi";
+        }elseif ($hour >=12 && $hour<=15){
+            $greeting = "Selamat Siang";
+        }elseif ($hour >=16 && $hour<=18){
+            $greeting = "Selamat Sore";
+        }elseif ($hour >=19 && $hour<=23){
+            $greeting = "Selamat Malam ";
+        }else{
+            $greeting = "Selamat Pagi";
+        }
+        $data['greeting'] = $greeting;
         if($this->cart->total() > 0){
-            $this->template->write_view('index');
+            $this->template->write_view('index'. $this->_version, $data);
         }else{
             redirect(site_url('shops'));
         }
@@ -84,6 +110,22 @@ class Carts extends MX_Controller {
             'code' => 200,
             'message' => 'Cart berhasil dikosongkan.',
             'base_url' => site_url('shops')
+        );
+
+        echo json_encode($response, JSON_PRETTY_PRINT);
+    }
+
+    public function processDeleteCart() {
+        $rowid = $this->input->post('rowid'); 
+        $data = array(
+            'rowid'   => $rowid,
+            'qty'     => 0
+        );
+
+        $this->cart->update($data);
+        $response = array(
+            'code' => 200,
+            'message' => 'Produk berhasil dihapus.'
         );
 
         echo json_encode($response, JSON_PRETTY_PRINT);
