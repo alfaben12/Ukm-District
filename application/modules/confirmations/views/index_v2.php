@@ -553,7 +553,6 @@
                   </div>
                 </div>
                 <div class="card-body" id="listItem">
-                  
                   <!-- RENDER HERE -->
                 </div>
               </div>
@@ -636,7 +635,7 @@
                     '<i class="far fa-shipping-fast"></i>'+
                     '<div class="media-body">'+
                     '<div class="text-limit lh-100">'+
-                    '<small class="font-weight-bold mb-0">Shipping</small>'+
+                    '<small class="font-weight-bold mb-0">Pengiriman</small>'+
                     '</div>'+
                     '<small class="text-muted">Sesuai pilihan</small>'+
                     '</div>'+
@@ -748,13 +747,13 @@
                   },
                   complete: function() {
                   },
-                  success: function(response) {
-					  alert(response.message);
-                      if(response.code == 200){
-                        if (confirm(response.message)) {
+                  success: function(res) {
+					          alert(res.message);
+                      if(res.code == 200){
+                        if (confirm(res.message)) {
                           $.ajax({
                             url: '<?= site_url() ?>confirmations/processCheckOut',
-                            data: $("#formConfirmation").serialize() +"&shippingMethodID=" + shippingMethodID,
+                            data: $("#formConfirmation").serialize() +"&shippingMethodID=" + shippingMethodID + "&shippingPrice=" + res.data,
                             type: 'POST',
                             dataType: 'json',
                             async: true,
