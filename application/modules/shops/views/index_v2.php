@@ -3,6 +3,7 @@
   <link rel="stylesheet" href="<?= base_url() ?>assets/libs/@fortawesome/fontawesome-pro/css/all.min.css"><!-- Page CSS -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/libs/animate.css/animate.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/libs/swiper/dist/css/swiper.min.css">
+  <link type="text/css" href="<?= base_url() ?>assets/libs/select2/dist/css/select2.min.css" rel="stylesheet">
   <!-- Purpose CSS -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/css/purpose.css" id="stylesheet">
   <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
@@ -339,6 +340,55 @@
     <!-- Products -->
     <section class="slice slice-lg delimiter-bottom" id="sct-products">
       <div class="container">
+      <div class="row">
+			  <form class="row contact_form" id="filterForm" novalidate="novalidate">
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <input class="form-control btn-sm" type="number" placeholder="Harga dari" name="price_from" id="price_from">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <input class="form-control btn-sm" type="number" placeholder="Sampai" name="price_to" id="price_to">
+                    </div>
+                  </div>
+                <div class="col-md-3">
+                <div class="form-group">
+								<select name="ukm_category_product_id" id="ukm_category_product_id" data-toggle="select" title="Kategori" class="form-control" style="width:100%">
+									<option value="">Semua Kategori</option>
+									<?php
+									foreach ($category as $key => $val) {
+										?>
+											<option value="<?= $val['id'] ?>"><?= $val['name'] ?></option>
+										<?php
+									}
+									?>
+								</select>
+							</div>
+              </div>
+              
+              <div class="col-md-3">
+							<div class="form-group">
+								<select name="ukm_region_id" id="ukm_region_id" data-toggle="select" title="Region" class="form-control" style="width:100%">
+									<option value="">Semua Region</option>
+									<?php
+									foreach ($region as $key => $val) {
+										?>
+											<option value="<?= $val['id'] ?>"><?= $val['name'] ?></option>
+										<?php
+									}
+									?>
+								</select>
+							</div>
+              </div>
+              <div class="col-md-1">
+                    <div class="form-group">
+                     <button type="submit" class="btn btn-primary">Cari</button>
+                    </div>
+                  </div>
+              </div>
+              </form>
+
         <div class="row" id="div_product">
           <!-- RENDER HERE PRODUCT -->
         </div>
@@ -467,9 +517,10 @@
 					url: '<?= site_url() ?>shops/getUkmDataProduct/'+ pagno,
 					data: {
 						pageno: pagno,
-						ukm_category_product_id: $('input[name=ukm_category_product_id]:checked').val(),
-						price_from: $("#minHarga").val(),
-						price_to: $("#maxHarga").val()
+						ukm_category_product_id: $('#ukm_category_product_id').val(),
+						region_id: $('#ukm_region_id').val(),
+						price_from: $("#price_from").val(),
+						price_to: $("#price_to").val()
 					},
 					type: 'GET',
 					dataType: 'json',
@@ -504,7 +555,7 @@
           '</div>'+
           '<div class="card-body text-center pt-0">'+
           '<h6><a href="' + base_url + 'shops/showProduct?productName=' + result[k].name + '">' + result[k].name + '</a></h6>'+
-          '<p class="text-sm">'+ result[k].description.substr(0,10) + "..." +'</p>'+
+          '<p class="text-sm">'+ result[k].region_name.substr(0,10) + "..." +'</p>'+
           '<span class="card-price">'+ price +'</span>'+
           '<div class="product-colors mt-3">'+
           '<button type="button" class="btn btn-primary btn-sm btn-icon" onclick="processAdd(' + result[k].id + ')">'+
@@ -528,9 +579,10 @@
 					url: '<?= site_url() ?>shops/getUkmDataProduct/0',
 					data: {
 						pageno: 0,
-						ukm_category_product_id: $("input[name='ukm_category_product_id']:checked").val(),
-						price_from: $("#minHarga").val(),
-						price_to: $("#maxHarga").val()
+						ukm_category_product_id: $('#ukm_category_product_id').val(),
+						region_id: $('#ukm_region_id').val(),
+						price_from: $("#price_from").val(),
+						price_to: $("#price_to").val()
 					},
 					type: 'GET',
 					dataType: 'json',
@@ -574,6 +626,8 @@
   <script src="<?= base_url() ?>assets/js/purpose.core.js"></script>
   <!-- Page JS -->
   <script src="<?= base_url() ?>assets/libs/swiper/dist/js/swiper.min.js"></script>
+  <script src="<?= base_url() ?>assets/libs/select2/dist/js/select2.min.js"></script>
+
   <!-- Purpose JS -->
   <script src="<?= base_url() ?>assets/js/purpose.js"></script>
   <!-- Demo JS - remove it when starting your project -->

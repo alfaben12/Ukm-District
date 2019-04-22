@@ -5,12 +5,17 @@ class Shop extends MY_Model {
         parent::__construct();
     }
 
-  public function getData($rowno,$rowperpage,$category_id,$price_from,$price_to) {
+  public function getData($rowno,$rowperpage,$category_id,$price_from,$price_to, $region_id) {
  
-    $this->db->select('*');
+    $this->db->select('ukm_product.*, ukm_region.name AS region_name');
     $this->db->from('ukm_product');
+    $this->db->join('ukm_region', 'ukm_region.id = ukm_product.region_id');
     if ($category_id != '') {
         $this->db->where('ukm_category_product_id', $category_id);
+    }
+
+    if ($region_id != '') {
+      $this->db->where('region_id', $region_id);
     }
 
     if ($price_from != '' && $price_to != '') {
@@ -24,11 +29,15 @@ class Shop extends MY_Model {
     return $query->result_array();
   }
 
-  public function getRecordCount($category_id,$price_from,$price_to) {
+  public function getRecordCount($category_id,$price_from,$price_to, $region_id) {
     $this->db->select('count(*) as allcount');
     $this->db->from('ukm_product');
     if ($category_id != '') {
         $this->db->where('ukm_category_product_id', $category_id);
+    }
+
+    if ($region_id != '') {
+      $this->db->where('region_id', $region_id);
     }
 
     if ($price_from != '' && $price_to != '') {

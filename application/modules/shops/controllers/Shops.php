@@ -17,7 +17,9 @@ class Shops extends MX_Controller {
     }
     
 	public function index(){
-		$this->template->write_view('index'. $this->_version);
+        $data['region'] = $this->shop->fetch_table('*','ukm_region','','name','asc','','',TRUE);
+		$data['category'] = $this->shop->fetch_table('*','ukm_category_product','','name','asc','','',TRUE);
+		$this->template->write_view('index'. $this->_version, $data);
     }
 
     public function getRenderedContent(){
@@ -52,6 +54,13 @@ class Shops extends MX_Controller {
         }else{
             $category_id = $this->input->get('ukm_category_product_id');
         }
+
+        if ($this->input->get('region_id') == '') {
+            $region_id = '';
+        }else{
+            $region_id = $this->input->get('region_id');
+        }
+
         $price_from = $this->input->get('price_from');
         $price_to = $this->input->get('price_to');
 
@@ -64,11 +73,11 @@ class Shops extends MX_Controller {
         }
      
         // All records count
-        $allcount = $this->shop->getRecordCount($category_id,$price_from,$price_to);
+        $allcount = $this->shop->getRecordCount($category_id,$price_from,$price_to, $region_id);
 
         // Get records
-        $users_record = $this->shop->getData($rowno,$rowperpage,$category_id,$price_from,$price_to);
-     
+        $users_record = $this->shop->getData($rowno,$rowperpage,$category_id,$price_from,$price_to, $region_id);
+       
         // Pagination Configuration
         $config['next_link'] = 'Berikutnya';
         $config['prev_link'] = 'Sebelumnya';

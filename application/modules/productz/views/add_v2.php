@@ -1,5 +1,6 @@
 	<!-- Font Awesome 5 -->
 	<link rel="stylesheet" href="<?= base_url() ?>assets/libs/@fortawesome/fontawesome-pro/css/all.min.css"><!-- Purpose CSS -->
+  <link type="text/css" href="<?= base_url() ?>assets/libs/select2/dist/css/select2.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/purpose.css" id="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 </head>
@@ -348,7 +349,7 @@
 								<input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama">
 							</div>
 							<div class="form-group">
-								<select name="ukm_category_product_id" id="ukm_category_product_id" class="form-control" style="width:100%">
+								<select name="ukm_category_product_id" id="ukm_category_product_id" data-toggle="select" title="Kategori" class="form-control" style="width:100%">
 									<option value="">Pilih Kategori</option>
 									<?php
 									foreach ($category as $key => $val) {
@@ -360,7 +361,7 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<select name="ukm_region_id" id="ukm_region_id" class="form-control" style="width:100%">
+								<select name="ukm_region_id" id="ukm_region_id"  data-toggle="select" title="Region" class="form-control" style="width:100%">
 									<option value="">Pilih Region</option>
 									<?php
 									foreach ($region as $key => $val) {
@@ -472,6 +473,8 @@
 
 	<!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
 	<script src="<?= base_url() ?>assets/js/purpose.core.js"></script>
+    <script src="<?= base_url() ?>assets/libs/select2/dist/js/select2.min.js"></script>
+
 	<!-- Purpose JS -->
 	<script src="<?= base_url() ?>assets/js/purpose.js"></script>
 	<!-- Demo JS - remove it when starting your project -->
