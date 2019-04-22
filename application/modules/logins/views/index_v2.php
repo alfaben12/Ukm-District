@@ -1,77 +1,17 @@
-  <!-- Font Awesome 5 -->
-  <link rel="stylesheet" href="<?= base_url() ?>assets/libs/@fortawesome/fontawesome-pro/css/all.min.css"><!-- Purpose CSS -->
-  <link rel="stylesheet" href="<?= base_url() ?>assets/css/purpose.css" id="stylesheet">
+<!-- Font Awesome 5 -->
+  <link rel="stylesheet" href="<?= base_url()  ?>assets/libs/@fortawesome/fontawesome-pro/css/all.min.css"><!-- Purpose CSS -->
+  <link rel="stylesheet" href="<?= base_url()  ?>assets/css/purpose.css" id="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <header class="header header-transparent" id="header-main">
-    <!-- Topbar -->
-    <div id="navbar-top-main" class="navbar-top  navbar-dark bg-dark border-bottom">
-      <div class="container px-0">
-        <div class="navbar-nav align-items-center">
-          <div class="d-none d-lg-inline-block">
-            <span class="navbar-text mr-3">UMKM Pasuruan</span>
-          </div>
-          <div>
-            <ul class="nav">
-              <li class="nav-item dropdown ml-lg-2">
-                <a class="nav-link px-0" href="coming-soon.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,10">
-                  <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/Lambang_Kabupaten_Pasuruan.png">
-                  <span class="d-none d-lg-inline-block">Pasuruan</span>
-                  <span class="d-lg-none">ID</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-sm">
-                  <a href="coming-soon.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/es.svg">Spanish</a>
-                  <a href="coming-soon.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/ro.svg">Romanian</a>
-                  <a href="coming-soon.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/gr.svg">Greek</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="ml-auto">
-            <ul class="nav">
-              <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('helps') ?>">Bantuan</a>
-              </li>
-              <li class="nav-item">
-                <a href="<?= site_url() ?>" class="nav-link" data-action="omnisearch-open" data-target="#omnisearch"><i class="far fa-search"></i></a>
-              </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="checkout-cart.html"><i class="far fa-shopping-cart"></i></a>
-              </li> -->
-              <!-- <li class="nav-item dropdown">
-                <a class="nav-link pr-0" href="<?= site_url() ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="far fa-user-circle"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                  <h6 class="dropdown-header">User menu</h6>
-                  <a class="dropdown-item" href="<?= site_url() ?>">
-                    <i class="far fa-user"></i>Account
-                  </a>
-                  <a class="dropdown-item" href="<?= site_url() ?>">
-                    <span class="float-right badge badge-primary">4</span>
-                    <i class="far fa-envelope"></i>Messages
-                  </a>
-                  <a class="dropdown-item" href="<?= site_url() ?>">
-                    <i class="far fa-cog"></i>Settings
-                  </a>
-                  <div class="dropdown-divider" role="presentation"></div>
-                  <a class="dropdown-item" href="<?= site_url() ?>">
-                    <i class="far fa-sign-out-alt"></i>Sign out
-                  </a>
-                </div>
-              </li> -->
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
     <!-- Main navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg navbar-dark bg-dark" id="navbar-main">
-		  <div class="container px-lg-0">
+    <nav class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light bg-white" id="navbar-main">
+    <div class="container px-lg-0">
             <!-- Logo -->
             <a class="navbar-brand mr-lg-5" href="<?= site_url() ?>">
-            <img alt="Image placeholder" src="<?= base_url() ?>assets/img/brand/white.png" id="navbar-logo" style="height: 50px;">
+            <img alt="Image placeholder" src="<?= base_url() ?>assets/img/brand/dark.png" id="navbar-logo" style="height: 50px;">
             </a>
             <!-- Navbar collapse trigger -->
             <button class="navbar-toggler pr-0" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -241,7 +181,7 @@
                 </li>
                 <li class="nav-item mr-0">
                 <a href="<?= site_url('shops') ?>" target="_blank" class="nav-link d-lg-none">Belanja yuk!</a>
-                <a href="<?= site_url('shops') ?>" target="_blank" class="btn btn-sm btn-white btn-icon rounded-pill d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="left" title="Pergi ke toko ...">
+                <a href="<?= site_url('shops') ?>" target="_blank" class="btn btn-sm btn-dark btn-icon rounded-pill d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="left" title="Pergi ke toko ...">
                     <span class="btn-inner--icon"><i class="far fa-shopping-cart"></i></span>
                     <span class="btn-inner--text">Belanja yuk!</span>
                 </a>
@@ -307,100 +247,184 @@
     </div>
   </div>
   <div class="main-content">
-    <!-- Header (coming-soon) -->
-    <section class="slice slice-lg bg-primary spotlight" data-spotlight>
-      <div class="spotlight-holder py-6 py-md-9">
-        <div class="container pb-md-8 position-relative zindex-100">
-          <div class="col px-0">
-            <div class="row justify-content-center">
-              <div class="col-lg-7 text-center">
-                <h6 class="h1 my-4 text-white">Terima kasih ...</h6>
-                <p class="px-md-5 text-white mb-5">
-					Terima kasih sudah membeli produk di website kami, kami akan memproses secepatnya, semoga harimu menyenangkan.
-				</p>
-
-				<a href="<?= $send_to_wa ?>" target="blank" class="btn btn-slack btn-icon-label" style="color:white;">
-                    <span class="btn-inner--icon">
-					  <i class="fab fa-whatsapp"></i>
-                    </span>
-                    <span class="btn-inner--text">Selesai</span>
-				</a>
-				<br/>
-                <p class="px-md-5 text-white mb-5">
-					Atau<br/>
-				<font color="white" size="2" style="cursor: copy;" id="message_to_wa"><?= $message ?></font>
-                <br/><br/>
-				<font color="white" size="2">Salin text diatas dan kirim ke <?= $wa ?> (WA).<br/></font>
-					<button type="button" class="btn btn-animated btn-success btn-animated-x btn-sm" id="copyButton">
-						<span class="btn-inner--visible">Salin pesan</span>
-						<span class="btn-inner--hidden">
-						<i class="far fa-copy"></i>
-						</span>
-					</button>
-				</p>
+    <section class="slice slice-lg min-vh-100 d-flex align-items-center bg-section-secondary">
+      <!-- SVG background -->
+      <div class="bg-absolute-cover bg-size--contain d-none d-lg-block">
+        <figure class="w-100">
+          <img alt="Image placeholder" src="<?= base_url()  ?>assets/img/svg/backgrounds/bg-3.svg" class="svg-inject">
+        </figure>
+      </div>
+      <div class="container py-5 px-md-0 d-flex align-items-center">
+        <div class="w-100">
+          <div class="row row-grid justify-content-center justify-content-lg-between align-items-center">
+            <div class="col-sm-8 col-lg-6 col-xl-5 order-lg-2">
+              <div class="card shadow zindex-100 mb-0">
+                <div class="card-body px-md-5 py-5">
+                  <div class="mb-5">
+                    <h6 class="h3">Login</h6>
+                    <p class="text-muted mb-0">Masuk ke akun Anda untuk melanjutkan..</p>
+                  </div>
+                  <span class="clearfix"></span>
+                  <form role="form" id="loginForm">
+                    <div class="form-group">
+                      <label class="form-control-label">Username</label>
+                      <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="far fa-user"></i></span>
+                        </div>
+                        <input type="text" name="username" class="form-control" id="input-email" placeholder="Username">
+                      </div>
+                    </div>
+                    <div class="form-group mb-4">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                          <label class="form-control-label">Password</label>
+                        </div>
+                        <div class="mb-2">
+                          <a href="javascript:void(0)" class="small text-muted text-underline--dashed border-primary">Lupa password?</a>
+                        </div>
+                      </div>
+                      <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="far fa-key"></i></span>
+                        </div>
+                        <input type="password" name="password" class="form-control" id="input-password" placeholder="Password">
+                        <div class="input-group-append">
+                          <span class="input-group-text">
+                            <i class="far fa-eye"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-4"><button type="submit" class="btn btn-sm btn-primary btn-icon rounded-pill">
+                        <span class="btn-inner--text">Masuk</span>
+                        <span class="btn-inner--icon"><i class="far fa-long-arrow-alt-right"></i></span>
+                      </button></div>
+                  </form>
+                </div>
+                <div class="card-footer px-md-5"><small>Belum terdaftar?</small>
+                  <a href="basic-login.html#" class="small font-weight-bold">Buat akun</a></div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="shape-container" data-shape-position="bottom">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 1000 300" style="enable-background:new 0 0 1000 300;" xml:space="preserve" class="ie-shape-wave-1">
-          <path d="M 0 246.131 C 0 246.131 31.631 250.035 47.487 249.429 C 65.149 248.755 82.784 245.945 99.944 241.732 C 184.214 221.045 222.601 171.885 309.221 166.413 C 369.892 162.581 514.918 201.709 573.164 201.709 C 714.375 201.709 772.023 48.574 910.547 21.276 C 939.811 15.509 1000 24.025 1000 24.025 L 1000 300.559 L -0.002 300.559 L 0 246.131 Z" />
-        </svg>
-      </div>
-    </section>
-    <!-- Call to action (v5) -->
-    <section class="slice slice-lg pt-0 zindex-101">
-      <div class="container">
-        <ul class="nav justify-content-center mb-4">
-          <li class="nav-item">
-            <a class="nav-link h3 px-4" href="" target="_blank"><i class="fab fa-instagram"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link h3 px-4" href="" target="_blank"><i class="fab fa-facebook"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link h3 px-4" href="" target="_blank"><i class="fab fa-github"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link h3 px-4" href="" target="_blank"><i class="fab fa-dribbble"></i></a>
-          </li>
-        </ul>
-        <div class="row justify-content-center align-items-center">
-          <div class="col-lg-8 text-center">
-            <div class="mt-5">
-              <a href="<?= site_url('shops') ?>" class="btn btn-primary rounded-pill hover-translate-y-n3">Lanjutkan belanja<span class="badge badge-pill badge-soft-warning badge-floating border-">Yukkk</span></a>
-              <a href="<?= site_url() ?>" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Lanjutkan belanja">Lihat profile kami</a>
+            <div class="col-lg-5 order-lg-1 d-none d-lg-block">
+              <blockquote>
+                <h3 class="h2 mb-4">
+                Jaga wajah Anda selalu ke arah sinar matahari dan bayangan akan jatuh di belakang Anda.                </h3>
+                <footer>— <cite class="text-lg">John Sulivan</cite></footer>
+              </blockquote>
             </div>
           </div>
         </div>
       </div>
     </section>
   </div>
+  <div class="customizer">
+    <a href="basic-login.html#modal-customizer" class="btn btn-warning btn-lg btn-icon-only rounded-circle text-white hover-scale-110 shadow-lg mr-3" data-toggle="modal">
+      <span class="btn-inner--icon"><i class="far fa-palette"></i></span>
+    </a>
+    <a href="<?= base_url()  ?>docs/support.html" class="btn btn-lg btn-white btn-icon-only rounded-circle hover-scale-110 shadow-lg mr-3 d-none d-lg-inline-block">
+      <span class="btn-inner--icon"><i class="far fa-question"></i></span>
+    </a>
+    <a href="https://themes.getbootstrap.com/product/purpose-website-ui-kit/" target="_blank" class="btn btn-lg btn-white btn-icon-only rounded-circle hover-scale-110 shadow-lg d-none d-lg-inline-block">
+      <span class="btn-inner--icon"><i class="far fa-shopping-basket"></i></span>
+    </a>
+  </div>
+  <!-- Customizer modal -->
+  <div class="modal fade fixed-right" id="modal-customizer" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-vertical" role="document">
+      <form class="modal-content" id="form-customizer">
+        <div class="modal-body">
+          <!-- Close -->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" data-placement="left" title="Close Customizer">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="text-center mx-auto mt-4 mb-5" style="width: 80px;">
+            <img alt="Image placeholder" src="<?= base_url()  ?>assets/img/icons/essential/detailed/Click.svg" class="svg-inject img-fluid">
+          </div>
+          <h5 class="text-center mb-2">Choose (your) Purpose</h5>
+          <p class="text-center mb-4">
+            Customize your preview experience by selecting skin colors and modes.
+          </p>
+          <hr class="mb-4">
+          <!-- Skin color -->
+          <h6 class="mb-1">Skin color</h6>
+          <p class="small text-muted mb-3">
+            Set a new theme color palette.
+          </p>
+          <div class="btn-group-toggle row mx-0 mb-5" data-toggle="buttons">
+            <label class="btn btn-sm btn-neutral active col mb-2">
+              <input type="radio" name="skin" value="default" checked>
+              Default
+            </label>
+            <label class="btn btn-sm btn-neutral col-6 mb-2 mr-0">
+              <input type="radio" name="skin" value="blue">
+              Blue
+            </label>
+            <!-- <label class="btn btn-sm btn-neutral col mb-2">
+                        <input type="radio" name="skin" value="blue">
+                        Blue
+                    </label>
+                    <label class="btn btn-sm btn-neutral col-6 mb-2 mr-0">
+                        <input type="radio" name="skin" value="red">
+                        Red
+                    </label> -->
+          </div>
+          <!-- Skin mode -->
+          <h6 class="mb-1">Skin mode</h6>
+          <p class="small text-muted mb-3">
+            Set the theme's mode: light or dark.
+          </p>
+          <div class="btn-group-toggle row mx-0 mb-4" data-toggle="buttons">
+            <label class="btn btn-sm btn-neutral active flex-fill mb-2 mr-2">
+              <input type="radio" name="mode" value="light" checked>
+              <i class="far fa-sun mr-2"></i> Light
+            </label>
+            <label class="btn btn-sm btn-neutral flex-fill mb-2 mr-2">
+              <input type="radio" name="mode" value="dark">
+              <i class="far fa-moon mr-2"></i> Dark
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="submit" class="btn btn-block btn-primary mt-auto">
+            Preview
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+        $(document).ready(function(){
+            $("#loginForm").submit(function(event) {
+				$.ajax({
+					url: '<?= site_url() ?>logins/processLogin/',
+					data: $(this).serialize(),
+					type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    cache: false,
+                    dataType: 'json',
+                    beforeSend: function() {
+                    },
+                    complete: function() {
+                    },
+					success: function(response) {
+                        if (response.code == 200) {
+						    window.location = response.redirect;
+                        }else{
+                            alert(response.message);
+                        }
+					}
+				});
+				event.preventDefault();
+			});
+    	});
+    </script>
 
   <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
-  <script src="<?= base_url() ?>assets/js/purpose.core.js"></script>
-  <!-- Page JS -->
-  <script src="<?= base_url() ?>assets/libs/jquery-countdown/dist/jquery.countdown.min.js"></script>
+  <script src="<?= base_url()  ?>assets/js/purpose.core.js"></script>
   <!-- Purpose JS -->
-  <script src="<?= base_url() ?>assets/js/purpose.js"></script>
+  <script src="<?= base_url()  ?>assets/js/purpose.js"></script>
   <!-- Demo JS - remove it when starting your project -->
-  <script src="<?= base_url() ?>assets/js/demo.js"></script>
-  <script>
-	var button = document.getElementById("copyButton");
-    var content = document.getElementById("message_to_wa");
-
-    button.addEventListener("click", function() {
-        var range = document.createRange();
-        var selection = window.getSelection();
-
-        selection.removeAllRanges();
-
-        range.selectNodeContents(content);
-        selection.addRange(range);
-
-        document.execCommand('copy');
-        alert('Berhasil di salin.')
-	}, false);
-	
-  </script>
+  <script src="<?= base_url()  ?>assets/js/demo.js"></script>

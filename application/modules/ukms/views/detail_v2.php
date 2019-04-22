@@ -18,7 +18,7 @@
             <ul class="nav">
               <li class="nav-item dropdown ml-lg-2">
                 <a class="nav-link px-0" href="javascript:void(0)" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,10">
-                  <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/us.svg">
+                  <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/Lambang_Kabupaten_Pasuruan.png">
                   <span class="d-none d-lg-inline-block">Pasuruan</span>
                   <span class="d-lg-none">ID</span>
                 </a>
@@ -124,22 +124,22 @@
                             <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Task.svg" class="svg-inject img-fluid" style="height: 50px;">
                             </figure>
                             <div class="media-body ml-3">
-                            <h6 class="mb-1">Account</h6>
-                            <p class="mb-0">Account management made cool.</p>
+                            <h6 class="mb-1">Akun</h6>
+                            <p class="mb-0">Akun untuk mengelola.</p>
                             </div>
                         </div>
                         </a>
                         <ul class="dropdown-menu">
                         <li class="text-sm text-muted dropdown-header px-0">Akun</li>
                         <li>
-                            <a class="dropdown-item" href="../account/account-notifications.html">
+                            <a class="dropdown-item" href="<?= site_url('dashboardz') ?>">
                             Akses Akun
                             </a>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="text-sm text-muted dropdown-header px-0">List</li>
                         <li>
-                            <a class="dropdown-item" href="../account/listing-orders.html">
+                            <a class="dropdown-item" href="<?= site_url('productz') ?>">
                             Produk
                             </a>
                         </li>
@@ -324,7 +324,7 @@
               </div>
               <div class="media-body">
                 <span class="d-block h6 mb-0" id="founder"></span>
-                <span class="text-sm text-muted" id="joinAt">25 Jan 2019</span>
+                <span class="text-sm text-muted" id="joinAt"></span>
               </div>
             </div>
           </div>

@@ -1,19 +1,30 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Productz extends MX_Controller {
+	public $flag = true;
+    public $_version = '';
+
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('product');
+        $this->load->model('product');
+
+        if ($this->flag) {
+			$this->_version = '_v2.php';
+		}else{
+			$this->_version = '';
+		}
 	}
 	
 	public function index(){
 		$data['productUkm'] = $this->product->fetch_table('*','ukm_product','','id','desc','','',TRUE);
 
-		$this->template->write_view('index', $data);
+		$this->template->write_view('index'. $this->_version, $data);
 	}
 
 	function add(){
-		$this->template->write_view('add');
+		$data['region'] = $this->product->fetch_table('*','ukm_region','','name','asc','','',TRUE);
+		$data['category'] = $this->product->fetch_table('*','ukm_category_product','','name','asc','','',TRUE);
+		$this->template->write_view('add'. $this->_version, $data);
 	}
 
 	function proccessAdd(){
@@ -21,6 +32,7 @@ class Productz extends MX_Controller {
 		$this->form_validation->set_rules('ukm_category_product_id', 'ukm_category_product_id is required', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('price', 'price is required', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('stock', 'stock is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('ukm_region_id', 'Region is required', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('description', 'description is required', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
@@ -75,9 +87,11 @@ class Productz extends MX_Controller {
 			'price' => $this->input->post('price'),
 			'stock' => $this->input->post('stock'),
 			'sold_count' => $this->input->post('sold_count'),
-			'is_diskon' => $this->input->post('is_diskon'),
-			'final_price' => $this->input->post('final_price'),
-			'description' => $this->input->post('description')
+			'is_diskon' => 0,
+			'final_price' => 0,
+			'description' => $this->input->post('description'),
+			'region_id' => $this->input->post('ukm_region_id'),
+			'rating' => $this->input->post('rating')
 		);
 
 		$this->product->insert_table('ukm_product', $value);
@@ -93,8 +107,11 @@ class Productz extends MX_Controller {
 
 	function modify(){
 		$id = $this->input->get('id');
+		$data['region'] = $this->product->fetch_table('*','ukm_region','','name','asc','','',TRUE);
+		$data['category'] = $this->product->fetch_table('*','ukm_category_product','','name','asc','','',TRUE);
 		$data['productUkm'] = $this->product->fetch_table('*','ukm_product','id = '. $id,'id','desc','','',TRUE);
-		$this->template->write_view('modify', $data);
+		
+		$this->template->write_view('modify'. $this->_version, $data);
 	}
 
 	function processModify(){
@@ -102,6 +119,7 @@ class Productz extends MX_Controller {
 		$this->form_validation->set_rules('ukm_category_product_id', 'ukm_category_product_id is required', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('price', 'price is required', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('stock', 'stock is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('ukm_region_id', 'Region is required', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('description', 'description is required', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
@@ -124,9 +142,11 @@ class Productz extends MX_Controller {
 			'price' => $this->input->post('price'),
 			'stock' => $this->input->post('stock'),
 			'sold_count' => $this->input->post('sold_count'),
-			'is_diskon' => $this->input->post('is_diskon'),
-			'final_price' => $this->input->post('final_price'),
-			'description' => $this->input->post('description')
+			'is_diskon' => 0,
+			'final_price' => 0,
+			'description' => $this->input->post('description'),
+			'region_id' => $this->input->post('ukm_region_id'),
+			'rating' => $this->input->post('rating')
 		);
 
 		$this->product->update_table('ukm_product', $value, 'id', $id);

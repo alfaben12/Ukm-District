@@ -2,6 +2,8 @@
   <link rel="stylesheet" href="<?= base_url() ?>assets/libs/@fortawesome/fontawesome-pro/css/all.min.css"><!-- Purpose CSS -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/css/purpose.css" id="stylesheet">
   <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+  	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script> 
 </head>
 
 <body>
@@ -94,32 +96,6 @@
                     <a href="<?= site_url() ?>" class="list-group-item list-group-item-action dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <div class="media d-flex align-items-center">
                         <figure style="width: 50px;">
-                          <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Secure_Files.svg" class="svg-inject img-fluid" style="height: 50px;">
-                        </figure>
-                        <div class="media-body ml-3">
-                          <h6 class="mb-1">Otentikasi</h6>
-                          <p class="mb-0">Contoh untuk skenario apa pun.</p>
-                        </div>
-                      </div>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li class="text-sm text-muted dropdown-header px-0">Umum</li>
-                      <li>
-                        <a class="dropdown-item" href="<?= site_url('logins') ?>">
-                          Login
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="<?= site_url('logins/register') ?>">
-                          Daftar
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="dropdown dropdown-animate dropdown-submenu" data-toggle="hover">
-                    <a href="<?= site_url() ?>" class="list-group-item list-group-item-action dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <div class="media d-flex align-items-center">
-                        <figure style="width: 50px;">
                           <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Task.svg" class="svg-inject img-fluid" style="height: 50px;">
                         </figure>
                         <div class="media-body ml-3">
@@ -131,8 +107,8 @@
                     <ul class="dropdown-menu">
                       <li class="text-sm text-muted dropdown-header px-0">Akun</li>
                       <li>
-                        <a class="dropdown-item" href="<?= site_url('dashboardz') ?>">
-                          Akses Akun
+                        <a class="dropdown-item" href="<?= site_url('profilez') ?>">
+                          Profile
                         </a>
                       </li>
                       <li class="dropdown-divider"></li>
@@ -153,7 +129,7 @@
                         </figure>
                         <!-- Media body -->
                         <div class="media-body ml-3">
-                          <h6 class="mb-1">Belanja</h6>
+                          <h6 class="mb-1">Pesanan</h6>
                           <p class="mb-0">Alur lengkap untuk toko online.</p>
                         </div>
                       </div>
@@ -161,15 +137,34 @@
                     <ul class="dropdown-menu">
                       <li class="text-sm text-muted dropdown-header px-0">Toko</li>
                       <li>
-                        <a class="dropdown-item" href="<?= site_url('shops') ?>">
-                          Produk
+                        <a class="dropdown-item" href="<?= site_url('orderz') ?>">
+                          Pembeli
                         </a>
                       </li>
-                      <li class="dropdown-divider"></li>
-                      <li class="text-sm text-muted dropdown-header px-0">Checkout</li>
+                    </ul>
+				  </li>
+				  <li class="dropdown dropdown-animate dropdown-submenu" data-toggle="hover">
+                    <a href="<?= site_url() ?>" class="list-group-item list-group-item-action dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <div class="media d-flex align-items-center">
+                        <figure style="width: 50px;">
+                          <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Secure_Files.svg" class="svg-inject img-fluid" style="height: 50px;">
+                        </figure>
+                        <div class="media-body ml-3">
+                          <h6 class="mb-1">Pembayaran</h6>
+                          <p class="mb-0">Pembayaran dari pesanan.</p>
+                        </div>
+                      </div>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li class="text-sm text-muted dropdown-header px-0">List</li>
                       <li>
-                        <a class="dropdown-item" href="<?= site_url('carts') ?>">
-                          Keranjang
+                        <a class="dropdown-item" href="<?= site_url('paymentz') ?>">
+                          Pembeli
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="<?= site_url('paymentz/kurir') ?>">
+                          Kurir
                         </a>
                       </li>
                     </ul>
@@ -237,14 +232,11 @@
                 </ul>
               </div>
             </li>
-            <li class="nav-item d-lg-none d-xl-block">
-              <a class="nav-link" href="<?= site_url() ?>" target="_blank">Apa yang baru?</a>
-            </li>
             <li class="nav-item mr-0">
-              <a href="<?= site_url('shops') ?>" target="_blank" class="nav-link d-lg-none">Belanja yuk!</a>
-              <a href="<?= site_url('shops') ?>" target="_blank" class="btn btn-sm btn-white btn-icon rounded-pill d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="left" title="Pergi ke toko ...">
+              <a href="<?= site_url('logins/logout') ?>" class="nav-link d-lg-none">Keluar</a>
+              <a href="<?= site_url('logins/logout') ?>" class="btn btn-sm btn-white btn-icon rounded-pill d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="left" title="Pergi ke toko ...">
                 <span class="btn-inner--icon"><i class="far fa-shopping-cart"></i></span>
-                <span class="btn-inner--text">Belanja yuk!</span>
+                <span class="btn-inner--text">Keluar</span>
               </a>
             </li>
           </ul>
@@ -316,7 +308,7 @@
             <!-- Salute + Small stats -->
             <div class="row align-items-center mb-4">
               <div class="col-md-5 mb-4 mb-md-0">
-                <span class="h2 mb-0 text-white d-block"><?= $greeting ?></span>
+                <span class="h2 mb-0 text-white d-block">Hallo, Anda sedang di halaman admin</span>
                 <span class="text-white">Semoga harimu menyenangkan!</span>
               </div>
             </div>
@@ -324,17 +316,13 @@
             <div class="d-flex">
               <div class="btn-group btn-group-nav shadow" role="group" aria-label="Basic example">
                 <div class="btn-group" role="group">
-                  <a href="<?= site_url('carts') ?>" class="btn btn-white btn-icon active">
-                    <span class="btn-inner--icon"><i class="far fa-shopping-cart"></i></span>
-                    <span class="btn-inner--text d-none d-md-inline-block">Keranjang</span>
+                  <a href="<?= site_url('productz') ?>" class="btn btn-white btn-icon active">
+                    <span class="btn-inner--icon"><i class="far fa-align-left"></i></span>
+                    <span class="btn-inner--text d-none d-md-inline-block">List</span>
                   </a>
-                  <a href="<?= site_url('confirmations') ?>" class="btn btn-white btn-icon">
-                    <span class="btn-inner--icon"><i class="far fa-truck"></i></span>
-                    <span class="btn-inner--text d-none d-md-inline-block">Pengiriman</span>
-                  </a>
-                  <a href="<?= site_url('confirmations/payment') ?>" class="btn btn-white btn-icon">
-                    <span class="btn-inner--icon"><i class="far fa-credit-card"></i></span>
-                    <span class="btn-inner--text d-none d-md-inline-block">Pembayaran</span>
+                  <a href="<?= site_url('productz/add') ?>" class="btn btn-white btn-icon">
+                    <span class="btn-inner--icon"><i class="far fa-plus"></i></span>
+                    <span class="btn-inner--text d-none d-md-inline-block">Tambah</span>
                   </a>
                 </div>
               </div>
@@ -345,186 +333,51 @@
     </header>
     <section class="slice slice-lg">
       <div class="container">
-        <!-- Shopping cart table -->
-        <form id="formCart">
+        <!-- Shopping table table -->
             <div class="table-responsive">
-            <table class="table table-cards align-items-center">
-                <thead>
-                <tr>
-                    <th scope="col" class="sort" data-sort="product">Produk</th>
-                    <th scope="col" class="sort" data-sort="size">Kategori</th>
-                    <th scope="col" class="sort" data-sort="price">Harga</th>
-                    <th scope="col">Kuantitas</th>
-                    <th scope="col" class="sort" data-sort="total">Total</th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody class="list" id="resultCart">
-                <!-- RENDER HERE -->
-                </tbody>
-            </table>
+            <table id="example" class="table">
+                    <thead>
+                        <tr>
+                            <th width="5%">No</th>
+                            <th>Nama</th>
+                            <th>Gambar</th>
+                            <th>Harga</th>
+                            <th>Diskon</th>
+                            <th>Harga Akhir</th>
+                            <th>Terjual</th>
+                            <th width="20%">Tindakan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($productUkm as $key => $val) {
+                            ?>
+                            <tr>
+                                <td><?= $key + 1 ?></td>
+                                <td><?= $val['name'] ?></td>
+                                <td align="center"><img src="<?= base_url() ?>files/product/<?= $val['image'] ?>" width="150" height="90"></td>
+                                <td><?= $val['price'] ?></td>
+                                <td><?= $val['is_diskon'] == 1 ? 'Ya' : 'Tidak' ?></td>
+                                <td><?= $val['is_diskon'] == 1 ? $val['final_price'] : $val['price'] ?></td>
+                                <td><?= $val['sold_count'] ?></td>
+                                <td><a class="genric-btn info radius" href="<?= site_url() ?>productz/modify?id=<?= $val['id'] ?>">Edit</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a class="genric-btn danger radius" href="<?= site_url() ?>productz/processDelete?id=<?= $val['id'] ?>">Hapus</a></td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
-        </form>
-        <!-- Cart information -->
-        <div class="card mt-5 bg-secondary">
-          <div class="card-body">
-            <div class="row justify-content-between align-items-center">
-              <div class="col-md-6 order-md-2 mb-4 mb-md-0">
-                <div class="d-flex align-items-center justify-content-md-end">
-                  <span class="h6 text-muted d-inline-block mr-3 mb-0">Total pembelian:</span>
-                  <span class="h4 mb-0" id="totalAmount"></span>
-                </div>
-              </div>
-              <div class="col-md-6 order-md-1">
-                <button type="button" class="btn btn-animated btn-primary btn-animated-y" onclick="processUpdate()">
-                  <span class="btn-inner--visible">Perbarui</span>
-                  <span class="btn-inner--hidden">
-                    <i class="far fa-sync"></i>
-                  </span>
-                </button>
-                <a href="<?= site_url('confirmations') ?>" class="btn btn-animated btn-primary btn-animated-y">
-                  <span class="btn-inner--visible">Checkout</span>
-                  <span class="btn-inner--hidden">
-                    <i class="far fa-shopping-cart"></i>
-                  </span>
-                </a>
-                <a href="<?= site_url('shops') ?>" class="btn btn-link text-sm text-dark font-weight-bold">Lanjutkan belanja</a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   </div>
 
   <script>
-    var base_url = '<?= base_url() ?>';
-    $(document).ready(function() {
-        processRenderAllCart();
+    $('#example').DataTable({
+        "info": true,         // Will show "1 to n of n entries" Text at bottom
+        "lengthChange": false // Will Disabled Record number per page
     });
-
-    function processRenderAllCart(){
-        $.ajax({
-            url: '<?= site_url() ?>carts/getAllCart',
-            type: 'GET',
-            async: true,
-            cache: false,
-            dataType: 'json',
-            beforeSend: function() {
-                $("#totalCart").empty();
-                $("#resultCart").empty();
-                $("#totalAmount").empty();
-            },
-            complete: function() {},
-            success: function(response) {
-                $("#totalCart").text(response.data.totalCart);
-                $("#totalAmount").text(response.data.totalAmount);
-                for (var k in response.data.cart) {
-                    var cart =
-                    '<tr>'+
-                    '<th scope="row">'+
-                    '<div class="media align-items-center">'+
-                    '<img alt="Gambar produk UMKM" src="'+ response.data.cart[k].image +'" style="width: 80px;">'+
-                    '<div class="media-body pl-3">'+
-                    '<div class="lh-100">'+
-                    '<span class="text-dark font-weight-bold mb-0">'+ response.data.cart[k].name +'</span>'+
-                    '</div>'+
-                    '<span class="font-weight-bold text-muted">Kuantitas: '+ response.data.cart[k].qty +'</span>'+
-                    '</div>'+
-                    '</div>'+
-                    '</th>'+
-                    '<td class="price">'+
-                    'Rp. '+ response.data.cart[k].price +
-                    '</td>'+
-                    '<td>'+
-                    '<span class="badge badge-dot mr-4">'+
-                    '<i class="bg-"></i>'+
-                    '<span class="status">'+ response.data.cart[k].category +'</span>'+
-                    '</span>'+
-                    '</td>'+
-                    '<td>'+
-                    '<input type="text" name="qty[]" class="form-control form-control-sm text-center" style="width: 80px;" value="'+ response.data.cart[k].qty +'">'+
-                    '<input type="hidden" name="rowID[]" value="'+ response.data.cart[k].rowid +'" title="Row ID:" class="input-text">' +
-                    '<input type="hidden" name="productID[]" value="'+ response.data.cart[k].id +'" title="Produk ID:" class="input-text">' +
-                    '</td>'+
-                    '<td class="total">'+
-                    'Rp. '+ response.data.cart[k].subtotal +
-                    '</td>'+
-                    '<td class="text-right">'+
-                    '<div class="actions ml-3">'+
-                    '<a href="' + base_url + 'shops/showProduct?productName=' + response.data.cart[k].name + '" class="action-item mr-2" data-toggle="tooltip" title="Lihat produk">'+
-                    '<i class="far fa-external-link-alt"></i>'+
-                    '</a>'+
-                    '<a href="javascript:void(0)" class="action-item mr-2" data-toggle="tooltip" title="Hapus" rowid="' + response.data.cart[k].rowid + '" onclick="processDeleteCart(this)">'+
-                    '<i class="far fa-times"></i>'+
-                    '</a>'+
-                    '</div>'+
-                    '</td>'+
-                    '</tr>'+
-                    '<tr class="table-divider"></tr>';
-                    $("#resultCart").append(cart).fadeIn(500);
-                }
-            }
-        });
-    }
-
-    function processUpdate(){
-		$.ajax({
-			url:  '<?= site_url() ?>carts/proccessUpdate',
-			data: $("#formCart").serialize(),
-			type: 'POST',
-			async: true,
-			cache: false,
-			dataType: 'json',
-			beforeSend: function() {
-                $("#totalCart").empty();
-                $("#resultCart").empty();
-			},
-			complete: function() {
-			},
-			success: function(response) {
-				processRenderAllCart();
-			}
-		});
-	}
-
-    function processGetCoupon(){
-		$.ajax({
-			url:  '<?= site_url() ?>carts/proccessGetCoupon',
-			type: 'POST',
-			async: true,
-			cache: false,
-			dataType: 'json',
-			beforeSend: function() {
-			},
-			complete: function() {
-			},
-			success: function(response) {
-                alert(response.message);
-			}
-		});
-    }
-    
-    function processDeleteCart(key){
-        var rowid = $(key).attr('rowid');
-		$.ajax({
-            url:  '<?= site_url() ?>carts/processDeleteCart',
-            data: {rowid: rowid},
-			type: 'POST',
-			async: true,
-			cache: false,
-			dataType: 'json',
-			beforeSend: function() {
-			},
-			complete: function() {
-			},
-			success: function(response) {
-                alert(response.message);
-                processRenderAllCart();
-			}
-		});
-	}
-</script>
+    </script>
 
   <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
   <script src="<?= base_url() ?>assets/js/purpose.core.js"></script>

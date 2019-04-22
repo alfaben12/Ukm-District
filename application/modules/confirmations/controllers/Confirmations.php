@@ -181,7 +181,7 @@ class Confirmations extends MX_Controller {
             )
         );
 
-        $where = 'invoice = "'. $inv .'" and ukm_order.id = "'. $orderID .'" and total = "'. $totalCost .'" and total_item = "'. $totalItem .'" and phone_wa = "'. $contact .'"';
+        $where = 'invoice = "'. $inv .'" and ukm_order.id = "'. $orderID .'" and total = "'. $totalCost .'" and total_item = "'. $totalItem .'" and phone_wa = "'. $contact .'" and "MENUNGGU"';
         $order = $this->confirmation->fetch_joins('ukm_order','ukm_order.*, ukm_payment.name AS bank_name, ukm_payment.bank AS bank, ukm_payment.rekening AS bank_rekening',$join,$where,TRUE);
 
         $join_product = array(
@@ -210,7 +210,7 @@ class Confirmations extends MX_Controller {
         }
         $data['greeting'] = $greeting;
 
-        if (count($order_item > 0)) {
+        if (count($order_item) > 0) {
             $this->template->write_view('payment'. $this->_version, $data);
         }else{
             redirect(site_url('shops'));
@@ -396,7 +396,7 @@ class Confirmations extends MX_Controller {
 
         $data['shippingRegion'] = $this->confirmation->fetch_table('*','ukm_shipping_region','shipping_method_id = '. $shippingMethodID .' and name = "'. $destination.'"','','','','',TRUE);
 
-        if (count($data['shippingRegion'])  > 0) {
+        if (count($data['shippingRegion']) > 0) {
             $response = array(
                 'code' => 200,
                 'message' => 'Region pengiriman tersedia, ongkir '. $data['shippingRegion'][0]['price'] .'. Total = '. $total .'+'.$data['shippingRegion'][0]['price'] .' ingin melanjutkan?',
