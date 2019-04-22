@@ -320,10 +320,6 @@
                     <span class="btn-inner--icon"><i class="far fa-align-left"></i></span>
                     <span class="btn-inner--text d-none d-md-inline-block">List</span>
                   </a>
-                  <a href="<?= site_url('productz/add') ?>" class="btn btn-white btn-icon">
-                    <span class="btn-inner--icon"><i class="far fa-plus"></i></span>
-                    <span class="btn-inner--text d-none d-md-inline-block">Tambah</span>
-                  </a>
                 </div>
               </div>
             </div>
@@ -333,38 +329,32 @@
     </header>
     <section class="slice slice-lg">
       <div class="container">
-        <!-- ORDER table table -->
+        <!-- Shopping table table -->
             <div class="table-responsive">
             <table id="example" class="table">
                     <thead>
                         <tr>
                             <th width="5%">No</th>
-                            <th>invoice</th>
+                            <th>Invoice</th>
+                            <th>Bank</th>
                             <th>Nama</th>
-                            <th>WA</th>
-                            <th>Alamat</th>
-                            <th>Kota</th>
-                            <th>Produk</th>
-                            <th width="10%">Total</th>
-                            <th>Status</th>
-                            <th width="10%">Tindakan</th>
+                            <th>Bukti</th>
+                            <th>status</th>
+                            <th width="25%">Tindakan</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($order as $key => $val) {
+                        foreach ($payment as $key => $val) {
                             ?>
                             <tr>
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $val['invoice'] ?></td>
-                                <td><?= $val['full_name'] ?></td>
-                                <td><?= $val['phone_wa'] ?></td>
-                                <td><?= $val['address'] ?></td>
-                                <td><?= $val['city'] ?></td>
-                                <td><center><?= $val['total_item'] ?></center></td>
-                                <td><?= $val['total'] ?></td>
+                                <td><?= $val['bank'] ?></td>
+                                <td><?= $val['bank_name'] ?></td>
+                                <td align="center"> <a href="<?= base_url() ?>files/payment/<?= $val['file'] ?>" class="zoomple"><img src="<?= base_url() ?>files/payment/<?= $val['file'] ?>" width="150" height="90"></td>
                                 <td><?= $val['status'] ?></td>
-                                <td><a class="btn btn-danger btn-sm" href="<?= site_url() ?>orderz/processDelete?id=<?= $val['id'] ?>">Hapus</a></td>
+                                <td><a class="btn btn-primary btn-sm" href="<?= site_url() ?>paymentz/processChangeStatus?id=<?= $val['order_id'] ?>&status=<?= $val['status'] ?>"><?= $val['status'] == 'MENUNGGU' ? 'KONFIRMASI' : 'MENUNGGU' ?></a>&nbsp;&nbsp;<a class="btn btn-danger btn-sm" href="<?= site_url() ?>paymentz/processDelete?id=<?= $val['id'] ?>">Hapus</a></td>
                             </tr>
                             <?php
                         }

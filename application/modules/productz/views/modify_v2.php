@@ -234,7 +234,7 @@
 			<li class="nav-item mr-0">
 				<a href="<?= site_url('logins/logout') ?>" class="nav-link d-lg-none">Keluar</a>
 				<a href="<?= site_url('logins/logout') ?>" class="btn btn-sm btn-white btn-icon rounded-pill d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="left" title="Pergi ke toko ...">
-				<span class="btn-inner--icon"><i class="far fa-shopping-cart"></i></span>
+                <span class="btn-inner--icon"><i class="far fa-sign-out-alt"></i></span>
 				<span class="btn-inner--text">Keluar</span>
 				</a>
 			</li>
