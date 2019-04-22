@@ -1,12 +1,14 @@
   <!-- Font Awesome 5 -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/libs/@fortawesome/fontawesome-pro/css/all.min.css"><!-- Purpose CSS -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/css/purpose.css" id="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
   <header class="header header-transparent" id="header-main">
     <!-- Topbar -->
-    <div id="navbar-top-main" class="navbar-top  navbar-dark bg-dark border-bottom">
+    <div id="navbar-top-main" class="navbar-top  navbar-light bg-white border-bottom">
       <div class="container px-0">
         <div class="navbar-nav align-items-center">
           <div class="d-none d-lg-inline-block">
@@ -15,15 +17,15 @@
           <div>
             <ul class="nav">
               <li class="nav-item dropdown ml-lg-2">
-                <a class="nav-link px-0" href="coming-soon.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,10">
+                <a class="nav-link px-0" href="javascript:void(0)" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,10">
                   <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/us.svg">
                   <span class="d-none d-lg-inline-block">Pasuruan</span>
                   <span class="d-lg-none">ID</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-sm">
-                  <a href="coming-soon.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/es.svg">Spanish</a>
-                  <a href="coming-soon.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/ro.svg">Romanian</a>
-                  <a href="coming-soon.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/gr.svg">Greek</a>
+                  <a href="blog-article.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/es.svg">Spanish</a>
+                  <a href="blog-article.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/ro.svg">Romanian</a>
+                  <a href="blog-article.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/gr.svg">Greek</a>
                 </div>
               </li>
             </ul>
@@ -67,8 +69,8 @@
       </div>
     </div>
     <!-- Main navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg navbar-dark bg-dark" id="navbar-main">
-		<div class="container px-lg-0">
+    <nav class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light bg-white" id="navbar-main">
+        <div class="container px-lg-0">
             <!-- Logo -->
             <a class="navbar-brand mr-lg-5" href="<?= site_url() ?>">
             <img alt="Image placeholder" src="<?= base_url() ?>assets/img/brand/white.png" id="navbar-logo" style="height: 50px;">
@@ -235,6 +237,7 @@
             </div>
         </div>
     </nav>
+    </nav>
   </header>
   <!-- Omnisearch -->
   <div id="omnisearch" class="omnisearch">
@@ -292,115 +295,305 @@
     </div>
   </div>
   <div class="main-content">
-    <!-- Header (coming-soon) -->
-    <section class="slice slice-lg bg-primary spotlight" data-spotlight>
-      <div class="spotlight-holder py-6 py-md-9">
-        <div class="container pb-md-8 position-relative zindex-100">
-          <div class="col px-0">
-            <div class="row justify-content-center">
-              <div class="col-lg-7 text-center">
-                <h6 class="h1 my-4 text-white">Terima kasih ...</h6>
-                <p class="px-md-5 text-white mb-5">
-					Terima kasih sudah membeli produk di website kami, kami akan memproses secepatnya, semoga harimu menyenangkan.
-				</p>
-
-				<a href="<?= $send_to_wa ?>" target="blank" class="btn btn-slack btn-icon-label" style="color:white;">
-                    <span class="btn-inner--icon">
-					  <i class="fab fa-whatsapp"></i>
-                    </span>
-                    <span class="btn-inner--text">Selesai</span>
-				</a>
-				<br/>
-                <p class="px-md-5 text-white mb-5">
-					Atau<br/>
-				<font color="white" size="2" style="cursor: copy;" id="message_to_wa"><?= $message ?></font>
-                <br/><br/>
-				<font color="white" size="2">Salin text diatas dan kirim ke <?= $wa ?> (WA).<br/></font>
-					<button type="button" class="btn btn-animated btn-success btn-animated-x btn-sm" id="copyButton">
-						<span class="btn-inner--visible">Salin pesan</span>
-						<span class="btn-inner--hidden">
-						<i class="far fa-copy"></i>
-						</span>
-					</button>
-				</p>
+    <section class="slice">
+    <div class="container pt-6">
+    <br/>
+    <br/>
+        <div class="row justify-content-center">
+          <div class="col-md-9">
+            <h1 class="lh-150 mb-3" id="ukmName" style="text-align:center;"></h1>
+            <div class="media align-items-center mt-5">
+              <div>
+                <a href="javascript:void()" class="avatar rounded-circle mr-3" id="logo">
+                </a>
+              </div>
+              <div class="media-body">
+                <span class="d-block h6 mb-0" id="founder"></span>
+                <span class="text-sm text-muted" id="joinAt">25 Jan 2019</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="shape-container" data-shape-position="bottom">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 1000 300" style="enable-background:new 0 0 1000 300;" xml:space="preserve" class="ie-shape-wave-1">
-          <path d="M 0 246.131 C 0 246.131 31.631 250.035 47.487 249.429 C 65.149 248.755 82.784 245.945 99.944 241.732 C 184.214 221.045 222.601 171.885 309.221 166.413 C 369.892 162.581 514.918 201.709 573.164 201.709 C 714.375 201.709 772.023 48.574 910.547 21.276 C 939.811 15.509 1000 24.025 1000 24.025 L 1000 300.559 L -0.002 300.559 L 0 246.131 Z" />
-        </svg>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            <!-- Article body -->
+            <article>
+              <figure class="figure" id="cover_image">
+                </figure>
+              <p class="lead" id="description"></p>
+            </article>
+            <hr>
+            <h5 class="mb-4">Komentar</h5>
+            <div class="mb-3" id="commentsArea">
+              <!-- RENDER HERE -->
+            </div>
+
+            <div class="media">
+                <img alt="Gambar" class="rounded-circle shadow mr-4" src="<?= base_url() ?>files/profile/default.jpg" style="width: 64px;">
+                <div class="media-body">
+                  <div class="media-comment-bubble left-top">
+                  <form id="commentForm">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="validationCustom01">Nama</label>
+                                <input type="text" class="form-control" name="name" placeholder="Nama" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="validationCustomUsername">Email</label>
+                                <div class="input-group input-group-merge">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                </div>
+                                <input type="email" class="form-control" name="email" placeholder="Email" required>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12">
+                            <label for="validationCustom03">Komentar</label>
+                            <textarea rows="3" class="form-control" placeholder="Komentar" name="message" required></textarea>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck2" name="agree" value="yes" data-toggle="indeterminate" required>
+                            <label class="custom-control-label" for="customCheck2">
+                            Saya sudah membaca dan menerima
+                            <a href="#">syarat</a> &amp; <a href="#">ketentuan.</a>
+                            </label>
+                        </div>
+                        </div>
+                        <div style="text-align:right;">
+                        <button class="btn btn-primary" type="submit">Kirim</button>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        </div>
       </div>
     </section>
-    <!-- Call to action (v5) -->
-    <section class="slice slice-lg pt-0 zindex-101">
+    <!-- Blog (v4) -->
+    <section class="slice slice-lg bg-section-secondary delimiter-top delimiter-bottom">
       <div class="container">
-        <ul class="nav justify-content-center mb-4">
-          <li class="nav-item">
-            <a class="nav-link h3 px-4" href="" target="_blank"><i class="fab fa-instagram"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link h3 px-4" href="" target="_blank"><i class="fab fa-facebook"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link h3 px-4" href="" target="_blank"><i class="fab fa-github"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link h3 px-4" href="" target="_blank"><i class="fab fa-dribbble"></i></a>
-          </li>
-        </ul>
-        <div class="row justify-content-center align-items-center">
-          <div class="col-lg-8 text-center">
-            <div class="mt-5">
-              <a href="<?= site_url('shops') ?>" class="btn btn-primary rounded-pill hover-translate-y-n3">
-			  Lanjutkan belanja<span class="badge badge-pill badge-soft-warning badge-floating border-">Yukkk</span>
+        <div class="mb-5 text-center">
+          <h3 class=" mt-4">Latest from the blog</h3>
+          <div class="fluid-paragraph mt-3">
+            <p class="lead lh-180">Start building fast, beautiful and modern looking websites in no time using our theme.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card hover-shadow-lg hover-translate-y-n10">
+              <a href="blog-article.html#">
+                <img alt="Image placeholder" src="<?= base_url() ?>assets/img/theme/light/img-1-800x600.jpg" class="card-img-top">
               </a>
-              <a href="<?= site_url() ?>" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Lanjutkan belanja">Lihat profile kami</a>
+              <div class="card-body py-5 text-center">
+                <a href="blog-article.html#" class="d-block h5 lh-150">Choose the best solution for your business</a>
+                <h6 class="text-muted mt-4 mb-0">20 Aug 2019</h6>
+              </div>
+              <div class="card-footer delimiter-top">
+                <div class="row">
+                  <div class="col text-center">
+                    <ul class="list-inline mb-0">
+                      <li class="list-inline-item pr-4">
+                        <a href="blog-article.html#" class="text-muted"><i class="far fa-share mr-1 text-muted"></i> 131</a>
+                      </li>
+                      <li class="list-inline-item pr-4">
+                        <a href="blog-article.html#" class="text-muted"><i class="far fa-eye mr-1 text-muted"></i> 255</a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="blog-article.html#" class="text-muted"><i class="far fa-comments mr-1 text-muted"></i> 14</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card hover-shadow-lg hover-translate-y-n10">
+              <a href="blog-article.html#">
+                <img alt="Image placeholder" src="<?= base_url() ?>assets/img/theme/light/img-2-800x600.jpg" class="card-img-top">
+              </a>
+              <div class="card-body py-5 text-center">
+                <a href="blog-article.html#" class="d-block h5 lh-150">How to find the right design for your specific product</a>
+                <h6 class="text-muted mt-4 mb-0">23 Aug 2019</h6>
+              </div>
+              <div class="card-footer delimiter-top">
+                <div class="row">
+                  <div class="col text-center">
+                    <ul class="list-inline mb-0">
+                      <li class="list-inline-item pr-4">
+                        <a href="blog-article.html#" class="text-muted"><i class="far fa-share mr-1 text-muted"></i> 131</a>
+                      </li>
+                      <li class="list-inline-item pr-4">
+                        <a href="blog-article.html#" class="text-muted"><i class="far fa-eye mr-1 text-muted"></i> 255</a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="blog-article.html#" class="text-muted"><i class="far fa-comments mr-1 text-muted"></i> 14</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card hover-shadow-lg hover-translate-y-n10">
+              <a href="blog-article.html#">
+                <img alt="Image placeholder" src="<?= base_url() ?>assets/img/theme/light/img-3-800x600.jpg" class="card-img-top">
+              </a>
+              <div class="card-body py-5 text-center">
+                <a href="blog-article.html#" class="d-block h5 lh-150">How to win buyers and influence sales with marketing</a>
+                <h6 class="text-muted mt-4 mb-0">27 Aug 2019</h6>
+              </div>
+              <div class="card-footer delimiter-top">
+                <div class="row">
+                  <div class="col text-center">
+                    <ul class="list-inline mb-0">
+                      <li class="list-inline-item pr-4">
+                        <a href="blog-article.html#" class="text-muted"><i class="far fa-share mr-1 text-muted"></i> 131</a>
+                      </li>
+                      <li class="list-inline-item pr-4">
+                        <a href="blog-article.html#" class="text-muted"><i class="far fa-eye mr-1 text-muted"></i> 255</a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="blog-article.html#" class="text-muted"><i class="far fa-comments mr-1 text-muted"></i> 14</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Subscribe -->
+    <section class="slice slice-lg">
+      <div class="container">
+        <div class="mb-5 text-center">
+          <h3 class=" mt-4">Subscribe for weekly news</h3>
+          <div class="fluid-paragraph mt-3">
+            <p class="lead lh-180">Customization has never been easier. Purpose has all the right tools in order to make your website building process a breeze.</p>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-5 col-md-7">
+            <form class="mt-4">
+              <div class="form-group mb-0">
+                <div class="input-group input-group-lg input-group-merge rounded-pill bg-dark">
+                  <input type="email" class="form-control form-control-flush" name="email" placeholder="Enter your email address" aria-label="Enter your email address">
+                  <div class="input-group-append">
+                    <button class="btn btn-dark" type="button">
+                      <span class="far fa-paper-plane"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </section>
   </div>
 
+  <script>
+    $(document).ready(function() {
+        var base_url = '<?= base_url() ?>';
+        getAllData();
+        
+        function getAllData(){
+            $.ajax({
+                url:  '<?= site_url() ?>ukms/getUkmDataDetailProfile',
+                type: 'GET',
+                data: {
+                    ukmName: '<?= $this->input->get('ukmName') ?>'
+                },
+                async: true,
+                cache: false,
+                dataType: 'json',
+                beforeSend: function() {
+                    $("#founder").empty();
+                    $("#ukmName").empty();
+                    $("#joinAt").empty();
+                    $("#description").empty();
+                    $("#cover_image").empty();
+                    $("#logo").empty();
+                    $("#commentsArea").empty();
+                },
+                complete: function() {
+                },
+                success: function(response) {
+                    $("#founder").text(response.data.profile[0]['founder']);
+                    $("#ukmName").text(response.data.profile[0]['name']);
+                    $("#joinAt").text(response.data.profile[0]['join_app_at'] ? response.data.profile[0]['join_app_at'].split(' ')[0] : undefined);
+                    $("#description").text(response.data.profile[0]['description']);
+                    
+                    var cover = 
+                    '<img alt="Gambar cover" src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo_cover'] +'" class="img-fluid rounded" width="810" height="600">' +
+                    '<figcaption class="mt-3 text-muted">'+ response.data.profile[0]['quotes'] +'</figcaption>';
+                    $("#cover_image").append(cover).fadeIn(500);
+
+                    var logo = '<img src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo'] +'">';
+                    $("#logo").append(logo).fadeIn(500);
+                    
+                    for(var j=0; j < response.data.comment.length; j++) {
+                        var comment =
+                        '<div class="media media-comment">'+
+                        '<img alt="Image placeholder" class="rounded-circle shadow mr-4" src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo'] +'" style="width: 64px;">'+
+                        '<div class="media-body">'+
+                        '<div class="media-comment-bubble left-top">'+
+                        '<h6 class="mt-0">'+ response.data.comment[j]['name'] +'</h6>'+
+                        '<p class="text-sm lh-160">' + response.data.comment[j]['message'] +
+                        '<div class="icon-actions">'+
+                        '<a href="javascript:void(0)">'+
+                        '<i class="far fa-date"></i>'+
+                        '<span class="text-muted">'+ response.data.comment[j]['create_at'] +'</span>'+
+                        '</a>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>';
+                        $("#commentsArea").append(comment).fadeIn(500);
+                    }
+                }
+            });
+        }
+
+        $("#commentForm").submit(function(event) {
+				$.ajax({
+					url: '<?= site_url() ?>ukms/processAddComent?ukmName=<?= $this->input->get('ukmName') ?>',
+					data: $(this).serialize(),
+					type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    cache: false,
+                    dataType: 'json',
+                    beforeSend: function() {
+                    },
+                    complete: function() {
+                    },
+					success: function(response) {
+                        getAllData();
+					}
+				});
+				event.preventDefault();
+			});
+    });
+    </script>
+
   <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
   <script src="<?= base_url() ?>assets/js/purpose.core.js"></script>
   <!-- Page JS -->
-  <script src="<?= base_url() ?>assets/libs/jquery-countdown/dist/jquery.countdown.min.js"></script>
+  <script src="<?= base_url() ?>assets/libs/autosize/dist/autosize.min.js"></script>
   <!-- Purpose JS -->
   <script src="<?= base_url() ?>assets/js/purpose.js"></script>
   <!-- Demo JS - remove it when starting your project -->
   <script src="<?= base_url() ?>assets/js/demo.js"></script>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-104437451-1"></script>
-  <script>
-	var button = document.getElementById("copyButton");
-    var content = document.getElementById("message_to_wa");
-
-    button.addEventListener("click", function() {
-        var range = document.createRange();
-        var selection = window.getSelection();
-
-        selection.removeAllRanges();
-
-        range.selectNodeContents(content);
-        selection.addRange(range);
-
-        document.execCommand('copy');
-        alert('Berhasil di salin.')
-	}, false);
-	
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-104437451-1');
-  </script>
-</body>
-
-</html>

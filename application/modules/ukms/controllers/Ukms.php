@@ -1,17 +1,27 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Ukms extends MX_Controller {
-    public function __construct() {
+
+    public $flag = true;
+    public $_version = '';
+
+	public function __construct() {
 		parent::__construct();
-		$this->load->model('ukm');
-    }
+        $this->load->model('ukm');
+
+        if ($this->flag) {
+			$this->_version = '_v2.php';
+		}else{
+			$this->_version = '';
+		}
+	}
     
 	public function index(){
 		$this->template->write_view('index');
     }
     
     public function ukmDetailProfile(){
-		$this->template->write_view('detail');
+		$this->template->write_view('detail'. $this->_version);
     }
     
     public function getUkmDataDetailProfile(){
@@ -51,7 +61,7 @@ class Ukms extends MX_Controller {
     function processAddComent(){
         $this->form_validation->set_rules('name', 'Nama is required', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('email', 'Email Date is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('subject', 'Subject Date is required', 'trim|required|xss_clean');
+		// $this->form_validation->set_rules('subject', 'Subject Date is required', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('message', 'Message Date is required', 'trim|required|xss_clean');
 
 		/* CONDITION FORM STATMENT */
@@ -66,14 +76,23 @@ class Ukms extends MX_Controller {
 			die();
         }
 
-        $ukmName = $this->input->post('ukmName');
+        $ukmName = $this->input->get('ukmName');
         $profileUkm = $this->ukm->fetch_table('*','ukm','name = "'.$ukmName.'"','','','','',TRUE);
+
+        if(count($profileUkm) == 0){
+			$response =  array(
+				'code' => 401,
+				'message' => 'Ukm tidak ditemukan'
+			);
+			echo json_encode($response, JSON_PRETTY_PRINT);
+			die();
+        }
 
         $value = array(
             'ukm_id' => $profileUkm[0]['id'],
             'name' => $this->input->post('name'),
             'email' => $this->input->post('email'),
-            'subject' => $this->input->post('subject'),
+            'subject' => null,
             'message' => $this->input->post('message')
         );
 
@@ -81,7 +100,7 @@ class Ukms extends MX_Controller {
 
         $response = array(
             'code' => 200,
-            'message' => 'Komen ditambahkan',
+            'message' => 'Komentar ditambahkan.',
         );
         echo json_encode($response, JSON_PRETTY_PRINT);
         die();
