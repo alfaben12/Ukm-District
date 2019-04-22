@@ -1,14 +1,15 @@
   <!-- Font Awesome 5 -->
-  <link rel="stylesheet" href="<?= base_url() ?>assets/libs/@fortawesome/fontawesome-pro/css/all.min.css"><!-- Purpose CSS -->
+  <link rel="stylesheet" href="<?= base_url() ?>assets/libs/@fortawesome/fontawesome-pro/css/all.min.css"><!-- Page CSS -->
+  <link type="text/css" href="<?= base_url() ?>assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css" rel="stylesheet">
+  <!-- Purpose CSS -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/css/purpose.css" id="stylesheet">
   <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
   <header class="header header-transparent" id="header-main">
     <!-- Topbar -->
-    <div id="navbar-top-main" class="navbar-top  navbar-light bg-white border-bottom">
+    <div id="navbar-top-main" class="navbar-top  navbar-dark bg-dark border-bottom">
       <div class="container px-0">
         <div class="navbar-nav align-items-center">
           <div class="d-none d-lg-inline-block">
@@ -17,15 +18,15 @@
           <div>
             <ul class="nav">
               <li class="nav-item dropdown ml-lg-2">
-                <a class="nav-link px-0" href="javascript:void(0)" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,10">
+                <a class="nav-link px-0" href="contact.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,10">
                   <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/us.svg">
                   <span class="d-none d-lg-inline-block">Pasuruan</span>
                   <span class="d-lg-none">ID</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-sm">
-                  <a href="blog-article.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/es.svg">Spanish</a>
-                  <a href="blog-article.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/ro.svg">Romanian</a>
-                  <a href="blog-article.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/gr.svg">Greek</a>
+                  <a href="contact.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/es.svg">Spanish</a>
+                  <a href="contact.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/ro.svg">Romanian</a>
+                  <a href="contact.html#" class="dropdown-item"><img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/flags/gr.svg">Greek</a>
                 </div>
               </li>
             </ul>
@@ -69,8 +70,8 @@
       </div>
     </div>
     <!-- Main navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light bg-white" id="navbar-main">
-        <div class="container px-lg-0">
+    <nav class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-dark bg-dark" id="navbar-main">
+    <div class="container px-lg-0">
             <!-- Logo -->
             <a class="navbar-brand mr-lg-5" href="<?= site_url() ?>">
             <img alt="Image placeholder" src="<?= base_url() ?>assets/img/brand/white.png" id="navbar-logo" style="height: 50px;">
@@ -237,7 +238,6 @@
             </div>
         </div>
     </nav>
-    </nav>
   </header>
   <!-- Omnisearch -->
   <div id="omnisearch" class="omnisearch">
@@ -249,41 +249,41 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="far fa-search"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="ketik kata kunci ...">
+            <input type="text" class="form-control" placeholder="Type and hit enter ...">
           </div>
         </div>
       </form>
-      <!-- <div class="omnisearch-suggestions">
+      <div class="omnisearch-suggestions">
         <h6 class="heading">Search Suggestions</h6>
         <div class="row">
           <div class="col-sm-6">
             <ul class="list-unstyled mb-0">
               <li>
-                <a class="list-link" href="<?= site_url() ?>">
+                <a class="list-link" href="contact.html#">
                   <i class="far fa-search"></i>
                   <span>macbook pro</span> in Laptops
                 </a>
               </li>
               <li>
-                <a class="list-link" href="<?= site_url() ?>">
+                <a class="list-link" href="contact.html#">
                   <i class="far fa-search"></i>
                   <span>iphone 8</span> in Smartphones
                 </a>
               </li>
               <li>
-                <a class="list-link" href="<?= site_url() ?>">
+                <a class="list-link" href="contact.html#">
                   <i class="far fa-search"></i>
                   <span>macbook pro</span> in Laptops
                 </a>
               </li>
               <li>
-                <a class="list-link" href="<?= site_url() ?>">
+                <a class="list-link" href="contact.html#">
                   <i class="far fa-search"></i>
                   <span>beats pro solo 3</span> in Headphones
                 </a>
               </li>
               <li>
-                <a class="list-link" href="<?= site_url() ?>">
+                <a class="list-link" href="contact.html#">
                   <i class="far fa-search"></i>
                   <span>smasung galaxy 10</span> in Phones
                 </a>
@@ -291,285 +291,99 @@
             </ul>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
   <div class="main-content">
-    <section class="slice">
-    <div class="container pt-6">
-    <br/>
-    <br/>
-        <div class="row justify-content-center">
-          <div class="col-md-9">
-            <h1 class="lh-150 mb-3" id="ukmName" style="text-align:center;"></h1>
-            <div class="media align-items-center mt-5">
-              <div>
-                <a href="javascript:void()" class="avatar rounded-circle mr-3" id="logo">
-                </a>
-              </div>
-              <div class="media-body">
-                <span class="d-block h6 mb-0" id="founder"></span>
-                <span class="text-sm text-muted" id="joinAt">25 Jan 2019</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section class="slice bg-primary pb-250" data-offset-top="#header-main">
+      <!-- SVG background -->
+      <div class="bg-absolute-cover bg-size--contain d-flex align-items-center">
+        <figure class="w-100 d-none d-lg-block">
+          <img alt="Image placeholder" src="<?= base_url() ?>assets/img/svg/backgrounds/bg-3.svg" class="svg-inject">
+        </figure>
       </div>
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-9">
-            <!-- Article body -->
-            <article>
-              <figure class="figure" id="cover_image">
-                </figure>
-              <p class="lead" id="description"></p>
-            </article>
-            <hr>
-            <h5 class="mb-4">Komentar</h5>
-            <div class="mb-3" id="commentsArea">
-              <!-- RENDER HERE -->
-            </div>
-
-            <div class="media">
-                <img alt="Gambar" class="rounded-circle shadow mr-4" src="<?= base_url() ?>files/profile/default.jpg" style="width: 64px;">
-                <div class="media-body">
-                  <div class="media-comment-bubble left-top">
-                  <form id="commentForm">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="validationCustom01">Nama</label>
-                                <input type="text" class="form-control" name="name" placeholder="Nama" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="validationCustomUsername">Email</label>
-                                <div class="input-group input-group-merge">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                </div>
-                                <input type="email" class="form-control" name="email" placeholder="Email" required>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-12">
-                            <label for="validationCustom03">Komentar</label>
-                            <textarea rows="3" class="form-control" placeholder="Komentar" name="message" required></textarea>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck2" name="agree" value="yes" data-toggle="indeterminate" required>
-                            <label class="custom-control-label" for="customCheck2">
-                            Saya sudah membaca dan menerima
-                            <a href="#">syarat</a> &amp; <a href="#">ketentuan.</a>
-                            </label>
-                        </div>
-                        </div>
-                        <div style="text-align:right;">
-                          <button class="btn btn-primary" type="submit">Kirim</button>
-                        </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            
+      <div class="container py-5 pt-lg-6 position-relative zindex-100">
+        <div class="row">
+          <div class="col-lg-5">
+            <h1 class="text-white">Ada yang anda pikirkan?</h1>
+            <a href="contact.html#sct_contact_form" class="btn btn-secondary rounded-pill btn-icon hover-translate-y-n3 mt-4" data-scroll-to data-scroll-to-offset="140">
+              <span class="btn-inner--icon"><i class="far fa-pencil-alt"></i></span>
+              <span class="btn-inner--text">Kontak kami</span>
+            </a>
           </div>
         </div>
       </div>
     </section>
-    <!-- Blog (v4) -->
-    <!-- <section class="slice slice-lg bg-section-secondary delimiter-top delimiter-bottom">
-      <div class="container">
-        <div class="mb-5 text-center">
-          <h3 class=" mt-4">Latest from the blog</h3>
-          <div class="fluid-paragraph mt-3">
-            <p class="lead lh-180">Start building fast, beautiful and modern looking websites in no time using our theme.</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="card hover-shadow-lg hover-translate-y-n10">
-              <a href="blog-article.html#">
-                <img alt="Image placeholder" src="<?= base_url() ?>assets/img/theme/light/img-1-800x600.jpg" class="card-img-top">
-              </a>
-              <div class="card-body py-5 text-center">
-                <a href="blog-article.html#" class="d-block h5 lh-150">Choose the best solution for your business</a>
-                <h6 class="text-muted mt-4 mb-0">20 Aug 2019</h6>
-              </div>
-              <div class="card-footer delimiter-top">
-                <div class="row">
-                  <div class="col text-center">
-                    <ul class="list-inline mb-0">
-                      <li class="list-inline-item pr-4">
-                        <a href="blog-article.html#" class="text-muted"><i class="far fa-share mr-1 text-muted"></i> 131</a>
-                      </li>
-                      <li class="list-inline-item pr-4">
-                        <a href="blog-article.html#" class="text-muted"><i class="far fa-eye mr-1 text-muted"></i> 255</a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="blog-article.html#" class="text-muted"><i class="far fa-comments mr-1 text-muted"></i> 14</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card hover-shadow-lg hover-translate-y-n10">
-              <a href="blog-article.html#">
-                <img alt="Image placeholder" src="<?= base_url() ?>assets/img/theme/light/img-2-800x600.jpg" class="card-img-top">
-              </a>
-              <div class="card-body py-5 text-center">
-                <a href="blog-article.html#" class="d-block h5 lh-150">How to find the right design for your specific product</a>
-                <h6 class="text-muted mt-4 mb-0">23 Aug 2019</h6>
-              </div>
-              <div class="card-footer delimiter-top">
-                <div class="row">
-                  <div class="col text-center">
-                    <ul class="list-inline mb-0">
-                      <li class="list-inline-item pr-4">
-                        <a href="blog-article.html#" class="text-muted"><i class="far fa-share mr-1 text-muted"></i> 131</a>
-                      </li>
-                      <li class="list-inline-item pr-4">
-                        <a href="blog-article.html#" class="text-muted"><i class="far fa-eye mr-1 text-muted"></i> 255</a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="blog-article.html#" class="text-muted"><i class="far fa-comments mr-1 text-muted"></i> 14</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card hover-shadow-lg hover-translate-y-n10">
-              <a href="blog-article.html#">
-                <img alt="Image placeholder" src="<?= base_url() ?>assets/img/theme/light/img-3-800x600.jpg" class="card-img-top">
-              </a>
-              <div class="card-body py-5 text-center">
-                <a href="blog-article.html#" class="d-block h5 lh-150">How to win buyers and influence sales with marketing</a>
-                <h6 class="text-muted mt-4 mb-0">27 Aug 2019</h6>
-              </div>
-              <div class="card-footer delimiter-top">
-                <div class="row">
-                  <div class="col text-center">
-                    <ul class="list-inline mb-0">
-                      <li class="list-inline-item pr-4">
-                        <a href="blog-article.html#" class="text-muted"><i class="far fa-share mr-1 text-muted"></i> 131</a>
-                      </li>
-                      <li class="list-inline-item pr-4">
-                        <a href="blog-article.html#" class="text-muted"><i class="far fa-eye mr-1 text-muted"></i> 255</a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="blog-article.html#" class="text-muted"><i class="far fa-comments mr-1 text-muted"></i> 14</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+    <section class="slice slice-lg pt-lg-5">
+      <div class="container position-relative zindex-100">
+        <div class="row mt--200">
+            <div class="col-lg-12">
+            <div class="card bg-dark opacity-container text-white overflow-hidden shadow border-0" style="height: 400px;">
+            <iframe class="h-100 w-100" src="<?= site_url('contactus/maps') ?>" allowfullscreen=""></iframe>
             </div>
           </div>
         </div>
       </div>
-    </section> -->
-    <!-- Subscribe -->
-    <!-- <section class="slice slice-lg">
+    </section>
+    <section id="sct_contact_form" class="slice slice-lg" data-delimiter-before="1">
       <div class="container">
-        <div class="mb-5 text-center">
-          <h3 class=" mt-4">Subscribe for weekly news</h3>
-          <div class="fluid-paragraph mt-3">
-            <p class="lead lh-180">Customization has never been easier. Purpose has all the right tools in order to make your website building process a breeze.</p>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-lg-5 col-md-7">
-            <form class="mt-4">
-              <div class="form-group mb-0">
-                <div class="input-group input-group-lg input-group-merge rounded-pill bg-dark">
-                  <input type="email" class="form-control form-control-flush" name="email" placeholder="Enter your email address" aria-label="Enter your email address">
-                  <div class="input-group-append">
-                    <button class="btn btn-dark" type="button">
-                      <span class="far fa-paper-plane"></span>
-                    </button>
-                  </div>
-                </div>
+        <div class="row row-grid align-items-center">
+          <div class="col-lg-6">
+            <h3>Kontak kami</h3>
+            <p class="lead">Jika ada sesuatu yang dapat kami bantu, cukup beri tahu kami. Kami akan dengan senang hati menawarkan bantuan kepada Anda.</p>
+            <form class="mt-5" id="contactForm">
+              <div class="form-group">
+                <label class="sr-only">Judul</label>
+                <input class="form-control" placeholder="Judul" name="subject" type="text">
+              </div>
+              <div class="form-group">
+                <label class="sr-only">Nama</label>
+                <input class="form-control" placeholder="Nama" name="name" type="text">
+              </div>
+              <div class="form-group">
+                <label class="sr-only">Email </label>
+                <input class="form-control" placeholder="Email" name="email" type="text">
+              </div>
+              <div class="form-group">
+                <label class="sr-only">Pesan</label>
+                <textarea class="form-control textarea-autosize" name="message" rows="5" placeholder="Type your message"></textarea>
+              </div>
+              <div style="text-align:right;">
+                <button class="btn btn-primary" type="submit">Kirim</button>
               </div>
             </form>
           </div>
+          <div class="col-lg-5 ml-lg-auto">
+            <h3>Pasuruan</h3>
+            <p class="lead my-4">E: <a href="javascript:void(0)">support@umkm.pasuruan.com</a><br>T: +6285606330792</p>
+            <p>UMKM adalah jenis usaha yang dipisahkan berdasarkan aset dan omzet.</p>
+          </div>
         </div>
       </div>
-    </section> -->
+    </section>
+    <!-- Call to action (v5) -->
+    <section class="slice slice-lg bg-section-secondary" id=sct-call-to-action><a href="contact.html#sct-call-to-action" class="tongue tongue-up tongue-section-primary" data-scroll-to>
+        <i class="far fa-angle-up"></i>
+      </a>
+      <div class="container">
+      <div class="row justify-content-center align-items-center">
+          <div class="col-lg-8 text-center">
+            <div class="mt-5">
+              <a href="<?= site_url('shops') ?>" class="btn btn-primary rounded-pill hover-translate-y-n3">Lanjutkan belanja<span class="badge badge-pill badge-soft-warning badge-floating border-">Yukkk</span></a>
+              <a href="<?= site_url() ?>" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Lanjutkan belanja">Lihat profile kami</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <script>
-    $(document).ready(function() {
-        var base_url = '<?= base_url() ?>';
-        getAllData();
-        
-        function getAllData(){
-            $.ajax({
-                url:  '<?= site_url() ?>ukms/getUkmDataDetailProfile',
-                type: 'GET',
-                data: {
-                    ukmName: '<?= $this->input->get('ukmName') ?>'
-                },
-                async: true,
-                cache: false,
-                dataType: 'json',
-                beforeSend: function() {
-                    $("#founder").empty();
-                    $("#ukmName").empty();
-                    $("#joinAt").empty();
-                    $("#description").empty();
-                    $("#cover_image").empty();
-                    $("#logo").empty();
-                    $("#commentsArea").empty();
-                },
-                complete: function() {
-                },
-                success: function(response) {
-                    $("#founder").text(response.data.profile[0]['founder']);
-                    $("#ukmName").text(response.data.profile[0]['name']);
-                    $("#joinAt").text(response.data.profile[0]['join_app_at'] ? response.data.profile[0]['join_app_at'].split(' ')[0] : undefined);
-                    $("#description").text(response.data.profile[0]['description']);
-                    
-                    var cover = 
-                    '<img alt="Gambar cover" src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo_cover'] +'" class="img-fluid rounded" width="810" height="600">' +
-                    '<figcaption class="mt-3 text-muted">'+ response.data.profile[0]['quotes'] +'</figcaption>';
-                    $("#cover_image").append(cover).fadeIn(500);
+    $(document).ready(function(){
 
-                    var logo = '<img src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo'] +'">';
-                    $("#logo").append(logo).fadeIn(500);
-                    
-                    for(var j=0; j < response.data.comment.length; j++) {
-                        var comment =
-                        '<div class="media media-comment">'+
-                        '<img alt="Image placeholder" class="rounded-circle shadow mr-4" src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo'] +'" style="width: 64px;">'+
-                        '<div class="media-body">'+
-                        '<div class="media-comment-bubble left-top">'+
-                        '<h6 class="mt-0">'+ response.data.comment[j]['name'] +'</h6>'+
-                        '<p class="text-sm lh-160">' + response.data.comment[j]['message'] +
-                        '<div class="icon-actions">'+
-                        '<a href="javascript:void(0)">'+
-                        '<i class="far fa-date"></i>'+
-                        '<span class="text-muted">'+ response.data.comment[j]['create_at'] +'</span>'+
-                        '</a>'+
-                        '</div>'+
-                        '</div>'+
-                        '</div>'+
-                        '</div>';
-                        $("#commentsArea").append(comment).fadeIn(500);
-                    }
-                }
-            });
-        }
-
-        $("#commentForm").submit(function(event) {
+    $("#contactForm").submit(function(event) {
 				$.ajax({
-					url: '<?= site_url() ?>ukms/processAddComent?ukmName=<?= $this->input->get('ukmName') ?>',
+					url: '<?= site_url() ?>contactus/processSend/',
 					data: $(this).serialize(),
 					type: 'POST',
                     dataType: 'json',
@@ -581,18 +395,20 @@
                     complete: function() {
                     },
 					success: function(response) {
-                        getAllData();
+                        alert(response.message);
 					}
 				});
 				event.preventDefault();
-			});
-    });
+      });
+    })
+      
     </script>
 
   <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
   <script src="<?= base_url() ?>assets/js/purpose.core.js"></script>
   <!-- Page JS -->
   <script src="<?= base_url() ?>assets/libs/autosize/dist/autosize.min.js"></script>
+  <script src="<?= base_url() ?>assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
   <!-- Purpose JS -->
   <script src="<?= base_url() ?>assets/js/purpose.js"></script>
   <!-- Demo JS - remove it when starting your project -->

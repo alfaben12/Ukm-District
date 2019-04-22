@@ -354,9 +354,7 @@
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-8 text-center">
             <div class="mt-5">
-              <a href="<?= site_url('shops') ?>" class="btn btn-primary rounded-pill hover-translate-y-n3">
-			  Lanjutkan belanja<span class="badge badge-pill badge-soft-warning badge-floating border-">Yukkk</span>
-              </a>
+              <a href="<?= site_url('shops') ?>" class="btn btn-primary rounded-pill hover-translate-y-n3">Lanjutkan belanja<span class="badge badge-pill badge-soft-warning badge-floating border-">Yukkk</span></a>
               <a href="<?= site_url() ?>" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Lanjutkan belanja">Lihat profile kami</a>
             </div>
           </div>
@@ -373,8 +371,6 @@
   <script src="<?= base_url() ?>assets/js/purpose.js"></script>
   <!-- Demo JS - remove it when starting your project -->
   <script src="<?= base_url() ?>assets/js/demo.js"></script>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-104437451-1"></script>
   <script>
 	var button = document.getElementById("copyButton");
     var content = document.getElementById("message_to_wa");
@@ -392,15 +388,4 @@
         alert('Berhasil di salin.')
 	}, false);
 	
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-104437451-1');
   </script>
-</body>
-
-</html>
