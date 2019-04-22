@@ -185,7 +185,7 @@
                 <div class="dropdown-menu dropdown-menu-xl dropdown-menu-arrow p-0">
                     <ul class="list-group list-group-flush">
                     <li>
-                        <a href="<?= base_url() ?>" class="list-group-item list-group-item-action" role="button">
+                        <a href="<?= site_url() ?>" class="list-group-item list-group-item-action" role="button">
                         <div class="media d-flex align-items-center">
                             <figure style="width: 50px;">
                             <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Apps.svg" class="svg-inject img-fluid" style="height: 50px;">
@@ -207,7 +207,7 @@
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg dropdown-menu-arrow p-0">
                     <ul class="list-group list-group-flush">
                     <li>
-                        <a href="<?= base_url() ?>blogs" class="list-group-item list-group-item-action" role="button">
+                        <a href="<?= site_url() ?>blogs" class="list-group-item list-group-item-action" role="button">
                         <div class="media d-flex align-items-center">
                             <!-- SVG icon -->
                             <figure style="width: 50px;">
@@ -217,6 +217,21 @@
                             <div class="media-body ml-3">
                             <h6 class="mb-1">Blog</h6>
                             <p class="mb-0">Mari membaca tulisan seputar kita.</p>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url() ?>contactus" class="list-group-item list-group-item-action" role="button">
+                        <div class="media d-flex align-items-center">
+                            <!-- SVG icon -->
+                            <figure style="width: 50px;">
+                            <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Mobile_UI.svg" class="svg-inject img-fluid" style="height: 50px;">
+                            </figure>
+                            <!-- Media body -->
+                            <div class="media-body ml-3">
+                            <h6 class="mb-1">Kontak</h6>
+                            <p class="mb-0">Kirim pesan untuk kita.</p>
                             </div>
                         </div>
                         </a>
@@ -249,41 +264,41 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="far fa-search"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Type and hit enter ...">
+            <input type="text" class="form-control" placeholder="ketik kata kunci ...">
           </div>
         </div>
       </form>
-      <div class="omnisearch-suggestions">
+      <!-- <div class="omnisearch-suggestions">
         <h6 class="heading">Search Suggestions</h6>
         <div class="row">
           <div class="col-sm-6">
             <ul class="list-unstyled mb-0">
               <li>
-                <a class="list-link" href="contact.html#">
+                <a class="list-link" href="<?= site_url() ?>">
                   <i class="far fa-search"></i>
                   <span>macbook pro</span> in Laptops
                 </a>
               </li>
               <li>
-                <a class="list-link" href="contact.html#">
+                <a class="list-link" href="<?= site_url() ?>">
                   <i class="far fa-search"></i>
                   <span>iphone 8</span> in Smartphones
                 </a>
               </li>
               <li>
-                <a class="list-link" href="contact.html#">
+                <a class="list-link" href="<?= site_url() ?>">
                   <i class="far fa-search"></i>
                   <span>macbook pro</span> in Laptops
                 </a>
               </li>
               <li>
-                <a class="list-link" href="contact.html#">
+                <a class="list-link" href="<?= site_url() ?>">
                   <i class="far fa-search"></i>
                   <span>beats pro solo 3</span> in Headphones
                 </a>
               </li>
               <li>
-                <a class="list-link" href="contact.html#">
+                <a class="list-link" href="<?= site_url() ?>">
                   <i class="far fa-search"></i>
                   <span>smasung galaxy 10</span> in Phones
                 </a>
@@ -291,7 +306,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="main-content">

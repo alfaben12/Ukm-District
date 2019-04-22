@@ -223,6 +223,21 @@
                       </div>
                     </a>
                   </li>
+                  <li>
+                        <a href="<?= site_url() ?>contactus" class="list-group-item list-group-item-action" role="button">
+                        <div class="media d-flex align-items-center">
+                            <!-- SVG icon -->
+                            <figure style="width: 50px;">
+                            <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Mobile_UI.svg" class="svg-inject img-fluid" style="height: 50px;">
+                            </figure>
+                            <!-- Media body -->
+                            <div class="media-body ml-3">
+                            <h6 class="mb-1">Kontak</h6>
+                            <p class="mb-0">Kirim pesan untuk kita.</p>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
                 </ul>
               </div>
             </li>
