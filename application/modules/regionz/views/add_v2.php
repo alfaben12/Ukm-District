@@ -232,12 +232,12 @@
                     </a>
                     <ul class="dropdown-menu">
                       <li>
-                        <a class="dropdown-item" href="<?= site_url('regions') ?>">
+                        <a class="dropdown-item" href="<?= site_url('regionz') ?>">
                           Area UMKM
                         </a>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="<?= site_url('regions/shipping') ?>">
+                        <a class="dropdown-item" href="<?= site_url('regionz/shipping') ?>">
                           Area Pengiriman
                         </a>
                       </li>
