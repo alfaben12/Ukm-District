@@ -241,8 +241,8 @@
               <a class="nav-link" href="<?= site_url() ?>" target="_blank">Apa yang baru?</a>
             </li>
             <li class="nav-item mr-0">
-              <a href="<?= site_url('shops') ?>" target="_blank" class="nav-link d-lg-none">Belanja yuk!</a>
-              <a href="<?= site_url('shops') ?>" target="_blank" class="btn btn-sm btn-white btn-icon rounded-pill d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="left" title="Pergi ke toko ...">
+              <a href="<?= site_url('shops') ?>" class="nav-link d-lg-none">Belanja yuk!</a>
+              <a href="<?= site_url('shops') ?>" class="btn btn-sm btn-white btn-icon rounded-pill d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="left" title="Pergi ke toko ...">
                 <span class="btn-inner--icon"><i class="far fa-shopping-cart"></i></span>
                 <span class="btn-inner--text">Belanja yuk!</span>
               </a>
@@ -419,7 +419,10 @@
             success: function(response) {
                 $("#totalCart").text(response.data.totalCart);
                 $("#totalAmount").text(response.data.totalAmount);
-                for (var k in response.data.cart) {
+                if (response.data.cart.length == 0) {
+                  location.reload(); 
+                }else{
+                  for (var k in response.data.cart) {
                     var cart =
                     '<tr>'+
                     '<th scope="row">'+
@@ -463,6 +466,7 @@
                     '</tr>'+
                     '<tr class="table-divider"></tr>';
                     $("#resultCart").append(cart).fadeIn(500);
+                }
                 }
             }
         });

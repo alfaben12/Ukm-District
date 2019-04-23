@@ -173,25 +173,79 @@
 			</li>
 			<!-- Sections menu -->
 			<li class="nav-item dropdown dropdown-animate" data-toggle="hover">
-				<a class="nav-link dropdown-toggle" href="<?= site_url() ?>" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bagian</a>
-				<div class="dropdown-menu dropdown-menu-xl dropdown-menu-arrow p-0">
-				<ul class="list-group list-group-flush">
-					<li>
-					<a href="<?= base_url() ?>" class="list-group-item list-group-item-action" role="button">
-						<div class="media d-flex align-items-center">
-						<figure style="width: 50px;">
-							<img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Apps.svg" class="svg-inject img-fluid" style="height: 50px;">
-						</figure>
-						<div class="media-body ml-3">
-							<h6 class="mb-1">Jelajahi semua.</h6>
-							<p class="mb-0">Contoh bagian yang mengagumkan untuk skenario apa pun.</p>
-						</div>
-						</div>
-					</a>
-					</li>
-				</ul>
-				</div>
-			</li>
+              <a class="nav-link dropdown-toggle" href="<?= site_url() ?>" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bagian</a>
+              <div class="dropdown-menu dropdown-menu-xl dropdown-menu-arrow p-0">
+                <ul class="list-group list-group-flush">
+                  <li>
+                    <a href="<?= site_url('kurirz') ?>" class="list-group-item list-group-item-action" role="button">
+                      <div class="media d-flex align-items-center">
+                      <figure style="width: 50px;">
+                        <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Group.svg" class="svg-inject img-fluid" style="height: 50px;">
+                      </figure>
+                      <div class="media-body ml-3">
+                        <h6 class="mb-1">Pihak luar</h6>
+                        <p class="mb-0">POS Indonesia pihak pembantu untuk UMKM.</p>
+                      </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="dropdown dropdown-animate dropdown-submenu" data-toggle="hover">
+                    <a href="<?= site_url('shippingz') ?>" class="list-group-item list-group-item-action dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <div class="media d-flex align-items-center">
+                        <!-- SVG icon -->
+                        <figure style="width: 50px;">
+                          <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Cog_Wheels.svg" class="svg-inject img-fluid" style="height: 50px;">
+                        </figure>
+                        <!-- Media body -->
+                        <div class="media-body ml-3">
+                        <h6 class="mb-1">Pengiriman</h6>
+                        <p class="mb-0">Biaya pengiriman dan rute POS Indonesia untuk UMKM.</p>
+                        </div>
+                      </div>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a class="dropdown-item" href="<?= site_url('shippingz/method') ?>">
+                          Cara pengiriman
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="<?= site_url('shippingz') ?>">
+                          Rute pengiriman
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="dropdown dropdown-animate dropdown-submenu" data-toggle="hover">
+                    <a href="<?= site_url('regions/ukm') ?>" class="list-group-item list-group-item-action dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <div class="media d-flex align-items-center">
+                        <!-- SVG icon -->
+                        <figure style="width: 50px;">
+                          <img alt="Image placeholder" src="<?= base_url() ?>assets/img/icons/essential/detailed/Cog_Wheels.svg" class="svg-inject img-fluid" style="height: 50px;">
+                        </figure>
+                        <!-- Media body -->
+                        <div class="media-body ml-3">
+                          <h6 class="mb-1">Area</h6>
+                          <p class="mb-0">Area untuk UMKM.</p>
+                        </div>
+                      </div>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a class="dropdown-item" href="<?= site_url('regions') ?>">
+                          Area UMKM
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="<?= site_url('regions/shipping') ?>">
+                          Area Pengiriman
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </li>
 			</ul>
 			<ul class="navbar-nav align-items-lg-center ml-lg-auto">
 			<li class="nav-item dropdown dropdown-animate" data-toggle="hover">
@@ -361,8 +415,8 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<select name="ukm_region_id" id="ukm_region_id"  data-toggle="select" title="Region" class="form-control" style="width:100%">
-									<option value="">Pilih Region</option>
+								<select name="ukm_region_id" id="ukm_region_id"  data-toggle="select" title="Area" class="form-control" style="width:100%">
+									<option value="">Pilih Area</option>
 									<?php
 									foreach ($region as $key => $val) {
 										?>
