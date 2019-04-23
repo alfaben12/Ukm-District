@@ -111,6 +111,90 @@ class Shippingz extends MX_Controller {
 
 	function processDelete(){
 		$this->shipping->delete_table("ukm_pos_indonesia","id", $this->input->get('id'));
-		redirect('kurirz');
+		redirect(site_url($this->uri->segment(1)));
+	}
+
+	public function method(){
+		$data['data'] = $this->shipping->fetch_table('*','ukm_shipping_method','','name','asc','','',TRUE);
+
+		$this->template->write_view('method_index'. $this->_version, $data);
+	}
+
+	function methodAdd(){
+		$data['method'] = $this->shipping->fetch_table('*','ukm_shipping_method','','name','asc','','',TRUE);
+		$this->template->write_view('method_add'. $this->_version, $data);
+	}
+
+	function methodProccessAdd(){
+		$this->form_validation->set_rules('name', 'Tujuan is required', 'trim|required|xss_clean');
+		
+		if($this->form_validation->run() == FALSE){
+			$form_error = $this->form_validation->error_array();
+			$response =  array(
+				'code' => 401,
+				'message' => 'Form tidak lengkap',
+				'error' => $form_error,
+			);
+			echo json_encode($response, JSON_PRETTY_PRINT);
+			die();
+		}
+		
+		$value = array(
+			'name' => $this->input->post('name'),
+			'description' => $this->input->post('description')
+		);
+
+		$this->shipping->insert_table('ukm_shipping_method', $value);
+
+		$response =  array(
+			'code' => 200,
+			'message' => 'Berhasil ditambahkan',
+			'redirect' => site_url($this->uri->segment(1).'/method')
+		);
+		echo json_encode($response, JSON_PRETTY_PRINT);
+		die();
+	}
+
+	function methodModify(){
+		$id = $this->input->get('id');
+		$data['method'] = $this->shipping->fetch_table('*','ukm_shipping_method','id = '. $id, 'id','desc','','',TRUE);
+		$this->template->write_view('method_modify'. $this->_version, $data);
+	}
+
+	function methodProcessModify(){
+		$this->form_validation->set_rules('name', 'Tujuan is required', 'trim|required|xss_clean');
+		
+		if($this->form_validation->run() == FALSE){
+			$form_error = $this->form_validation->error_array();
+			$response =  array(
+				'code' => 401,
+				'message' => 'Form tidak lengkap',
+				'error' => $form_error,
+			);
+			echo json_encode($response, JSON_PRETTY_PRINT);
+			die();
+		}
+		
+        $id = $this->input->get('id');
+
+		$value = array(
+			'name' => $this->input->post('name'),
+			'description' => $this->input->post('description')
+		);
+        
+		$this->shipping->update_table('ukm_shipping_method', $value, 'id', $id);
+		
+		$response =  array(
+			'code' => 200,
+			'message' => 'Berhasil diupdate',
+			'redirect' => site_url($this->uri->segment(1).'/method')
+		);
+		echo json_encode($response, JSON_PRETTY_PRINT);
+		die();
+	}
+
+	function methodProcessDelete(){
+		$this->shipping->delete_table("ukm_shipping_method","id", $this->input->get('id'));
+		redirect(site_url($this->uri->segment(1).'/method'));
 	}
 }
