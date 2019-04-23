@@ -549,7 +549,7 @@
                     $("#founder").text(response.data.profile[0]['founder']);
                     $("#ukmName").text(response.data.profile[0]['name']);
                     $("#joinAt").text(response.data.profile[0]['join_app_at'] ? response.data.profile[0]['join_app_at'].split(' ')[0] : undefined);
-                    $("#description").text(response.data.profile[0]['description']);
+                    $("#description").html(response.data.profile[0]['description']);
                     
                     var cover = 
                     '<img alt="Gambar cover" src="'+ base_url + 'files/profile/' +response.data.profile[0]['logo_cover'] +'" class="img-fluid rounded" width="810" height="600">' +

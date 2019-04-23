@@ -107,7 +107,7 @@
                     <ul class="dropdown-menu">
                       <li class="text-sm text-muted dropdown-header px-0">Akun</li>
                       <li>
-                        <a class="dropdown-item" href="<?= site_url('profilez') ?>">
+                        <a class="dropdown-item" href="<?= site_url('ukmz') ?>">
                           Profile
                         </a>
                       </li>
