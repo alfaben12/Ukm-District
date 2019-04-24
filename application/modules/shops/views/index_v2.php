@@ -522,6 +522,8 @@
             function loadPagination(pagno) {
                 $.ajax({
                     url: '<?= site_url() ?>shops/getUkmDataProduct/' + pagno,
+                    beforeSend: function() {},
+                    complete: function() {},
                     data: {
                         pageno: pagno,
                         ukm_category_product_id: $('#ukm_category_product_id').val(),
@@ -578,12 +580,12 @@
             }
 
             $("#filterForm").submit(function(event) {
-                if ($("input[name='ukm_category_product_id']:checked").val() == '') {
-                    alert('Kategori harus diisi.');
-                }
-
                 $.ajax({
                     url: '<?= site_url() ?>shops/getUkmDataProduct/0',
+                    beforeSend: function() {
+                        $("#div_product").empty();
+                    },
+                    complete: function() {},
                     data: {
                         pageno: 0,
                         ukm_category_product_id: $('#ukm_category_product_id').val(),
@@ -594,12 +596,17 @@
                     type: 'GET',
                     dataType: 'json',
                     success: function(response) {
-                        if (response.data.code != 200) {
+                        if (response.code == 200) {
+                            $('#pagination').html(response.data.product.pagination);
+                            createList(response.data.product.result);
+                            successNotice(response.message);
+                        }else{
+                            failNotice(response.message);
+                            formErrorNotice(response.error);
                             var product = 'Barang tidak ditemukan.'
                             $("#div_product").append(product).fadeIn(500);
                         }
-                        $('#pagination').html(response.data.product.pagination);
-                        createList(response.data.product.result);
+                        
                     }
                 });
                 event.preventDefault();
@@ -622,6 +629,12 @@
                 },
                 complete: function() {},
                 success: function(response) {
+                    if (response.code == 200) {
+                    successNotice(response.message);
+                  }else{
+                    failNotice(response.message);
+                    formErrorNotice(response.error);
+                  }
                     $("#totalCart").text(response.data.totalCart);
                 }
             });

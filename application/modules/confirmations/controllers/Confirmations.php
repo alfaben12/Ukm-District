@@ -69,15 +69,15 @@ class Confirmations extends MX_Controller {
     }
 
     public function processCheckOut(){
-        $this->form_validation->set_rules('firstName', 'Nama Depan dibutuhkan',  'trim|required');
-		$this->form_validation->set_rules('lastName', 'Nama Belakang dibutuhkan', 'trim|required');
-		$this->form_validation->set_rules('phoneNumber', 'No WA dibutuhkan', 'trim|required');
-		$this->form_validation->set_rules('email', 'Email dibutuhkan', 'trim|required');
-		$this->form_validation->set_rules('address', 'Alamat dibutuhkan', 'trim|required');
-		$this->form_validation->set_rules('city', 'Kota/Kabupaten dibutuhkan', 'trim|required');
-		$this->form_validation->set_rules('district', 'Desa dibutuhkan', 'trim|required');
-		$this->form_validation->set_rules('paymentID', 'Pembayaran dibutuhkan', 'trim|required');
-		$this->form_validation->set_rules('shippingMethodID', 'Pengiriman dibutuhkan', 'trim|required');
+        $this->form_validation->set_rules('firstName', 'Nama Depan',  'trim|required');
+		$this->form_validation->set_rules('lastName', 'Nama Belakang', 'trim|required');
+		$this->form_validation->set_rules('phoneNumber', 'No WA', 'trim|required');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required');
+		$this->form_validation->set_rules('address', 'Alamat', 'trim|required');
+		$this->form_validation->set_rules('city', 'Kota/Kabupaten', 'trim|required');
+		$this->form_validation->set_rules('district', 'Desa', 'trim|required');
+		$this->form_validation->set_rules('paymentID', 'Pembayaran', 'trim|required');
+		$this->form_validation->set_rules('shippingMethodID', 'Pengiriman', 'trim|required');
 
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();
@@ -293,7 +293,7 @@ class Confirmations extends MX_Controller {
                 if (!$this->upload->do_upload('file')){
                     $data['file_name'] = null;
                     $json_data =  array(
-                        "result" => 401 ,
+                        "result" => 400 ,
                         "message" => array('head'=> 'Failed', 'body'=> $this->upload->display_errors('', '')),
                         "form_error" => 'gambar'
                     );
@@ -461,6 +461,6 @@ Terima kasih. 🍬🥤';
         $data['send_to_wa'] = 'https://wa.me/6281249898867?text='.urlencode($message_send_to_wa);
         $data['message'] = $message;
         $data['wa'] = '081249898867';
-        $this->load->view('thank_you'. $this->_version, $data);
+        $this->template->write_view('thank_you'. $this->_version, $data);
     }
 }

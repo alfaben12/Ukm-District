@@ -763,7 +763,6 @@
                   complete: function() {
                   },
                   success: function(res) {
-					          alert(res.message);
                       if(res.code == 200){
                         if (confirm(res.message)) {
                           $.ajax({
@@ -779,20 +778,21 @@
                             complete: function() {
                             },
                             success: function(response) {
-                                var form_error = '';
                                 if (response.code == 201) {
+                                  successNotice(response.message);
                                   window.location = response.base_url;
                                 }else{
-                                    for (var i in response.error) {
-                                        form_error += response.error[i];
-                                    }
+                                  failNotice(response.message);
+                                  formErrorNotice(response.error);
                                 }
                             }
                           });
                         } else {
-                          alert('Konfirmasi dibatalkan.');
+                          toastr["error"]('Berhasil dibatalkan.');
                         }
-                      }
+                      }else {
+                          failNotice(res.message);
+                        }
                   }
                 });
               }

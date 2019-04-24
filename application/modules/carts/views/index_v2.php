@@ -417,6 +417,11 @@
             },
             complete: function() {},
             success: function(response) {
+                    if (response.code == 200) {
+                        successNotice(response.message);
+                      }else{
+                        failNotice(response.message);
+                      }
                 $("#totalCart").text(response.data.totalCart);
                 $("#totalAmount").text(response.data.totalAmount);
                 if (response.data.cart.length == 0) {
@@ -487,7 +492,15 @@
 			complete: function() {
 			},
 			success: function(response) {
+        if (response.code == 200) {
+                      for (var i in response.message) {
+                        toastr["success"](response.message[i]['message']);
+                      }
 				processRenderAllCart();
+
+                      }else{
+                        failNotice(response.message);
+                      }
 			}
 		});
 	}
@@ -523,7 +536,11 @@
 			complete: function() {
 			},
 			success: function(response) {
-                alert(response.message);
+        if (response.code == 200) {
+                        successNotice(response.message);
+                      }else{
+                        failNotice(response.message);
+                      }
                 processRenderAllCart();
 			}
 		});

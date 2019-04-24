@@ -387,6 +387,12 @@
   <!-- Demo JS - remove it when starting your project -->
   <script src="<?= base_url() ?>assets/js/demo.js"></script>
   <script>
+
+  $(document).ready(function(){
+    $("#copyButton").click(function(){
+      toastr["success"]('Berhasil disalin');
+    })
+  })
 	var button = document.getElementById("copyButton");
     var content = document.getElementById("message_to_wa");
 
@@ -400,7 +406,7 @@
         selection.addRange(range);
 
         document.execCommand('copy');
-        alert('Berhasil di salin.')
+
 	}, false);
 	
   </script>

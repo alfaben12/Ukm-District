@@ -59,10 +59,10 @@ class Ukms extends MX_Controller {
     }
 
     function processAddComent(){
-        $this->form_validation->set_rules('name', 'Nama is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('email', 'Email Date is required', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('name', 'Nama', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
 		// $this->form_validation->set_rules('subject', 'Subject Date is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('message', 'Message Date is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('message', 'Pesan', 'trim|required|xss_clean');
 
 		/* CONDITION FORM STATMENT */
 		if($this->form_validation->run() == FALSE){
@@ -82,7 +82,7 @@ class Ukms extends MX_Controller {
         if(count($profileUkm) == 0){
 			$response =  array(
 				'code' => 401,
-				'message' => 'Ukm tidak ditemukan'
+				'message' => 'Berhasil mengambil data UMKM'
 			);
 			echo json_encode($response, JSON_PRETTY_PRINT);
 			die();

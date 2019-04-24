@@ -595,11 +595,12 @@
                         complete: function() {
                         },
                         success: function(response) {
-                            if (response.code == 201) {
-                                window.location = response.base_url;
-                            }else{
-                                alert(response.message);
-                            }
+                          if (response.code == 201) {
+                                  successNotice(response.message);
+                                  window.location = response.base_url;
+                                }else{
+                                  failNotice(response.message);
+                                }
                         }
                     });
                 }

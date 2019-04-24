@@ -353,7 +353,7 @@
                         <div class="form-row">
                             <div class="col-md-6">
                                 <label for="validationCustom01">Nama</label>
-                                <input type="text" class="form-control" name="name" placeholder="Nama" required>
+                                <input type="text" class="form-control" name="name" placeholder="Nama">
                             </div>
                             <div class="col-md-6">
                                 <label for="validationCustomUsername">Email</label>
@@ -361,14 +361,14 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend">@</span>
                                 </div>
-                                <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                <input type="email" class="form-control" name="email" placeholder="Email">
                             </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-12">
                             <label for="validationCustom03">Komentar</label>
-                            <textarea rows="3" class="form-control" placeholder="Komentar" name="message" required></textarea>
+                            <textarea rows="3" class="form-control" placeholder="Komentar" name="message"></textarea>
                             </div>
                             </div>
                         </div>
@@ -546,6 +546,11 @@
                 complete: function() {
                 },
                 success: function(response) {
+                  if (response.code == 200) {
+                        successNotice(response.message);
+                      }else{
+                        failNotice(response.message);
+                      }
                     $("#founder").text(response.data.profile[0]['founder']);
                     $("#ukmName").text(response.data.profile[0]['name']);
                     $("#joinAt").text(response.data.profile[0]['join_app_at'] ? response.data.profile[0]['join_app_at'].split(' ')[0] : undefined);
@@ -595,8 +600,14 @@
                     },
                     complete: function() {
                     },
-					success: function(response) {
+					          success: function(response) {
+                      if (response.code == 200) {
+                        successNotice(response.message);
                         getAllData();
+                      }else{
+                        failNotice(response.message);
+                        formErrorNotice(response.error);
+                      }
 					}
 				});
 				event.preventDefault();

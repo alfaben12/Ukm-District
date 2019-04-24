@@ -463,7 +463,7 @@
 					'<div class=" py-4 my-4 border-top border-bottom">'+
 					'<div class="row align-items-center">'+
 					'<div class="col-sm-6 mb-4 mb-sm-0">'+
-					'<input type="text" class="form-control" id="qty" placeholder="Kuantitas">'+
+					'<input type="text" class="form-control" id="qty" value="1" placeholder="Kuantitas">'+
 					'</div>'+
 					'<div class="col-sm-6 text-sm-right">'+
 					'<button type="button" class="btn btn-primary btn-icon" onclick="processAdd('+ response.data.product[0]['id'] +')">'+
@@ -486,9 +486,6 @@
 	
 	function processAdd(productID){
         var qty = $("#qty").val();
-        if (qty == '' || qty == 0) {
-            alert('Kuantitas tidak boleh 0');
-        }else{
             $.ajax({
                 url:  '<?= site_url() ?>carts/proccessAdd',
                 data: {
@@ -505,10 +502,15 @@
                 complete: function() {
                 },
                 success: function(response) {
+                  if (response.code == 200) {
+                    successNotice(response.message);
+                  }else{
+                    failNotice(response.message);
+                    formErrorNotice(response.error);
+                  }
                     $("#totalCart").text(response.data.totalCart);
                 }
             });
-        }
 	}
     </script>
     

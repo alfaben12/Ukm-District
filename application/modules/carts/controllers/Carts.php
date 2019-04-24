@@ -41,6 +41,19 @@ class Carts extends MX_Controller {
     }
 
     public function proccessAdd(){
+        $this->form_validation->set_rules('qty', 'Kuantitas', 'trim|required');
+
+		if($this->form_validation->run() == FALSE){
+			$form_error = $this->form_validation->error_array();
+			$response =  array(
+				'code' => 401,
+				'message' => 'Formulir tidak lengkap.',
+				'error' => $form_error,
+			);
+			echo json_encode($response, JSON_PRETTY_PRINT);
+			die();
+        }
+
         $productID = $this->input->post('productID');
         $qty = $this->input->post('qty');
 
@@ -134,7 +147,7 @@ class Carts extends MX_Controller {
     public function getAllCart(){
         $response = array(
             'code' => 200,
-            'message' => 'Produk berhasil diambil',
+            'message' => 'Cart berhasil diambil',
             'data' => array(
                 'cart' => $this->cart->contents(),
                 'totalAmount' => $this->cart->total(),

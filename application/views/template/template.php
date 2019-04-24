@@ -126,6 +126,17 @@
     function successNotice(message){
       toastr["success"](message);
     }
+
+    function failNotice(message){
+      toastr["info"](message);
+    }
+
+    function formErrorNotice(res){
+      for (var i in res) {
+        toastr["error"](res[i]);
+      }
+    }
+
   </script>
   
 	<script>
