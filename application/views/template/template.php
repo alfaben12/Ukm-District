@@ -95,18 +95,14 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script src='https://malsup.github.io/jquery.blockUI.js'></script>
   <script type="text/javascript">
-      function blockUI(){
+  function blockUI(){
 				$.blockUI({
 						message: "<h1>Hallo " + name + "<h2>Tunggu sebentar...</h2><p>Kami sedang memproses permintaan Anda</p>"
 				});
       }
-
-      function unblockUI(){
-				$.unblockUI({
-						message: "<h1>Hallo " + name + "<h2>Tunggu sebentar...</h2><p>Kami sedang memproses permintaan Anda</p>"
-				});
-      }
-	// Default Configuration
+      $(document).ajaxStart(blockUI()).ajaxStop($.unblockUI);
+	
+  // Default Configuration
 		$(document).ready(function() {
       toastr.options = {
         "closeButton": false,
@@ -126,6 +122,10 @@
         "hideMethod": "fadeOut"
       }
 		});
+
+    function successNotice(message){
+      toastr["success"](message);
+    }
   </script>
   
 	<script>
@@ -141,10 +141,8 @@
 			cache: false,
 			dataType: 'json',
 			beforeSend: function() {
-        blockUI();
 			},
 			complete: function() {
-        unblockUI();
 			},
 			success: function(response) {
 				alert(response.message);
@@ -162,11 +160,9 @@
 			cache: false,
 			dataType: 'json',
 			beforeSend: function() {
-        blockUI();
 				$("#totalCart").empty();
 			},
 			complete: function() {
-        unblockUI();
 			},
 			success: function(response) {
 				if (response.data.totalCart != 0) {
