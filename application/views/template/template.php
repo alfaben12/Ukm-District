@@ -9,8 +9,13 @@
   <title>UMKM Pasuruan</title>
   <!-- Favicon -->
   <link rel="icon" href="<?= base_url() ?>assets/img/brand/favicon.png" type="image/png">
-	<!-- start content Area -->
-	<?php echo $content_for_layout; ?>
+  <!-- Toastr -->
+	
+<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+
+
+<!-- start content Area -->
+  <?php echo $content_for_layout; ?>
 	<!-- End content Area -->
   <footer id="footer-main">
     <div class="footer footer-dark bg-dark">
@@ -86,10 +91,46 @@
       <span class="btn-inner--icon"><i class="far fa-shopping-basket"><font size="3"><b id="totalCart"><b></font></i></span>
     </a>
   </div>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src='https://malsup.github.io/jquery.blockUI.js'></script>
+  <script type="text/javascript">
+      function blockUI(){
+				$.blockUI({
+						message: "<h1>Hallo " + name + "<h2>Tunggu sebentar...</h2><p>Kami sedang memproses permintaan Anda</p>"
+				});
+      }
+
+      function unblockUI(){
+				$.unblockUI({
+						message: "<h1>Hallo " + name + "<h2>Tunggu sebentar...</h2><p>Kami sedang memproses permintaan Anda</p>"
+				});
+      }
+	// Default Configuration
+		$(document).ready(function() {
+      toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "500",
+        "timeOut": "2000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+		});
+  </script>
+  
 	<script>
 	$(document).ready(function(){
 		updateTotalCart();
-
 	});
 
 	function processClearCart(){
@@ -100,8 +141,10 @@
 			cache: false,
 			dataType: 'json',
 			beforeSend: function() {
+        blockUI();
 			},
 			complete: function() {
+        unblockUI();
 			},
 			success: function(response) {
 				alert(response.message);
@@ -119,9 +162,11 @@
 			cache: false,
 			dataType: 'json',
 			beforeSend: function() {
+        blockUI();
 				$("#totalCart").empty();
 			},
 			complete: function() {
+        unblockUI();
 			},
 			success: function(response) {
 				if (response.data.totalCart != 0) {
@@ -130,17 +175,6 @@
 			}
 		});
 	}
-	</script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-104437451-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-104437451-1');
   </script>
 </body>
 
