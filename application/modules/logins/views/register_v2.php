@@ -1,6 +1,7 @@
 <!-- Font Awesome 5 -->
-  <link rel="stylesheet" href="<?= base_url()  ?>assets/libs/@fortawesome/fontawesome-pro/css/all.min.css"><!-- Purpose CSS -->
+<link rel="stylesheet" href="<?= base_url()  ?>assets/libs/@fortawesome/fontawesome-pro/css/all.min.css"><!-- Purpose CSS -->
   <link rel="stylesheet" href="<?= base_url()  ?>assets/css/purpose.css" id="stylesheet">
+  <link type="text/css" href="<?= base_url() ?>assets/libs/select2/dist/css/select2.min.css" rel="stylesheet">
   
 </head>
 
@@ -265,7 +266,25 @@
                     <p class="text-muted mb-0">Masuk ke akun Anda untuk melanjutkan..</p>
                   </div>
                   <span class="clearfix"></span>
-                  <form role="form" id="loginForm">
+                  <form role="form" id="registerForm">
+                    <div class="form-group">
+                      <label class="form-control-label">Nama Lengkap</label>
+                      <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="far fa-signature"></i></span>
+                        </div>
+                        <input type="text" name="fullname" class="form-control" id="input-email" placeholder="Nama Lengkap">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-label">Email</label>
+                      <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="far fa-envelope-open-text"></i></span>
+                        </div>
+                        <input type="text" name="email" class="form-control" id="input-email" placeholder="Email">
+                      </div>
+                    </div>
                     <div class="form-group">
                       <label class="form-control-label">Username</label>
                       <div class="input-group input-group-merge">
@@ -274,6 +293,30 @@
                         </div>
                         <input type="text" name="username" class="form-control" id="input-email" placeholder="Username">
                       </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-label">No WhatsApp</label>
+                      <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="far fa-phone"></i></span>
+                        </div>
+                        <input type="text" name="phone" class="form-control" id="input-email" placeholder="No WhatsApp">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">Area</label>
+                        <div class="input-group input-group-merge">
+                            <select name="region_id" id="region_id" title="Area" class="form-control" style="width:100%">
+                                <option value="">Pilih Area</option>
+                                <?php
+                                foreach ($region as $key => $val) {
+                                    ?>
+                                        <option value="<?= $val['id'] ?>"><?= $val['name'] ?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group mb-4">
                       <div class="d-flex align-items-center justify-content-between">
@@ -297,13 +340,13 @@
                       </div>
                     </div>
                     <div class="mt-4"><button type="submit" class="btn btn-sm btn-primary btn-icon rounded-pill">
-                        <span class="btn-inner--text">Masuk</span>
+                        <span class="btn-inner--text">Daftar</span>
                         <span class="btn-inner--icon"><i class="far fa-long-arrow-alt-right"></i></span>
                       </button></div>
                   </form>
                 </div>
-                <div class="card-footer px-md-5"><small>Belum terdaftar?</small>
-                  <a href="<?= site_url('logins/register') ?>" class="small font-weight-bold">Buat akun</a></div>
+                <div class="card-footer px-md-5"><small>Sudah terdaftar?</small>
+                  <a href="<?= site_url('logins') ?>" class="small font-weight-bold">Login akun</a></div>
               </div>
             </div>
             <div class="col-lg-5 order-lg-1 d-none d-lg-block">
@@ -318,11 +361,12 @@
       </div>
     </section>
   </div>
+
   <script>
         $(document).ready(function(){
-            $("#loginForm").submit(function(event) {
+            $("#registerForm").submit(function(event) {
 				$.ajax({
-					url: '<?= site_url() ?>logins/processLogin/',
+					url: '<?= site_url() ?>logins/processRegister/',
 					data: $(this).serialize(),
 					type: 'POST',
                     dataType: 'json',
@@ -334,7 +378,7 @@
                     complete: function() {
                     },
 					success: function(response) {
-            if (response.code == 200) {
+                    if (response.code == 201) {
                         successNotice(response.message);
 						    window.location = response.redirect;
 
@@ -351,6 +395,7 @@
 
   <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
   <script src="<?= base_url()  ?>assets/js/purpose.core.js"></script>
+    <script src="<?= base_url() ?>assets/libs/select2/dist/js/select2.min.js"></script>
   <!-- Purpose JS -->
   <script src="<?= base_url()  ?>assets/js/purpose.js"></script>
   <!-- Demo JS - remove it when starting your project -->
