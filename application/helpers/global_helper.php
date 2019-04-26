@@ -13,6 +13,34 @@ if(!function_exists('main_ukm')) {
 	}
 }
 
+/*-------- GET DATA MAIN UKM --------*/
+if(!function_exists('getRegionID')) {
+	function getRegionID($name) {
+		$CI = &get_instance();
+		$CI->load->database();
+
+		$CI->db->select('*');
+		$CI->db->from('ukm_region');
+		$CI->db->where('UPPER(name)', strtoupper($name));
+		$result = $CI->db->get();
+		return $result->row();
+	}
+}
+
+/*-------- GET DATA MEMBER --------*/
+if(!function_exists('getMemberInfo')) {
+	function getMemberInfo($id) {
+		$CI = &get_instance();
+		$CI->load->database();
+
+		$CI->db->select('*');
+		$CI->db->from('ukm_member');
+		$CI->db->where('id', $id);
+		$result = $CI->db->get();
+		return $result->row();
+	}
+}
+
 /*-------- GENERATE RANDOM STRING & NUMBER FOR ORDER CODE --------*/
 function generateInvoiceNumber($length = 4) {
 	$CI = &get_instance();
