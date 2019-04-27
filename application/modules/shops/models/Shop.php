@@ -19,8 +19,8 @@ class Shop extends MY_Model {
     }
 
     if ($price_from != '' && $price_to != '') {
-        $this->db->where('price >', $price_from);
-        $this->db->where('price <', $price_to);
+        $this->db->where('price >=', $price_from);
+        $this->db->where('price <=', $price_to);
     }
     
     $this->db->limit($rowperpage, $rowno);  

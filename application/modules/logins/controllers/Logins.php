@@ -85,13 +85,28 @@ class Logins extends MX_Controller {
 		$this->form_validation->set_rules('region_id', 'Area', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('phone', 'No WhatsApp', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
-		
+
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();
 			$response =  array(
 				'code' => 401,
 				'message' => 'Form tidak lengkap',
 				'error' => $form_error,
+			);
+			echo json_encode($response, JSON_PRETTY_PRINT);
+			die();
+		}
+
+		$dataarr = array(
+			'username' => $this->input->post('username'),
+			'role_id' => 2
+		);
+
+		$register = $this->db->get_where('ukm_member', $dataarr);
+		if($register->num_rows() > 0){
+			$response =  array(
+				'code' => 401,
+				'message' => 'Username tidak tersedia.'
 			);
 			echo json_encode($response, JSON_PRETTY_PRINT);
 			die();

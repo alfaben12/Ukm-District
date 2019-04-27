@@ -341,63 +341,70 @@
         <section class="slice slice-lg delimiter-bottom" id="sct-products">
             <div class="container">
                 <div class="row">
-				<div class="col-xl-12 col-lg-12 col-sm-12">
+                    <div class="col-xl-12 col-lg-12 col-sm-12">
                         <div class="card card-product">
-                        <div class="card-image">
-                    <form class="row" id="filterForm" novalidate="novalidate">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <input class="form-control btn-sm" type="number" placeholder="Harga dari" name="price_from" id="price_from">
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <input class="form-control btn-sm" type="number" placeholder="Sampai" name="price_to" id="price_to">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <select name="ukm_category_product_id" id="ukm_category_product_id" data-toggle="select" title="Kategori" class="form-control" style="width:100%">
-                                    <option value="">Semua Kategori</option>
-                                    <?php
-									foreach ($category as $key => $val) {
-										?>
-                                        <option value="<?= $val['id'] ?>">
-                                            <?= $val['name'] ?>
-                                        </option>
-                                        <?php
-									}
-									?>
-                                </select>
-                            </div>
-                        </div>
+                            <div class="card-image">
+                                <form class="row" id="filterForm" novalidate="novalidate">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <input class="form-control btn-sm" type="number" placeholder="Harga dari" name="price_from" id="price_from">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <input class="form-control btn-sm" type="number" placeholder="Sampai" name="price_to" id="price_to">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <select name="ukm_category_product_id" id="ukm_category_product_id" data-toggle="select" title="Kategori" class="form-control" style="width:100%">
+                                                <option value="">Semua Kategori</option>
+                                                <?php
+                                                foreach ($category as $key => $val) {
+                                                    ?>
+                                                    <option value="<?= $val['id'] ?>">
+                                                        <?= $val['name'] ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
 
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <select name="ukm_region_id" id="ukm_region_id" data-toggle="select" title="Region" class="form-control" style="width:100%">
-                                    <option value="">Semua Region</option>
-                                    <?php
-									foreach ($region as $key => $val) {
-										?>
-                                        <option value="<?= $val['id'] ?>">
-                                            <?= $val['name'] ?>
-                                        </option>
-                                        <?php
-									}
-									?>
-                                </select>
+                                    <!-- <div class="col-md-3">
+                                        <div class="form-group">
+                                            <select name="ukm_region_id" id="ukm_region_id" data-toggle="select" title="Region" class="form-control" style="width:100%">
+                                                <option value="">Semua Region</option>
+                                                <?php
+                                                foreach ($region as $key => $val) {
+                                                    ?>
+                                                    <option value="<?= $val['id'] ?>">
+                                                        <?= $val['name'] ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <input class="form-control btn-sm" type="hidden" placeholder="Area" name="region" value="<?= $this->input->get('region') ?>" id="region_id">
+                                            <button type="submit" class="btn btn-primary">Cari</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group" id="div_region">
+                                            <!-- RENDER HERE -->
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Cari</button>
-                            </div>
-                        </div>
+                    </div>
                 </div>
-                </div>
-                </div>
-                </div>
-                </form>
 
                 <div class="row" id="div_product">
                     <!-- RENDER HERE PRODUCT -->
@@ -472,12 +479,13 @@
     <script>
         $(document).ready(function() {
             var base_url = '<?= base_url() ?>';
-
+            processGetRegion();
             $('#pagination').on('click', 'a', function(e) {
                 e.preventDefault();
                 var pageno = $(this).attr('data-ci-pagination-page');
                 loadPagination(pageno);
             });
+
             $.ajax({
                 url: '<?= site_url() ?>shops/getRenderedContent',
                 type: 'GET',
@@ -522,24 +530,28 @@
             function loadPagination(pagno) {
                 $.ajax({
                     url: '<?= site_url() ?>shops/getUkmDataProduct/' + pagno,
-                    beforeSend: function() {},
-                    complete: function() {},
                     data: {
                         pageno: pagno,
                         ukm_category_product_id: $('#ukm_category_product_id').val(),
-                        region_id: $('#ukm_region_id').val(),
+                        region_id: $('#region_id').val(),
                         price_from: $("#price_from").val(),
                         price_to: $("#price_to").val()
                     },
                     type: 'GET',
                     dataType: 'json',
+                    beforeSend: function() {},
+                    complete: function() {
+                    },
                     success: function(response) {
-                        if (response.data.code != 200) {
+                        if (response.code != 200) {
+                            failNotice(response.message);
                             var product = 'Barang tidak ditemukan.'
                             $("#div_product").append(product).fadeIn(500);
+                        }else{
+                            successNotice(response.message);
+                            $('#pagination').html(response.data.product.pagination);
+                            createList(response.data.product.result);
                         }
-                        $('#pagination').html(response.data.product.pagination);
-                        createList(response.data.product.result);
                     }
                 });
             }
@@ -554,7 +566,6 @@
                         var price = '<h6>Rp. ' + result[k].price + '</h6>';
                     }
                     var product =
-
                         '<div class="col-xl-3 col-lg-4 col-sm-6">' +
                         '<div class="card card-product">' +
                         '<div class="card-image">' +
@@ -589,7 +600,7 @@
                     data: {
                         pageno: 0,
                         ukm_category_product_id: $('#ukm_category_product_id').val(),
-                        region_id: $('#ukm_region_id').val(),
+                        region_id: $('#region_id').val(),
                         price_from: $("#price_from").val(),
                         price_to: $("#price_to").val()
                     },
@@ -612,6 +623,25 @@
                 event.preventDefault();
             });
         });
+
+        function processGetRegion() {
+            $.ajax({
+                url: '<?= site_url() ?>shops/proccessGetRegion',
+                type: 'GET',
+                async: true,
+                cache: false,
+                dataType: 'json',
+                beforeSend: function() {
+                },
+                complete: function() {},
+                success: function(response) {
+                    for (var i = 0; i < response.data.length; i++) {
+                        var region = '<a href="<?= base_url() ?>shops?region='+ response.data[i]['name'] +'" class="btn btn-link">'+ response.data[i]['name'] +'</a>';
+                        $("#div_region").append(region).fadeIn(500);
+                    }
+                }
+            });
+        }
 
         function processAdd(productID) {
             $.ajax({

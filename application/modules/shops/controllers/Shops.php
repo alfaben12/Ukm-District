@@ -55,10 +55,14 @@ class Shops extends MX_Controller {
             $category_id = $this->input->get('ukm_category_product_id');
         }
 
-        if ($this->input->get('region_id') == '') {
-            $region_id = '';
+        if ($this->input->get('region_id') != '') {
+            if (getRegionID($this->input->get('region_id'))->id != 0 || getRegionID($this->input->get('region_id'))->id == null) {
+                $region_id = getRegionID($this->input->get('region_id'))->id;
+            }else{
+                $region_id = '';
+            }
         }else{
-            $region_id = $this->input->get('region_id');
+            $region_id = '';
         }
 
         $price_from = $this->input->get('price_from');
@@ -96,7 +100,7 @@ class Shops extends MX_Controller {
         if ($allcount == 0) {
             $response = array(
                 'code' => 204,
-                'message' => 'Product tidak ada'
+                'message' => 'Produk tidak ditemukan'
             );
             echo json_encode($response, JSON_PRETTY_PRINT);
             die();
@@ -104,7 +108,7 @@ class Shops extends MX_Controller {
 
         $response = array(
             'code' => 200,
-            'message' => 'Product ditemukan',
+            'message' => 'Produk ditemukan',
             'data' => array(
                 'product' => $data,
             )
@@ -161,5 +165,18 @@ class Shops extends MX_Controller {
         );
         echo json_encode($response, JSON_PRETTY_PRINT);
         die();
+    }
+
+    function proccessGetRegion(){
+        $data = $this->shop->fetch_table('*','ukm_region','', 'id','asc','','',TRUE);
+        if(count($data) > 0){
+			$response =  array(
+				'code' => 200,
+                'message' => 'Data region berhasil diambil.',
+                'data' => $data
+			);
+			echo json_encode($response, JSON_PRETTY_PRINT);
+			die();
+		}
     }
 }

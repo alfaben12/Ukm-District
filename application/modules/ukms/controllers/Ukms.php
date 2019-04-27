@@ -21,7 +21,10 @@ class Ukms extends MX_Controller {
     }
     
     public function ukmDetailProfile(){
-		$this->template->write_view('detail'. $this->_version);
+        $ukmName = $this->input->get('ukmName');
+
+        $profileUkm = $this->ukm->fetch_table('*','ukm','name = "'.$ukmName.'"','','','','',TRUE);
+    	$this->template->write_view('detail'. $this->_version);
     }
     
     public function getUkmDataDetailProfile(){

@@ -9,7 +9,7 @@
   <header class="header header-transparent" id="header-main">
     <!-- Main navbar -->
     <nav class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light bg-white" id="navbar-main">
-    <div class="container px-lg-0">
+        <div class="container px-lg-0">
             <!-- Logo -->
             <a class="navbar-brand mr-lg-5" href="<?= site_url() ?>">
             <img alt="Image placeholder" src="<?= base_url() ?>assets/img/brand/dark.png" id="navbar-logo" style="height: 50px;">
