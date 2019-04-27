@@ -8,14 +8,14 @@
   <meta name="author" content="Webpixels">
   <title>UMKM Pasuruan</title>
   <!-- Favicon -->
-  <link rel="icon" href="<?= base_url() ?>assets/img/brand/favicon.png" type="image/png">
+  <link rel="icon" href="<?= base_url() ?>assets/img/icons/flags/Lambang_Kabupaten_Pasuruan.png" type="image/png">
   <!-- Toastr -->
 	
 <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 
 
 <!-- start content Area -->
-  <?php echo $content_for_layout; ?>
+  <?= $content_for_layout; ?>
 	<!-- End content Area -->
   <footer id="footer-main">
     <div class="footer footer-dark bg-dark">
@@ -97,8 +97,12 @@
   <script type="text/javascript">
   function blockUI(){
 				$.blockUI({
-						message: "<h1>Hallo " + name + "<h2>Tunggu sebentar...</h2><p>Kami sedang memproses permintaan Anda</p>"
+						message: "<h4>Sedang diproses...</h4>"
 				});
+      }
+
+      function unblockUI(){
+				$.unblockUI();
       }
       $(document).ajaxStart(blockUI()).ajaxStop($.unblockUI);
 	
@@ -121,6 +125,15 @@
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
       }
+      <?php
+      if ($this->session->flashdata('message') != '') {
+        ?>
+      toastr["info"]('<?= $this->session->flashdata('message'); ?>');
+        <?php
+      }
+      ?>
+
+      
 		});
 
     function successNotice(message){
