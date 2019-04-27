@@ -287,7 +287,7 @@
 			</li>
 			<li class="nav-item mr-0">
 				<a href="<?= site_url('logins/logout') ?>" class="nav-link d-lg-none">Keluar</a>
-				<a href="<?= site_url('logins/logout') ?>" class="btn btn-sm btn-white btn-icon rounded-pill d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="left" title="Pergi ke toko ...">
+				<a href="<?= site_url('logins/logout') ?>" class="btn btn-sm btn-white btn-icon rounded-pill d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="left" title="Keluar dari akun ...">
                 <span class="btn-inner--icon"><i class="far fa-sign-out-alt"></i></span>
 				<span class="btn-inner--text">Keluar</span>
 				</a>
@@ -443,10 +443,13 @@
 					},
 					success: function(response) {
 						if (response.code == 200) {
-							window.location = response.redirect;
-						}else{
-							alert(response.message);
-						}
+							successNotice(response.message);
+						    window.location = response.redirect;
+
+                      }else{
+                        failNotice(response.message);
+                        formErrorNotice(response.error);
+                      }
 					}
 				});
 				event.preventDefault();

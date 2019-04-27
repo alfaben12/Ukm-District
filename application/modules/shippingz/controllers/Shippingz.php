@@ -35,9 +35,9 @@ class Shippingz extends MX_Controller {
 	}
 
 	function proccessAdd(){
-		$this->form_validation->set_rules('method_id', 'Jenis is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('name', 'Tujuan is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('price', 'Harga HP is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('method_id', 'Jenis', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('name', 'Tujuan', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('price', 'Harga', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();
@@ -59,7 +59,7 @@ class Shippingz extends MX_Controller {
 		$this->shipping->insert_table('ukm_shipping_region', $value);
 
 		$response =  array(
-			'code' => 200,
+			'code' => 201,
 			'message' => 'Berhasil ditambahkan',
 			'redirect' => site_url($this->uri->segment(1))
 		);
@@ -75,9 +75,9 @@ class Shippingz extends MX_Controller {
 	}
 
 	function processModify(){
-		$this->form_validation->set_rules('method_id', 'Jenis is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('name', 'Tujuan is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('price', 'Harga HP is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('method_id', 'Jenis', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('name', 'Tujuan', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('price', 'Harga', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();
@@ -110,8 +110,8 @@ class Shippingz extends MX_Controller {
 	}
 
 	function processDelete(){
-		$this->shipping->delete_table("ukm_pos_indonesia","id", $this->input->get('id'));
-		redirect(site_url($this->uri->segment(1)));
+		$this->shipping->delete_table("ukm_shipping_region","id", $this->input->get('id'));
+		redirect(site_url($this->uri->segment(1).'/method'));
 	}
 
 	public function method(){
@@ -126,7 +126,7 @@ class Shippingz extends MX_Controller {
 	}
 
 	function methodProccessAdd(){
-		$this->form_validation->set_rules('name', 'Tujuan is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('name', 'Tujuan', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();
@@ -147,9 +147,9 @@ class Shippingz extends MX_Controller {
 		$this->shipping->insert_table('ukm_shipping_method', $value);
 
 		$response =  array(
-			'code' => 200,
+			'code' => 201,
 			'message' => 'Berhasil ditambahkan',
-			'redirect' => site_url($this->uri->segment(1).'/method')
+			'redirect' => site_url($this->uri->segment(1))
 		);
 		echo json_encode($response, JSON_PRETTY_PRINT);
 		die();
@@ -162,7 +162,7 @@ class Shippingz extends MX_Controller {
 	}
 
 	function methodProcessModify(){
-		$this->form_validation->set_rules('name', 'Tujuan is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('name', 'Tujuan', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();

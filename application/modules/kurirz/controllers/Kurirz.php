@@ -35,9 +35,9 @@ class Kurirz extends MX_Controller {
 	}
 
 	function proccessAdd(){
-		$this->form_validation->set_rules('region_id', 'Area is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('name', 'Nama is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('phone', 'Nomor HP is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('region_id', 'Area', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('name', 'Nama', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('phone', 'Nomor HP', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();
@@ -59,7 +59,7 @@ class Kurirz extends MX_Controller {
 		$this->kurir->insert_table('ukm_pos_indonesia', $value);
 
 		$response =  array(
-			'code' => 200,
+			'code' => 201,
 			'message' => 'Berhasil ditambahkan',
 			'redirect' => site_url('kurirz')
 		);
@@ -75,9 +75,9 @@ class Kurirz extends MX_Controller {
 	}
 
 	function processModify(){
-		$this->form_validation->set_rules('region_id', 'Area is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('name', 'Nama is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('phone', 'Nomor HP is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('region_id', 'Area', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('name', 'Nama', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('phone', 'Nomor HP', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();

@@ -27,8 +27,8 @@ class Regionz extends MX_Controller {
 	}
 
 	function proccessAdd(){
-		$this->form_validation->set_rules('name', 'Nama is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('city', 'Kota atau kabupaten HP is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('name', 'Nama', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('city', 'Kota atau kabupaten', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();
@@ -59,7 +59,7 @@ class Regionz extends MX_Controller {
 		$this->region->insert_table('ukm_region', $value);
 
 		$response =  array(
-			'code' => 200,
+			'code' => 201,
 			'message' => 'Berhasil ditambahkan',
 			'redirect' => site_url($this->uri->segment(1))
 		);
@@ -74,8 +74,8 @@ class Regionz extends MX_Controller {
 	}
 
 	function processModify(){
-		$this->form_validation->set_rules('name', 'Nama is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('city', 'Kota atau kabupaten HP is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('name', 'Nama', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('city', 'Kota atau kabupaten', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();

@@ -16,7 +16,7 @@ class Productz extends MX_Controller {
 	}
 	
 	public function index(){
-		$data['productUkm'] = $this->product->fetch_table('*','ukm_product','','id','desc','','',TRUE);
+		$data['productUkm'] = $this->product->fetch_table('*','ukm_product','member_id = '. $this->session->userdata('id'),'id','desc','','',TRUE);
 
 		$this->template->write_view('index'. $this->_version, $data);
 	}
@@ -28,12 +28,12 @@ class Productz extends MX_Controller {
 	}
 
 	function proccessAdd(){
-		$this->form_validation->set_rules('name', 'name is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('ukm_category_product_id', 'ukm_category_product_id is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('price', 'price is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('stock', 'stock is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('ukm_region_id', 'Region is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('description', 'description is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('name', 'Nama', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('ukm_category_product_id', 'Kategori', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('price', 'Harga', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('stock', 'Stok', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('ukm_region_id', 'Area', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();
@@ -58,7 +58,7 @@ class Productz extends MX_Controller {
 				$data['file_name'] = null;
 				$json_data =  array(
 					"result" => 401 ,
-					"message" => array('head'=> 'Failed', 'body'=> $this->upload->display_errors('', '')),
+					"message" => array('Gambar harus ada.'),
 					"form_error" => 'gambar'
 				);
 				print json_encode($json_data);
@@ -82,6 +82,7 @@ class Productz extends MX_Controller {
 		$value = array(
 			'image' => $data['file_name'],
 			'ukm_id' => 1,
+			'member_id' => $this->session->userdata('id'),
 			'name' => $this->input->post('name'),
 			'ukm_category_product_id' => $this->input->post('ukm_category_product_id'),
 			'price' => $this->input->post('price'),
@@ -97,7 +98,7 @@ class Productz extends MX_Controller {
 		$this->product->insert_table('ukm_product', $value);
 
 		$response =  array(
-			'code' => 200,
+			'code' => 201,
 			'message' => 'Berhasil ditambahkan',
 			'redirect' => site_url('productz')
 		);
@@ -115,12 +116,12 @@ class Productz extends MX_Controller {
 	}
 
 	function processModify(){
-		$this->form_validation->set_rules('name', 'name is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('ukm_category_product_id', 'ukm_category_product_id is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('price', 'price is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('stock', 'stock is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('ukm_region_id', 'Region is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('description', 'description is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('name', 'Nama', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('ukm_category_product_id', 'Kategori', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('price', 'Harga', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('stock', 'Stok', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('ukm_region_id', 'Area', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();

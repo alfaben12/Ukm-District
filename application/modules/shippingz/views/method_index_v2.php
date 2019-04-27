@@ -288,7 +288,7 @@
             </li>
             <li class="nav-item mr-0">
               <a href="<?= site_url('logins/logout') ?>" class="nav-link d-lg-none">Keluar</a>
-              <a href="<?= site_url('logins/logout') ?>" class="btn btn-sm btn-white btn-icon rounded-pill d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="left" title="Pergi ke toko ...">
+              <a href="<?= site_url('logins/logout') ?>" class="btn btn-sm btn-white btn-icon rounded-pill d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="left" title="Keluar dari akun ...">
                 <span class="btn-inner--icon"><i class="far fa-sign-out-alt"></i></span>
                 <span class="btn-inner--text">Keluar</span>
               </a>
@@ -406,7 +406,7 @@
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $val['name'] ?></td>
                                 <td><?= word_limiter($val['description'], 8); ?></td>
-                                <td><a class="btn btn-primary btn-sm" href="<?= site_url() ?><?= $this->uri->segment(1) ?>/methodModify?id=<?= $val['id'] ?>">Edit</a>&nbsp;&nbsp;<a class="btn btn-danger btn-sm" href="<?= site_url() ?><?= $this->uri->segment(1) ?>/processDelete?id=<?= $val['id'] ?>">Hapus</a></td>
+                                <td><a class="btn btn-primary btn-sm" href="<?= site_url() ?><?= $this->uri->segment(1) ?>/methodModify?id=<?= $val['id'] ?>">Edit</a>&nbsp;&nbsp;<a class="btn btn-danger btn-sm" href="<?= site_url() ?><?= $this->uri->segment(1) ?>/methodProcessDelete?id=<?= $val['id'] ?>">Hapus</a></td>
                             </tr>
                             <?php
                         }
