@@ -132,5 +132,9 @@ class Logins extends MX_Controller {
 		echo json_encode($response, JSON_PRETTY_PRINT);
 		die();
 	}
+
+	function tes(){
+		echo 'sd';
+	}
 }
 ?>
