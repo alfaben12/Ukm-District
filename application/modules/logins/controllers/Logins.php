@@ -25,6 +25,7 @@ class Logins extends MX_Controller {
 	public function test3(){
 	}
 	
+	
 	public function register(){
 		$data['region'] = $this->login->fetch_table('*','ukm_region','','name','asc','','',TRUE);
 		$this->template->write_view('register'. $this->_version, $data);
