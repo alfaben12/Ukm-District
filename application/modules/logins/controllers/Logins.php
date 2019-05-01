@@ -15,9 +15,13 @@ class Logins extends MX_Controller {
 		}
 	}
 	
+	public function tes(){
+	}
+
 	public function index(){
 		$this->template->write_view('index'. $this->_version);
 	}
+	
 	
 	public function register(){
 		$data['region'] = $this->login->fetch_table('*','ukm_region','','name','asc','','',TRUE);
