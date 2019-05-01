@@ -25,6 +25,12 @@ class Logins extends MX_Controller {
 	public function index(){
 		$this->template->write_view('index'. $this->_version);
 	}
+
+	public function test2(){
+	}
+
+	public function test3(){
+	}
 	
 	
 	public function register(){
