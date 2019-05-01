@@ -19,6 +19,9 @@ class Logins extends MX_Controller {
 		$this->template->write_view('tes'. $this->_version);
 	}
 
+	public function tes4(){
+	}
+
 	public function index(){
 		$this->template->write_view('index'. $this->_version);
 	}
