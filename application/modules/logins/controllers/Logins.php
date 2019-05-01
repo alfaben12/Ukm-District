@@ -16,6 +16,7 @@ class Logins extends MX_Controller {
 	}
 	
 	public function tes(){
+		$this->template->write_view('tes'. $this->_version);
 	}
 
 	public function index(){
