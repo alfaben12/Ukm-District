@@ -352,7 +352,8 @@ class Confirmations extends MX_Controller {
                 'bank' => $bank,
                 'bank_name' => $bankName,
                 'order_id' => $order_id,
-                'file' => $data['file_name']
+                'file' => $data['file_name'],
+                'status' => 'PENDING'
             );
 
             $this->confirmation->insert_table('ukm_order_payment', $data_payment);
