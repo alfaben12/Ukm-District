@@ -1,4 +1,3 @@
-<link rel="icon" href="<?= base_url() ?>assets/img/brand/favicon.png" type="image/png">
 <!-- Font Awesome 5 -->
 <link rel="stylesheet" href="<?= base_url() ?>assets/libs/@fortawesome/fontawesome-pro/css/all.min.css">
 <!-- Page CSS -->

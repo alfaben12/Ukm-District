@@ -24,7 +24,7 @@ class Paymentz extends MX_Controller {
             )
         );
 
-        $data['payment'] = $this->payment->fetch_joins('ukm_order_payment','ukm_order_payment.*, ukm_order.invoice, ukm_order.status',$join,'',TRUE);
+        $data['payment'] = $this->payment->fetch_joins('ukm_order_payment','ukm_order_payment.*, ukm_order.invoice, ukm_order.status AS status_order',$join,'',TRUE);
 		$this->template->write_view('index'. $this->_version, $data);
 	}
 	
