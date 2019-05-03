@@ -393,7 +393,7 @@
                             <th>Bank</th>
                             <th>Nama</th>
                             <th>Bukti</th>
-                            <th>status</th>
+                            <th>Order</th>
                             <th width="25%">Tindakan</th>
                         </tr>
                     </thead>
@@ -407,8 +407,11 @@
                                 <td><?= $val['bank'] ?></td>
                                 <td><?= $val['bank_name'] ?></td>
                                 <td align="center"> <a href="<?= base_url() ?>files/payment/<?= $val['file'] ?>" class="zoomple"><img src="<?= base_url() ?>files/payment/<?= $val['file'] ?>" width="150" height="90"></td>
-                                <td><?= $val['status'] ?></td>
-                                <td><a class="btn btn-primary btn-sm" href="<?= site_url() ?>paymentz/processChangeStatus?id=<?= $val['order_id'] ?>&status=<?= $val['status'] ?>"><?= $val['status'] == 'MENUNGGU' ? 'KONFIRMASI' : 'MENUNGGU' ?></a>&nbsp;&nbsp;<a class="btn btn-danger btn-sm" href="<?= site_url() ?>paymentz/processDelete?id=<?= $val['id'] ?>">Hapus</a></td>
+                                <td><?= $val['status_order'] ?></td>
+                                <td>
+                                  <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-change-status"><?= $val['status'] ?></button>
+                                  &nbsp;&nbsp;
+                                  <a class="btn btn-danger btn-sm" href="<?= site_url() ?>paymentz/processDelete?id=<?= $val['id'] ?>">Hapus</a></td>
                             </tr>
                             <?php
                         }
@@ -420,6 +423,53 @@
     </section>
   </div>
 
+  <div id="modal-username-change-result" class="tab-pane tab-example-result fade show active" role="tabpanel" aria-labelledby="modal-username-change-result-tab">
+                  <!-- Button trigger modal -->
+                  <!-- Modal -->
+                  <div class="modal fade" id="modal-change-status" tabindex="-1" role="dialog" aria-labelledby="modal-change-status" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <form>
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <div class="modal-title d-flex align-items-center" id="modal-title-change-username">
+                              <div>
+                                <div class="icon icon-sm icon-shape icon-info rounded-circle shadow mr-3">
+                                  <i class="far fa-credit-card"></i>
+                                </div>
+                              </div>
+                              <div>
+                                <h6 class="mb-0">Pembayaran</h6>
+                              </div>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+                              <div class="col-sm-12">
+                              <div class="form-group">
+								                <select name="payment_status" id="payment_status" title="Status" class="custom-select" style="width:100%">
+                                  <option value="" hidden="">Pilih Status</option>
+                                  <option value="PENDING">PENDING</option>
+                                  <option value="TERBAYAR">TERBAYAR</option>
+                                  <option value="DIBATALKAN">DIBATALKAN</option>
+                                </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="px-5 pt-4 mt-4 delimiter-top text-center">
+                              <p class="text-muted text-sm">You will receive an email where you will be asked to confirm this action in order to be completed.</p>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Change my username</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div><!-- Code -->
   <script>
     $('#example').DataTable({
         "info": true,         // Will show "1 to n of n entries" Text at bottom
