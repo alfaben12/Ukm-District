@@ -25,14 +25,14 @@
             <a href="<?= base_url() ?>index.html">
               <img src="<?= base_url() ?>assets/img/brand/white.png" alt="Footer logo" style="height: 70px;">
             </a>
-            <p>Purpose adalah koleksi elemen UI yang unik dan indah yang semuanya fleksibel dan modular. Solusi lengkap dan dapat disesuaikan untuk membangun situs web impian Anda.</p>
+            <p>UMKM adalah usaha produktif yang dimiliki perorangan maupun badan usaha yang telah memenuhi kriteria sebagai usaha mikro (Pasuruan).</p>
           </div>
           <div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0">
             <h6 class="heading mb-3">Akun</h6>
             <ul class="list-unstyled">
               <li><a href="#">Penjual</a></li>
-              <li><a href="#">Pembeli</a></li>
               <li><a href="#">UMKM Admin</a></li>
+              <li><a href="#">Pelacakan Order</a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
