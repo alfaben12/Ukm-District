@@ -1,10 +1,10 @@
-###Requirements
+### Requirements
 
 - Koneksi Internet
 - Komputer/Laptop/Smartphone
 - *Akun* untuk akses mengelola
 
-###Features
+### Features
 
 - Deskripsi profile
 - Produk diperdagangkan
