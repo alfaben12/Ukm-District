@@ -19,7 +19,7 @@ Kontak pengembangan zrav420@gmail.com
 
 ## Contributor
 - Thariq Alfa
--`codenamezrav`
+- codenamezrav
 
 ## Tertarik ikut mengembangkan? kontak saya
 
