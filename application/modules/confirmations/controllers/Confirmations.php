@@ -1,24 +1,65 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Confirmations extends MX_Controller {
+    
+    public $flag = true;
+    public $_version = '';
+
 	public function __construct() {
 		parent::__construct();
         $this->load->model('confirmation');
+
+        if ($this->flag) {
+			$this->_version = '_v2.php';
+		}else{
+			$this->_version = '';
+		}
 	}
 	
+	
 	public function index(){
+        date_default_timezone_set("Asia/Jakarta");
+        $time = time();
+        $hour = date("G",$time);
+
+        if ($hour>=0 && $hour<=11){
+            $greeting = "Selamat Pagi";
+        }elseif ($hour >=12 && $hour<=15){
+            $greeting = "Selamat Siang";
+        }elseif ($hour >=16 && $hour<=18){
+            $greeting = "Selamat Sore";
+        }elseif ($hour >=19 && $hour<=23){
+            $greeting = "Selamat Malam ";
+        }else{
+            $greeting = "Selamat Pagi";
+        }
+        $data['greeting'] = $greeting;
+
         if($this->cart->total() > 0){
-            $this->template->write_view('index');
+            $this->template->write_view('index'. $this->_version, $data);
         }else{
             redirect(site_url('shops'));
         }
+    }
+
+    public function getShipping(){
+        $data['shippingMethod'] = $this->confirmation->fetch_table('*','ukm_shipping_method','','','','','',TRUE);
+        $response = array(
+            'code' => 200,
+            'message' => 'Pengiriman ditemukan',
+            'data' => array(
+                'shippingMethod' => $data['shippingMethod']
+            )
+        );
+        echo json_encode($response, JSON_PRETTY_PRINT);
+        die();
     }
 
     public function getPayment(){
         $data['payment'] = $this->confirmation->fetch_table('*','ukm_payment','','','','','',TRUE);
         $response = array(
             'code' => 200,
-            'message' => 'Payment ditemukan',
+            'message' => 'Pembayaran ditemukan',
             'data' => array(
                 'payment' => $data['payment']
             )
@@ -28,14 +69,15 @@ class Confirmations extends MX_Controller {
     }
 
     public function processCheckOut(){
-        $this->form_validation->set_rules('firstName', 'Nama Depan is required',  'trim|required');
-		$this->form_validation->set_rules('lastName', 'Nama Belakang is required', 'trim|required');
-		$this->form_validation->set_rules('phoneNumber', 'No WA is required', 'trim|required');
-		$this->form_validation->set_rules('email', 'Email is required', 'trim|required');
-		$this->form_validation->set_rules('address', 'Alamat is required', 'trim|required');
-		$this->form_validation->set_rules('city', 'Kota/Kabupaten is required', 'trim|required');
-		$this->form_validation->set_rules('district', 'Desa is required', 'trim|required');
-		$this->form_validation->set_rules('paymentID', 'Pembayaran is required', 'trim|required');
+        $this->form_validation->set_rules('firstName', 'Nama Depan',  'trim|required');
+		$this->form_validation->set_rules('lastName', 'Nama Belakang', 'trim|required');
+		$this->form_validation->set_rules('phoneNumber', 'No WA', 'trim|required');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required');
+		$this->form_validation->set_rules('address', 'Alamat', 'trim|required');
+		$this->form_validation->set_rules('city', 'Kota/Kabupaten', 'trim|required');
+		$this->form_validation->set_rules('district', 'Desa', 'trim|required');
+		$this->form_validation->set_rules('paymentID', 'Pembayaran', 'trim|required');
+		$this->form_validation->set_rules('shippingMethodID', 'Pengiriman', 'trim|required');
 
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();
@@ -50,7 +92,8 @@ class Confirmations extends MX_Controller {
 
         $this->db->trans_start();
 
-        $payment_id = $this->input->post('paymentID');
+        $paymentID = $this->input->post('paymentID');
+        $shippingMethodID = $this->input->post('shippingMethodID');
         $invoice = generateInvoiceNumber();
         $full_name = $this->input->post('firstName') . ' '. $this->input->post('lastName');
         $company = $this->input->post('company');
@@ -61,12 +104,15 @@ class Confirmations extends MX_Controller {
         $district = $this->input->post('district');
         $zip = $this->input->post('zip');
         $note = $this->input->post('note');
-        $total = $this->cart->total();
+        $shippingPrice = $this->input->post('shippingPrice');
+        $subtotal = $this->cart->total();
+        $total = $this->cart->total() + $shippingPrice;
         $status = 'PENDING';
         $total_item = $this->cart->total_items();
         
         $order_data = array(
-            'payment_id' => $payment_id,
+            'payment_id' => $paymentID,
+            'shipping_method_id' => $shippingMethodID,
             'invoice' => $invoice,
             'full_name' => $full_name,
             'company' => $company,
@@ -77,9 +123,11 @@ class Confirmations extends MX_Controller {
             'district' => $district,
             'zip' => $zip,
             'note' => $note,
+            'subtotal' => $subtotal,
             'total' => $total,
             'total_item' => $total_item,
-            'status' => $status
+            'status' => $status,
+            'price_shipping' => $shippingPrice
         );
 
 		$this->confirmation->insert_table('ukm_order', $order_data);
@@ -119,10 +167,6 @@ class Confirmations extends MX_Controller {
     }
 
     function payment(){
-        $this->template->write_view('payment');
-    }
-
-    function getInfoOrder(){
         $inv = $this->input->get('inv');
         $orderID = $this->input->get('orderID');
         $totalCost = $this->input->get('totalCost');
@@ -137,7 +181,7 @@ class Confirmations extends MX_Controller {
             )
         );
 
-        $where = 'invoice = "'. $inv .'" and ukm_order.id = "'. $orderID .'" and total = "'. $totalCost .'" and total_item = "'. $totalItem .'" and phone_wa = "'. $contact .'"';
+        $where = 'invoice = "'. $inv .'" and ukm_order.id = "'. $orderID .'" and total = "'. $totalCost .'" and total_item = "'. $totalItem .'" and phone_wa = "'. $contact .'" and "MENUNGGU"';
         $order = $this->confirmation->fetch_joins('ukm_order','ukm_order.*, ukm_payment.name AS bank_name, ukm_payment.bank AS bank, ukm_payment.rekening AS bank_rekening',$join,$where,TRUE);
 
         $join_product = array(
@@ -149,11 +193,69 @@ class Confirmations extends MX_Controller {
         );
         $order_item = $this->confirmation->fetch_joins('ukm_order_detail','ukm_order_detail.*, ukm_product.name AS product_name',$join_product,'order_id = '. $orderID,TRUE);
 
+        date_default_timezone_set("Asia/Jakarta");
+        $time = time();
+        $hour = date("G",$time);
+
+        if ($hour>=0 && $hour<=11){
+            $greeting = "Selamat Pagi";
+        }elseif ($hour >=12 && $hour<=15){
+            $greeting = "Selamat Siang";
+        }elseif ($hour >=16 && $hour<=18){
+            $greeting = "Selamat Sore";
+        }elseif ($hour >=19 && $hour<=23){
+            $greeting = "Selamat Malam ";
+        }else{
+            $greeting = "Selamat Pagi";
+        }
+        $data['greeting'] = $greeting;
+
+        if (count($order_item) > 0) {
+            $this->template->write_view('payment'. $this->_version, $data);
+        }else{
+            redirect(site_url('shops'));
+        }
+    }
+
+    function getInfoOrder(){
+        $inv = $this->input->get('inv');
+        $orderID = $this->input->get('orderID');
+        $totalCost = $this->input->get('totalCost');
+        $totalItem = $this->input->get('totalItem');
+        $contact = $this->input->get('contact');
+
+        $join = array(
+            array(
+                'table' => 'ukm_payment',
+                'condition' => 'ukm_payment.id = ukm_order.payment_id',
+                'jointype' => 'LEFT'
+            ),
+            array(
+                'table' => 'ukm_shipping_method',
+                'condition' => 'ukm_shipping_method.id = ukm_order.shipping_method_id',
+                'jointype' => 'LEFT'
+            )
+        );
+
+        $where = 'invoice = "'. $inv .'" and ukm_order.id = "'. $orderID .'" and total = "'. $totalCost .'" and total_item = "'. $totalItem .'" and phone_wa = "'. $contact .'"';
+        $order = $this->confirmation->fetch_joins('ukm_order','ukm_order.*, ukm_payment.name AS bank_name, ukm_payment.bank AS bank, ukm_payment.rekening AS bank_rekening, ukm_shipping_method.name AS shipping_method',$join,$where,TRUE);
+
+        $join_product = array(
+            array(
+                'table' => 'ukm_product',
+                'condition' => 'ukm_product.id = ukm_order_detail.product_id',
+                'jointype' => ''
+            )
+        );
+        $order_item = $this->confirmation->fetch_joins('ukm_order_detail','ukm_order_detail.*, ukm_product.name AS product_name, ukm_product.image AS product_image',$join_product,'order_id = '. $orderID,TRUE);
+
         $response = array(
             'code' => 200,
             'message' => 'Berhasil ambil data order.',
-            'data' => $order,
-            'item' => $order_item
+            'data' => array(
+                'detail' => $order,
+                'item' =>$order_item
+            )
         );
         echo json_encode($response, JSON_PRETTY_PRINT);
     }
@@ -191,7 +293,7 @@ class Confirmations extends MX_Controller {
                 if (!$this->upload->do_upload('file')){
                     $data['file_name'] = null;
                     $json_data =  array(
-                        "result" => 401 ,
+                        "result" => 400 ,
                         "message" => array('head'=> 'Failed', 'body'=> $this->upload->display_errors('', '')),
                         "form_error" => 'gambar'
                     );
@@ -212,21 +314,52 @@ class Confirmations extends MX_Controller {
                 echo json_encode($response, JSON_PRETTY_PRINT);
                 die();
             }
-            
+
+            $phoneWa = $this->input->post('phoneWa');
             $bank = $this->input->post('bank');
             $bankName = $this->input->post('bankName');
 
+            
+            if($phoneWa == ''){
+                $response = array(
+                    'code' => 401,
+                    'message' => 'Gagal nomor WA tidak boleh kosong.'
+                );
+                echo json_encode($response, JSON_PRETTY_PRINT);
+                die();
+            }
+            
+            if($bank == ''){
+                $response = array(
+                    'code' => 401,
+                    'message' => 'Gagal bank tidak boleh kosong.'
+                );
+                echo json_encode($response, JSON_PRETTY_PRINT);
+                die();
+            }
+            
+            if($bankName == ''){
+                $response = array(
+                    'code' => 401,
+                    'message' => 'Gagal nama rekening tidak boleh kosong.'
+                );
+                echo json_encode($response, JSON_PRETTY_PRINT);
+                die();
+            }
+
             $data_payment = array(
+                'payment_wa' => $phoneWa,
                 'bank' => $bank,
                 'bank_name' => $bankName,
                 'order_id' => $order_id,
-                'file' => $data['file_name']
+                'file' => $data['file_name'],
+                'status' => 'PENDING'
             );
 
             $this->confirmation->insert_table('ukm_order_payment', $data_payment);
             
             $data_order = array(
-                'status' => 'KONFIRMASI'
+                'status' => 'MENUNGGU'
             );
             $update_order = $this->confirmation->update_table('ukm_order', $data_order, 'id', $order_id);
 
@@ -251,6 +384,31 @@ class Confirmations extends MX_Controller {
             $response = array(
                 'code' => 401,
                 'message' => 'Gagal konfirmasi, data tidak ada.'
+            );
+            echo json_encode($response, JSON_PRETTY_PRINT);
+            die();
+        }
+    }
+
+    function processCheckRegionShipping(){
+        $total = strtoupper($this->input->get('total'));
+        $destination = strtoupper($this->input->get('destination'));
+        $shippingMethodID = $this->input->get('shippingMethodID');
+
+        $data['shippingRegion'] = $this->confirmation->fetch_table('*','ukm_shipping_region','shipping_method_id = '. $shippingMethodID .' and name = "'. $destination.'"','','','','',TRUE);
+
+        if (count($data['shippingRegion']) > 0) {
+            $response = array(
+                'code' => 200,
+                'message' => 'Region pengiriman tersedia, ongkir '. $data['shippingRegion'][0]['price'] .'. Total = '. $total .'+'.$data['shippingRegion'][0]['price'] .' ingin melanjutkan?',
+                'data' => $data['shippingRegion'][0]['price']
+            );
+            echo json_encode($response, JSON_PRETTY_PRINT);
+            die();
+        }else{
+            $response = array(
+                'code' => 401,
+                'message' => 'Region pengiriman belum tersedia.'
             );
             echo json_encode($response, JSON_PRETTY_PRINT);
             die();
@@ -304,6 +462,6 @@ Terima kasih. 🍬🥤';
         $data['send_to_wa'] = 'https://wa.me/6281249898867?text='.urlencode($message_send_to_wa);
         $data['message'] = $message;
         $data['wa'] = '081249898867';
-        $this->template->write_view('thank_you', $data);
+        $this->template->write_view('thank_you'. $this->_version, $data);
     }
 }

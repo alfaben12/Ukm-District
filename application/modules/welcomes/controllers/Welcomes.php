@@ -6,9 +6,8 @@ class Welcomes extends MX_Controller {
 		$this->load->model('welcome');
 	}
 	public function index(){
-		$data['ukm'] = $this->welcome->fetch_table('*','ukm','id = 1','id','desc','','',TRUE);
+			redirect('ukms/ukmDetailProfile?ukmName='. main_ukm()->name);
 
-		redirect('ukms/ukmDetailProfile?ukmName='. $data['ukm'][0]['name']);
 	}
 
 }

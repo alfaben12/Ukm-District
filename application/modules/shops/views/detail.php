@@ -410,26 +410,8 @@
             });
         }
 
-        $("#commentForm").submit(function(event) {
-				$.ajax({
-					url: '<?= site_url() ?>ukms/processAddComent/',
-					data: $(this).serialize(),
-					type: 'POST',
-                    dataType: 'json',
-                    async: true,
-                    cache: false,
-                    dataType: 'json',
-                    beforeSend: function() {
-                    },
-                    complete: function() {
-                    },
-					success: function(response) {
-                        getAllData();
-					}
-				});
-				event.preventDefault();
-			});
-    });
+	});
+	
 	function processAdd(productID){
 		var qty = $("#sst").val();
 		$.ajax({
@@ -438,7 +420,7 @@
 				productID: productID,
 				qty: qty
 			},
-			type: 'GET',
+			type: 'POST',
 			async: true,
 			cache: false,
 			dataType: 'json',

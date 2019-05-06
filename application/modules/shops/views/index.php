@@ -239,7 +239,7 @@
 				productID: productID,
 				qty: 1
 			},
-			type: 'GET',
+			type: 'POST',
 			async: true,
 			cache: false,
 			dataType: 'json',

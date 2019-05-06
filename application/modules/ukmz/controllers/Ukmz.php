@@ -1,17 +1,25 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Ukmz extends MX_Controller {
+
+	public $flag = true;
+    public $_version = '';
+
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('ukm');
+        $this->load->model('ukm');
+
+        if ($this->flag) {
+			$this->_version = '_v2.php';
+		}else{
+			$this->_version = '';
+		}
+	}
+
+	function index(){
+		redirect('ukmz/modify?id=1');
 	}
 	
-	public function index(){
-			$data['ukm'] = $this->ukm->fetch_table('*','ukm','','id','desc','','',TRUE);
-
-			$this->template->write_view('index', $data);
-		}
-
 	function add(){
 		echo 'Belum tersedia.';
 	}
@@ -93,15 +101,15 @@ class Ukmz extends MX_Controller {
 
 	function modify(){
 		$id = $this->input->get('id');
-		$data['ukm'] = $this->ukm->fetch_table('*','ukm','id = '. $id,'id','desc','','',TRUE);
-		$this->template->write_view('modify', $data);
+		$data['data'] = $this->ukm->fetch_table('*','ukm','id = '. $id,'id','desc','','',TRUE);
+		$this->template->write_view('modify'.$this->_version, $data);
 	}
 
 	function processModify(){
 		$this->form_validation->set_rules('name', 'name is required', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('founder', 'ukm_category_product_id is required', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('quotes', 'price is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('description', 'description is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('description', 'description is required', 'trim|required');
 		$this->form_validation->set_rules('province','province is required', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('region','region is required', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('address','address is required', 'trim|required|xss_clean');
@@ -122,7 +130,7 @@ class Ukmz extends MX_Controller {
 			'name' => $this->input->post('name'),
 			'founder' => $this->input->post('founder'),
 			'quotes' => $this->input->post('quotes'),
-			'description' => $this->input->post('description'),
+			'description' => $this->input->post('description', false),
 			'province' => $this->input->post('province'),
 			'region' => $this->input->post('region'),
 			'address' => $this->input->post('address')

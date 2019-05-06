@@ -1,13 +1,25 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Shops extends MX_Controller {
+
+    public $flag = true;
+    public $_version = '';
+    
     public function __construct() {
 		parent::__construct();
-		$this->load->model('shop');
+        $this->load->model('shop');
+        
+        if ($this->flag) {
+			$this->_version = '_v2.php';
+		}else{
+			$this->_version = '';
+		}
     }
     
 	public function index(){
-		$this->template->write_view('index');
+        $data['region'] = $this->shop->fetch_table('*','ukm_region','','name','asc','','',TRUE);
+		$data['category'] = $this->shop->fetch_table('*','ukm_category_product','','name','asc','','',TRUE);
+		$this->template->write_view('index'. $this->_version, $data);
     }
 
     public function getRenderedContent(){
@@ -42,11 +54,22 @@ class Shops extends MX_Controller {
         }else{
             $category_id = $this->input->get('ukm_category_product_id');
         }
+
+        if ($this->input->get('region_id') != '') {
+            if (getRegionID($this->input->get('region_id'))->id != 0 || getRegionID($this->input->get('region_id'))->id == null) {
+                $region_id = getRegionID($this->input->get('region_id'))->id;
+            }else{
+                $region_id = '';
+            }
+        }else{
+            $region_id = '';
+        }
+
         $price_from = $this->input->get('price_from');
         $price_to = $this->input->get('price_to');
 
         // Row per page
-        $rowperpage = 9;
+        $rowperpage = 12;
     
         // Row position
         if($rowno != 0){
@@ -54,20 +77,14 @@ class Shops extends MX_Controller {
         }
      
         // All records count
-        $allcount = $this->shop->getRecordCount($category_id,$price_from,$price_to);
+        $allcount = $this->shop->getRecordCount($category_id,$price_from,$price_to, $region_id);
 
         // Get records
-        $users_record = $this->shop->getData($rowno,$rowperpage,$category_id,$price_from,$price_to);
-     
+        $users_record = $this->shop->getData($rowno,$rowperpage,$category_id,$price_from,$price_to, $region_id);
+       
         // Pagination Configuration
-        $config['next_tag_open'] = '<li class="next-arrow">';
-        $config['next_link'] = '<i class="fa fa-long-arrow-right" aria-hidden="true"></i>';
-        $config['next_tag_close'] = '</li>';
-        $config['prev_tag_open'] = '<li class="next-arrow">';
-        $config['prev_link'] = '<i class="fa fa-long-arrow-left" aria-hidden="true"></i>';
-        $config['prev_tag_close'] = '</li>';
-        $config['cur_tag_open'] = '<a href="" class="active">';
-        $config['cur_tag_close'] = '</a>';
+        $config['next_link'] = 'Berikutnya';
+        $config['prev_link'] = 'Sebelumnya';
         $config['base_url'] = base_url().'shops/getUkmDataProduct';
         $config['use_page_numbers'] = TRUE;
         $config['total_rows'] = $allcount;
@@ -83,7 +100,7 @@ class Shops extends MX_Controller {
         if ($allcount == 0) {
             $response = array(
                 'code' => 204,
-                'message' => 'Product tidak ada'
+                'message' => 'Produk tidak ditemukan'
             );
             echo json_encode($response, JSON_PRETTY_PRINT);
             die();
@@ -91,7 +108,7 @@ class Shops extends MX_Controller {
 
         $response = array(
             'code' => 200,
-            'message' => 'Product ditemukan',
+            'message' => 'Produk ditemukan',
             'data' => array(
                 'product' => $data,
             )
@@ -104,7 +121,7 @@ class Shops extends MX_Controller {
         $productName = $this->input->get('productName');
 
         $data['product'] = $this->shop->fetch_table('*','ukm_product','name = "'.$productName.'"','','','','',TRUE);
-		$this->template->write_view('detail',$data);
+		$this->template->write_view('detail'. $this->_version, $data);
     }
 
     public function getUkmDataDetailProduk(){
@@ -115,10 +132,15 @@ class Shops extends MX_Controller {
                     'table' => 'ukm_category_product',
                     'condition' => 'ukm_category_product.id = ukm_product.ukm_category_product_id',
                     'jointype' => 'LEFT'
+                ),
+                array(
+                    'table' => 'ukm_region',
+                    'condition' => 'ukm_region.id = ukm_product.region_id',
+                    'jointype' => 'LEFT'
                 )
             );
 
-		$product = $this->shop->fetch_joins('ukm_product','ukm_product.*, ukm_category_product.name AS category_name',$join,'ukm_product.name = "'.$productName.'"',TRUE);
+		$product = $this->shop->fetch_joins('ukm_product','ukm_product.*, ukm_category_product.name AS category_name, ukm_region.name AS region_name',$join,'ukm_product.name = "'.$productName.'"',TRUE);
 
         if (count($product) == 0) {
             $response = array(
@@ -143,5 +165,18 @@ class Shops extends MX_Controller {
         );
         echo json_encode($response, JSON_PRETTY_PRINT);
         die();
+    }
+
+    function proccessGetRegion(){
+        $data = $this->shop->fetch_table('*','ukm_region','', 'id','asc','','',TRUE);
+        if(count($data) > 0){
+			$response =  array(
+				'code' => 200,
+                'message' => 'Data region berhasil diambil.',
+                'data' => $data
+			);
+			echo json_encode($response, JSON_PRETTY_PRINT);
+			die();
+		}
     }
 }
