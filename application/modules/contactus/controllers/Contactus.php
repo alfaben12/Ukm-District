@@ -1,13 +1,23 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Contactus extends MX_Controller {
-    public function __construct() {
+
+	public $flag = true;
+    public $_version = '';
+
+	public function __construct() {
 		parent::__construct();
-		$this->load->model('contactus_s');
-    }
+        $this->load->model('contactus_s');
+
+        if ($this->flag) {
+			$this->_version = '_v2.php';
+		}else{
+			$this->_version = '';
+		}
+	}
 
 	public function index(){
-		$this->template->write_view('index');
+		$this->template->write_view('index'. $this->_version);
     }
     
     public function maps(){
@@ -45,7 +55,7 @@ class Contactus extends MX_Controller {
 
         $response = array(
             'code' => 200,
-            'message' => 'Komen ditambahkan',
+            'message' => 'Pesan berhasil dikirim',
         );
         echo json_encode($response, JSON_PRETTY_PRINT);
         die();

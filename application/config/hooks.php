@@ -5,6 +5,19 @@ $hook['post_controller_constructor'][] = array(
 	'function' => 'session_check',
 	'filepath' => 'hooks'
 );
+
+$hook['post_controller_constructor'][] = array(
+	'filename' => 'Security_login.php',
+	'function' => 'accessCheck',
+	'filepath' => 'hooks'
+);
+
+// $hook['display_override'][] = array(
+// 	'class' => '',
+// 	'function' => 'compress',
+// 	'filename' => 'compress.php',
+// 	'filepath' => 'hooks'
+// 	);
 /*
 | -------------------------------------------------------------------------
 | Hooks

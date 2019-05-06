@@ -1,27 +1,43 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Productz extends MX_Controller {
+	public $flag = true;
+    public $_version = '';
+
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('product');
+        $this->load->model('product');
+
+        if ($this->flag) {
+			$this->_version = '_v2.php';
+		}else{
+			$this->_version = '';
+		}
 	}
 	
 	public function index(){
-		$data['productUkm'] = $this->product->fetch_table('*','ukm_product','','id','desc','','',TRUE);
-
-		$this->template->write_view('index', $data);
+		if (getMemberInfo($this->session->userdata('id'))->role_id == 1) {
+			$data['productUkm'] = $this->product->fetch_table('*','ukm_product','','id','desc','','',TRUE);
+		}else{
+			$data['productUkm'] = $this->product->fetch_table('*','ukm_product','member_id = '. $this->session->userdata('id'),'id','desc','','',TRUE);
 		}
 
+		$this->template->write_view('index'. $this->_version, $data);
+	}
+
 	function add(){
-		$this->template->write_view('add');
+		$data['region'] = $this->product->fetch_table('*','ukm_region','','name','asc','','',TRUE);
+		$data['category'] = $this->product->fetch_table('*','ukm_category_product','','name','asc','','',TRUE);
+		$this->template->write_view('add'. $this->_version, $data);
 	}
 
 	function proccessAdd(){
-		$this->form_validation->set_rules('name', 'name is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('ukm_category_product_id', 'ukm_category_product_id is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('price', 'price is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('stock', 'stock is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('description', 'description is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('name', 'Nama', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('ukm_category_product_id', 'Kategori', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('price', 'Harga', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('stock', 'Stok', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('ukm_region_id', 'Area', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();
@@ -46,7 +62,7 @@ class Productz extends MX_Controller {
 				$data['file_name'] = null;
 				$json_data =  array(
 					"result" => 401 ,
-					"message" => array('head'=> 'Failed', 'body'=> $this->upload->display_errors('', '')),
+					"message" => array('Gambar harus ada.'),
 					"form_error" => 'gambar'
 				);
 				print json_encode($json_data);
@@ -70,20 +86,23 @@ class Productz extends MX_Controller {
 		$value = array(
 			'image' => $data['file_name'],
 			'ukm_id' => 1,
+			'member_id' => $this->session->userdata('id'),
 			'name' => $this->input->post('name'),
 			'ukm_category_product_id' => $this->input->post('ukm_category_product_id'),
 			'price' => $this->input->post('price'),
 			'stock' => $this->input->post('stock'),
 			'sold_count' => $this->input->post('sold_count'),
-			'is_diskon' => $this->input->post('is_diskon'),
-			'final_price' => $this->input->post('final_price'),
-			'description' => $this->input->post('description')
+			'is_diskon' => 0,
+			'final_price' => 0,
+			'description' => $this->input->post('description'),
+			'region_id' => $this->input->post('ukm_region_id'),
+			'rating' => $this->input->post('rating')
 		);
 
 		$this->product->insert_table('ukm_product', $value);
 
 		$response =  array(
-			'code' => 200,
+			'code' => 201,
 			'message' => 'Berhasil ditambahkan',
 			'redirect' => site_url('productz')
 		);
@@ -93,16 +112,20 @@ class Productz extends MX_Controller {
 
 	function modify(){
 		$id = $this->input->get('id');
+		$data['region'] = $this->product->fetch_table('*','ukm_region','','name','asc','','',TRUE);
+		$data['category'] = $this->product->fetch_table('*','ukm_category_product','','name','asc','','',TRUE);
 		$data['productUkm'] = $this->product->fetch_table('*','ukm_product','id = '. $id,'id','desc','','',TRUE);
-		$this->template->write_view('modify', $data);
+		
+		$this->template->write_view('modify'. $this->_version, $data);
 	}
 
 	function processModify(){
-		$this->form_validation->set_rules('name', 'name is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('ukm_category_product_id', 'ukm_category_product_id is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('price', 'price is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('stock', 'stock is required', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('description', 'description is required', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('name', 'Nama', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('ukm_category_product_id', 'Kategori', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('price', 'Harga', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('stock', 'Stok', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('ukm_region_id', 'Area', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('description', 'Description', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
 			$form_error = $this->form_validation->error_array();
@@ -124,9 +147,11 @@ class Productz extends MX_Controller {
 			'price' => $this->input->post('price'),
 			'stock' => $this->input->post('stock'),
 			'sold_count' => $this->input->post('sold_count'),
-			'is_diskon' => $this->input->post('is_diskon'),
-			'final_price' => $this->input->post('final_price'),
-			'description' => $this->input->post('description')
+			'is_diskon' => 0,
+			'final_price' => 0,
+			'description' => $this->input->post('description'),
+			'region_id' => $this->input->post('ukm_region_id'),
+			'rating' => $this->input->post('rating')
 		);
 
 		$this->product->update_table('ukm_product', $value, 'id', $id);

@@ -28,7 +28,8 @@
                             <th>Bank</th>
                             <th>Nama</th>
                             <th>Bukti</th>
-                            <th width="20%">Tindakan</th>
+                            <th>status</th>
+                            <th width="25%">Tindakan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,7 +42,8 @@
                                 <td><?= $val['bank'] ?></td>
                                 <td><?= $val['bank_name'] ?></td>
                                 <td align="center"> <a href="<?= base_url() ?>files/payment/<?= $val['file'] ?>" class="zoomple"><img src="<?= base_url() ?>files/payment/<?= $val['file'] ?>" width="150" height="90"></td>
-                                <td><a class="genric-btn info radius" href="<?= site_url() ?>paymentz/modify?id=<?= $val['id'] ?>">Edit</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a class="genric-btn danger radius" href="<?= site_url() ?>productz/processDelete?id=<?= $val['id'] ?>">Hapus</a></td>
+                                <td><?= $val['status'] ?></td>
+                                <td><a class="genric-btn info radius" href="<?= site_url() ?>paymentz/processChangeStatus?id=<?= $val['order_id'] ?>&status=<?= $val['status'] ?>"><?= $val['status'] == 'MENUNGGU' ? 'KONFIRMASI' : 'MENUNGGU' ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a class="genric-btn danger radius" href="<?= site_url() ?>paymentz/processDelete?id=<?= $val['id'] ?>">Hapus</a></td>
                             </tr>
                             <?php
                         }
@@ -58,7 +60,7 @@
         "info": true,         // Will show "1 to n of n entries" Text at bottom
         "lengthChange": false // Will Disabled Record number per page
     });
-    
+
     $(document).ready(function() { 	
         $('.zoomple').zoomple({ 
             bgColor : '#90D5D9',
