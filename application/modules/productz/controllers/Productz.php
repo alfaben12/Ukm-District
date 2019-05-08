@@ -169,4 +169,74 @@ class Productz extends MX_Controller {
 		$this->product->delete_table("ukm_product","id", $this->input->get('id'));
 		redirect('productz');
 	}
+
+	function addCategory(){
+		$this->template->write_view('add_category');
+	}
+
+	function proccessAddCategory(){
+		$this->form_validation->set_rules('name', 'name is required', 'trim|required|xss_clean');
+		
+		if($this->form_validation->run() == FALSE){
+			$form_error = $this->form_validation->error_array();
+			$response =  array(
+				'code' => 401,
+				'message' => 'Form tidak lengkap',
+				'error' => $form_error,
+			);
+			echo json_encode($response, JSON_PRETTY_PRINT);
+			die();
+		}
+		
+		$value = array(
+			'name' => $this->input->post('name'),
+		);
+
+		$this->product->insert_table('ukm_category_product', $value);
+
+		$response =  array(
+			'code' => 200,
+			'message' => 'Berhasil ditambahkan',
+			'redirect' => site_url('productz/category')
+		);
+		echo json_encode($response, JSON_PRETTY_PRINT);
+		die();
+	}
+
+	function modifyCategory(){
+		$id = $this->input->get('id');
+		$data['category'] = $this->product->fetch_table('*','ukm_category_product','id = '. $id,'id','desc','','',TRUE);
+		$this->template->write_view('modify_category', $data);
+	}
+
+	function processModifyCategory(){
+		$this->form_validation->set_rules('name', 'name is required', 'trim|required|xss_clean');
+		
+		if($this->form_validation->run() == FALSE){
+			$form_error = $this->form_validation->error_array();
+			$response =  array(
+				'code' => 401,
+				'message' => 'Form tidak lengkap',
+				'error' => $form_error,
+			);
+			echo json_encode($response, JSON_PRETTY_PRINT);
+			die();
+		}
+
+		$id = $this->input->get('id');
+
+		$value = array(
+			'name' => $this->input->post('name'),
+		);
+
+		$this->product->update_table('ukm_category_product', $value, 'id', $id);
+		
+		$response =  array(
+			'code' => 200,
+			'message' => 'Berhasil diupdate',
+			'redirect' => site_url('productz/category')
+		);
+		echo json_encode($response, JSON_PRETTY_PRINT);
+		die();
+	}
 }
