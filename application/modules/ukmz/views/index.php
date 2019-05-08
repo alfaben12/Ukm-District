@@ -3,10 +3,10 @@
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                 <div class="col-first">
-                    <h1>UKM</h1>
+                    <h1>UMKM</h1>
                     <nav class="d-flex align-items-center">
                         <a href="<?= site_url() ?>">Beranda<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="<?= site_url('Umkz') ?>">Ukm</a>
+                        <a href="<?= site_url('Umkz') ?>">UMKM</a>
                     </nav>
                 </div>
             </div>
@@ -19,7 +19,7 @@
         <div class="container">
             <div class="cart_inner">
             <span class="input-group-btn">
-                <a class="primary-btn" href="<?= site_url() ?>ukmz/add">Tambah UKM</a>
+                <a class="primary-btn" href="<?= site_url() ?>ukmz/add">Tambah UMKM</a>
             </span>
                 <div class="table-responsive">
                 <br/>
