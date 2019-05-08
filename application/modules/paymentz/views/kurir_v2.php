@@ -390,12 +390,11 @@
                         <tr>
                             <th width="5%">No</th>
                             <th>Invoice</th>
-                            <th>Bank</th>
-                            <th>Nama</th>
-                            <th>Bukti</th>
-                            <th>Order</th>
+                            <th>Kurir</th>
+                            <th>Dikirim</th>
                             <th>Tujuan</th>
-                            <th width="25%">Tindakan</th>
+                            <th>Pembayaran</th>
+                            <th>Ongkir</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -405,15 +404,11 @@
                             <tr>
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $val['invoice'] ?></td>
-                                <td><?= $val['bank'] ?></td>
-                                <td><?= $val['bank_name'] ?></td>
-                                <td align="center"> <a href="<?= base_url() ?>files/payment/<?= $val['file'] ?>" class="zoomple"><img src="<?= base_url() ?>files/payment/<?= $val['file'] ?>" width="150" height="90"></td>
-                                <td><?= $val['status_order'] ?></td>
-                                <td><?= strtoupper($val['destination']) ?></td>
-                                <td>
-                                  <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" onclick="getDataChangeStatus(<?= $val['id'] ?>)" data-target="#modal-change-status"><?= $val['status'] ?></button>
-                                  &nbsp;&nbsp;
-                                  <a class="btn btn-danger btn-sm" href="<?= site_url() ?>paymentz/processDelete?id=<?= $val['id'] ?>">Hapus</a></td>
+                                <td><?= $val['kurir_name'] ?></td>
+                                <td><?= strtoupper($val['region_name']) ?></td>
+                                <td><?= $val['dropoff_region'] ?></td>
+                                <td><?= $val['payment_status'] ?></td>
+                                <td><?= $val['price'] ?></td>
                             </tr>
                             <?php
                         }
@@ -425,131 +420,12 @@
     </section>
   </div>
 
-  <div id="modal-username-change-result" class="tab-pane tab-example-result fade show active" role="tabpanel" aria-labelledby="modal-username-change-result-tab">
-                  <!-- Button trigger modal -->
-                  <!-- Modal -->
-                  <div class="modal fade" id="modal-change-status" tabindex="-1" role="dialog" aria-labelledby="modal-change-status" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <form id="form_changeStatus">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <div class="modal-title d-flex align-items-center" id="modal-title-change-username">
-                              <div>
-                                <div class="icon icon-sm icon-shape icon-info rounded-circle shadow mr-3">
-                                  <i class="far fa-credit-card"></i>
-                                </div>
-                              </div>
-                              <div>
-                                <h6 class="mb-0">Pembayaran</h6>
-                              </div>
-                            </div>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <div class="row">
-                              <div class="col-sm-12">
-                              	<div class="form-group">
-									<select name="payment_status" id="payment_status" title="Status" class="custom-select" style="width:100%">
-									<option value="" hidden="">Pilih Status</option>
-									<option value="PENDING">PENDING</option>
-									<option value="TERBAYAR">TERBAYAR</option>
-									<option value="DIBATALKAN">DIBATALKAN</option>
-									</select>
-                                </div>
-							  </div>
-							  <div class="col-sm-12">
-                              	<div class="form-group">
-									<select name="kurir_id" id="kurir_id" title="Kurir" class="custom-select" style="width:100%">
-									
-									</select>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="px-5 pt-4 mt-4 delimiter-top text-center">
-                              <p class="text-muted text-sm">Kurir akan menerima pembayaran sesuai ongkos kirim, tanpa ada perhitungan lagi.</p>
-                            </div>
-                          </div>
-                          <div class="modal-footer">
-							<input type="hidden" name="payment_id" id="payment_id">
-                            <button type="submit" class="btn btn-sm btn-secondary">Selesai</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div><!-- Code -->
   <script>
     $('#example').DataTable({
         "info": true,         // Will show "1 to n of n entries" Text at bottom
         "lengthChange": false // Will Disabled Record number per page
     });
-
-    $(document).ready(function(){
-		$("#kurir_id").hide();
-      $("#payment_status").change(function(){
-        if ($(this).val() == 'TERBAYAR') {
-			$("#kurir_id").show();
-        }else{
-			$("#kurir_id").hide();
-		}
-      });
-
-	  $("#form_changeStatus").submit(function(event) {
-				/* AJAX FUNCTION MULTIPART*/
-				$.ajax({
-                    url: "<?= site_url() ?>paymentz/processChangeStatus",
-					type: "POST",
-					data: $(this).serialize(),
-					dataType: "json",
-					cache: false,
-					beforeSend: function() {
-					},
-					complete: function() {
-					},
-					success: function(response) {
-						if (response.code == 200) {
-							location.reload();
-						}else{
-                        formErrorNotice(response.error);
-						}
-					}
-				});
-				event.preventDefault();
-			});
-
-    });
-
-	function getDataChangeStatus(id){
-		$.ajax({
-					url: "<?= site_url() ?>paymentz/getDataChangeStatus",
-					type: "GET",
-					data: {id:id},
-					dataType: "json",
-					beforeSend: function() {
-					},
-					complete: function() {
-					},
-					success: function(response) {
-						
-						if (response.code == 200) {
-							successNotice(response.message);
-							$("#payment_id").val(response.data.payment[0]['id']);
-							var html = '<option value="" selected="selected">Pilih kurir</option>';
-				for(i=0; i < response.data.kurir.length; i++){
-					html += "<option value='"+response.data.kurir[i]['id']+"'>"+response.data.kurir[i]['name']+" ("+response.data.kurir[i]['region_name']+")</option>";
-				}
-				$('#kurir_id').html(html);
-
-                      }else{
-                        failNotice(response.message);
-                        formErrorNotice(response.error);
-                      }
-					}
-				});
-	}
-    </script>
+</script>
 
   <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
   <script src="<?= base_url() ?>assets/js/purpose.core.js"></script>

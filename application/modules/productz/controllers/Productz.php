@@ -169,11 +169,4 @@ class Productz extends MX_Controller {
 		$this->product->delete_table("ukm_product","id", $this->input->get('id'));
 		redirect('productz');
 	}
-
-	function addCategory(){
-		$this->template->write_view('add_category');
-	}
-
-	
-
 }
