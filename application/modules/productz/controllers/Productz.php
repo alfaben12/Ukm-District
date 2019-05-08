@@ -16,7 +16,11 @@ class Productz extends MX_Controller {
 	}
 	
 	public function index(){
-		$data['productUkm'] = $this->product->fetch_table('*','ukm_product','member_id = '. $this->session->userdata('id'),'id','desc','','',TRUE);
+		if (getMemberInfo($this->session->userdata('id'))->role_id == 1) {
+			$data['productUkm'] = $this->product->fetch_table('*','ukm_product','','id','desc','','',TRUE);
+		}else{
+			$data['productUkm'] = $this->product->fetch_table('*','ukm_product','member_id = '. $this->session->userdata('id'),'id','desc','','',TRUE);
+		}
 
 		$this->template->write_view('index'. $this->_version, $data);
 	}
@@ -165,4 +169,11 @@ class Productz extends MX_Controller {
 		$this->product->delete_table("ukm_product","id", $this->input->get('id'));
 		redirect('productz');
 	}
+
+	function addCategory(){
+		$this->template->write_view('add_category');
+	}
+
+	
+
 }
