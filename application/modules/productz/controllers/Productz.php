@@ -239,4 +239,9 @@ class Productz extends MX_Controller {
 		echo json_encode($response, JSON_PRETTY_PRINT);
 		die();
 	}
+
+	function processDeleteCategory(){
+		$this->product->delete_table("ukm_category_product","id", $this->input->get('id'));
+		redirect('productz/category');
+	}
 }
