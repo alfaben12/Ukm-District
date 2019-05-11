@@ -1,4 +1,4 @@
-### Requirements
+### KEBUTUHAN
 
 - Koneksi Internet
 - Komputer/Laptop/Smartphone
@@ -21,7 +21,7 @@ Kontak pengembangan zrav420@gmail.com
 - Thariq Alfa
 - codenamezrav
 
-## Tertarik ikut mengembangkan? kontak saya
+## Tertarik ikut mengembangkan? kontak saya email : zrav420@gmail.com
 
 # Logo
 ![](https://upload.wikimedia.org/wikipedia/commons/9/9a/Lambang_Kabupaten_Pasuruan.png) 
