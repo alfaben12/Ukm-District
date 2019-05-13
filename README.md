@@ -4,7 +4,7 @@
 - Komputer/Laptop/Smartphone
 - *Akun* untuk akses mengelola
 
-### Features
+### FITUR
 
 - Deskripsi profile
 - Produk diperdagangkan
