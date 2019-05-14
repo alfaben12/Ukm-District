@@ -14,7 +14,7 @@
 - Pengiriman didukung oleh POS Indonesia
 - Beli tanpa *login* atau *daftar*
 
-## Information Issues and Security Concerns
+## Masalah Informasi dan Masalah Keamanan
 Kontak pengembangan zrav420@gmail.com
 
 ## Contributor
