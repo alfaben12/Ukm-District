@@ -17,7 +17,7 @@
 ## Masalah Informasi dan Masalah Keamanan
 Kontak pengembangan zrav420@gmail.com
 
-## Developer
+## Pengembang
 - Thariq Alfa
 - codenamezrav
 

@@ -262,8 +262,8 @@
               <div class="card shadow zindex-100 mb-0">
                 <div class="card-body px-md-5 py-5">
                   <div class="mb-5">
-                    <h6 class="h3">Login</h6>
-                    <p class="text-muted mb-0">Masuk ke akun Anda untuk melanjutkan..</p>
+                    <h6 class="h3">Daftar</h6>
+                    <p class="text-muted mb-0">Daftarkan akun Anda untuk .</p>
                   </div>
                   <span class="clearfix"></span>
                   <form role="form" id="registerForm">
