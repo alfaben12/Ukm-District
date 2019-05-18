@@ -22,6 +22,12 @@ class Shops extends MX_Controller {
 		$this->template->write_view('index'. $this->_version, $data);
     }
 
+    public function product(){
+        $data = $this->shop->fetch_table('*','ukm_product','','name','asc','','',TRUE);
+        echo json_encode($data);
+        die();
+    }
+
     public function getRenderedContent(){
         $productCategory = $this->shop->fetch_table('*','ukm_category_product','','','','','',TRUE);
         $productUkm = $this->shop->fetch_table('*','ukm_product','','sold_count','desc','',6,TRUE);
