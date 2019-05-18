@@ -49,4 +49,14 @@ class Shop extends MY_Model {
  
     return $result[0]['allcount'];
   }
+
+  public function getDataProduct() {
+ 
+    $this->db->select('ukm_product.*, ukm_region.name AS region_name');
+    $this->db->from('ukm_product');
+    $this->db->join('ukm_region', 'ukm_region.id = ukm_product.region_id');
+    $query = $this->db->get();
+ 
+    return $query->result_array();
+  }
 }
